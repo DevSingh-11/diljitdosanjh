@@ -75,9 +75,8 @@ body.dark {
 
 .settings-menu {
   position: absolute;
-  top: 100%;   /* dropdown appears just below icon */
+  top: calc(100% + 8px); /* visually adds 8px gap */
   right: 0;
-  margin-top: 4px; /* small gap to avoid flicker */
   background-color: #333;
   border: 1px solid #555;
   padding: 10px;
@@ -85,6 +84,19 @@ body.dark {
   flex-direction: column;
   min-width: 160px;
   z-index: 10;
+  
+  /* extend invisible hover area */
+  pointer-events: auto;
+}
+
+.settings-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  /* add a small invisible area below the icon to bridge the gap */
+  padding-bottom: 8px; /* same as the gap size */
+  margin-bottom: -8px; /* pull content back up so no visible shift */
 }
 
 .settings-container:hover .settings-menu {
@@ -111,4 +123,5 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
 
