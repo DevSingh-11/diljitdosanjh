@@ -26,7 +26,7 @@ body.dark {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
-  /* Removed bold */
+  font-weight: normal; /* Not bold */
 }
 
 .nav-left a.nav-icon {
@@ -37,12 +37,12 @@ body.dark {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px; /* Adjust this value as needed */
+  gap: 60px; /* Space between GAMES, LISTEN, LYRICS */
   text-transform: uppercase; /* ALL CAPS */
 }
 
 .nav-center a.nav-link:hover {
-  color: #66ccff; /* light blue */
+  color: #66ccff; /* Light blue on hover */
 }
 
 .nav-right {
@@ -81,7 +81,7 @@ body.dark {
 }
 
 .settings-menu button:hover {
-  color: #66ccff;
+  color: #66ccff; /* Light blue on hover */
 }
 
 .hidden {
