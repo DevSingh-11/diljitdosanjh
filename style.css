@@ -37,7 +37,7 @@ body.dark {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px; /* Space between GAMES, LISTEN, LYRICS */
+  gap: 150px; /* Space between GAMES, LISTEN, LYRICS */
   text-transform: uppercase; /* ALL CAPS */
 }
 
@@ -92,3 +92,4 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
