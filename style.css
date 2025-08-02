@@ -18,7 +18,7 @@ body.dark {
   padding: 10px 20px;
   background-color: #222;
   color: white;
-  height: 44px; /* enough height for icon + padding */
+  height: 44px;
   box-sizing: border-box;
 }
 
@@ -47,7 +47,7 @@ body.dark {
 
 .nav-left a.nav-icon:hover .icon-img,
 .nav-center a.nav-link:hover,
-.settings-wrapper:hover .icon-img {
+.theme-toggle:hover .icon-img {
   transform: scale(1.1);
   filter: brightness(0) saturate(100%) invert(63%) sepia(81%) saturate(1966%) hue-rotate(169deg) brightness(92%) contrast(89%);
 }
@@ -66,62 +66,16 @@ body.dark {
 }
 
 .nav-right {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* No margin-right here to keep flush with navbar padding */
 }
 
-/* Wrapper around icon + menu */
-.settings-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* Keep padding on icon container */
-.settings-container {
-  padding: 10px;  /* clickable area */
-  display: flex;
-  align-items: center;
-}
-
-/* Hide by default */
-.settings-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background-color: #333;
-  border: 1px solid #555;
-  padding: 10px;
-  display: none;
-  flex-direction: column;
-  min-width: 160px;
-  z-index: 30;
-  pointer-events: auto;
-}
-
-/* Show menu when JS adds .show */
-.settings-menu.show {
-  display: flex;
-}
-
-.settings-menu button {
-  margin: 5px 0;
+.theme-toggle {
   background: none;
   border: none;
-  color: white;
-  text-align: left;
   cursor: pointer;
-  font-size: 1rem;
-  transition: color 0.2s ease;
-}
-
-.settings-menu button:hover {
-  color: #66ccff;
+  padding: 10px;
 }
 
 .hero {
