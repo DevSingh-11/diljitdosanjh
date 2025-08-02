@@ -47,7 +47,7 @@ body.dark {
 
 .nav-left a.nav-icon:hover .icon-img,
 .nav-center a.nav-link:hover,
-.settings-container:hover .icon-img {
+.settings-wrapper:hover .icon-img {
   transform: scale(1.1);
   filter: brightness(0) saturate(100%) invert(63%) sepia(81%) saturate(1966%) hue-rotate(169deg) brightness(92%) contrast(89%);
 }
@@ -73,19 +73,25 @@ body.dark {
   /* No margin-right here to keep flush with navbar padding */
 }
 
-/* Settings button container */
-.settings-container {
+/* Wrapper around icon + menu */
+.settings-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 10px;  /* clickable area */
   cursor: pointer;
   z-index: 10;
 }
 
+/* Keep padding on icon container */
+.settings-container {
+  padding: 10px;  /* clickable area */
+  display: flex;
+  align-items: center;
+}
+
 .settings-menu {
   position: absolute;
-  top: calc(100% + 8px); /* dropdown appears just below button */
+  top: calc(100% + 8px);
   right: 0;
   background-color: #333;
   border: 1px solid #555;
@@ -97,9 +103,8 @@ body.dark {
   pointer-events: auto;
 }
 
-/* Keep dropdown visible when hovering button or dropdown itself */
-.settings-container:hover .settings-menu,
-.settings-menu:hover {
+/* Show menu on hover of entire wrapper */
+.settings-wrapper:hover .settings-menu {
   display: flex;
 }
 
