@@ -12,23 +12,31 @@ body.dark {
 }
 
 .navbar {
+  position: relative; /* for absolute children */
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0 20px;
   background-color: #222;
   color: white;
   height: 44px;
   box-sizing: border-box;
 }
 
-.nav-left a,
-.nav-center a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: normal;
-  transition: transform 0.2s ease, color 0.2s ease;
+.nav-left,
+.nav-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px; /* equal padding from edges */
+}
+
+.nav-left {
+  justify-content: flex-start;
+}
+
+.nav-right {
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .nav-left a.nav-icon {
@@ -50,14 +58,22 @@ body.dark {
   transform: scale(1.1);
 }
 
-/* Center links: scale AND change color */
+/* Center links: absolute centered */
 .nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 700px;
+  gap: 40px; /* spacing between links */
   text-transform: uppercase;
-  margin: 0 auto;
+}
+
+.nav-center a.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: normal;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .nav-center a.nav-link:hover {
@@ -65,13 +81,7 @@ body.dark {
   transform: scale(1.1);
 }
 
-/* Right section */
-.nav-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
+/* Dark/light icon only scales on hover, no color/filter */
 .theme-toggle {
   background: none;
   border: none;
@@ -79,7 +89,6 @@ body.dark {
   padding: 10px;
 }
 
-/* Dark/light icon only scales on hover, no color/filter */
 .theme-toggle .icon-img {
   filter: none;
   transform: none;
