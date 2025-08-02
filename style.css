@@ -1,7 +1,7 @@
 /* desktop/style.css */
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #fff;
   color: #000;
   transition: background-color 0.3s, color 0.3s;
@@ -26,23 +26,47 @@ body.dark {
 .nav-right button {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-left a.nav-icon {
+  font-size: 1.6rem;
+}
+
+.nav-center {
+  display: flex;
+  gap: 50px; /* Enlarged gap between nav links */
+  text-transform: uppercase; /* ALL CAPS */
+}
+
+.nav-center a.nav-link:hover {
+  color: #ffcc00; /* hover color */
 }
 
 .nav-right {
   position: relative;
 }
 
+.settings-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
 .settings-menu {
   position: absolute;
   right: 0;
-  top: 35px;
+  top: 40px;
   background-color: #333;
   border: 1px solid #555;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  min-width: 160px;
+  z-index: 10;
 }
 
 .settings-menu button {
@@ -52,6 +76,11 @@ body.dark {
   color: white;
   text-align: left;
   cursor: pointer;
+  font-size: 1rem;
+}
+
+.settings-menu button:hover {
+  color: #ffcc00;
 }
 
 .hidden {
