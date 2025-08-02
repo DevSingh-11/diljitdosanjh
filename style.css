@@ -18,6 +18,8 @@ body.dark {
   padding: 10px 20px;
   background-color: #222;
   color: white;
+  height: 44px; /* enough height for icon + padding */
+  box-sizing: border-box;
 }
 
 .nav-left a,
@@ -68,23 +70,22 @@ body.dark {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  /* No margin-right here to keep flush with navbar padding */
 }
 
-/* ✅ FIXED: Settings button placement */
+/* Settings button container */
 .settings-container {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 20px;          /* invisible clickable area */
-  margin-right: -20px;    /* pull icon visually back */
-  margin-top: -10px;      /* minor vertical tweak */
+  padding: 10px;  /* clickable area */
   cursor: pointer;
   z-index: 10;
 }
 
 .settings-menu {
   position: absolute;
-  top: calc(100% + 8px);  /* 8px visual gap from button */
+  top: calc(100% + 8px); /* dropdown appears just below button */
   right: 0;
   background-color: #333;
   border: 1px solid #555;
