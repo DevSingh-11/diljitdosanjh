@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diljit Dosanjh</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Add this to your CSS or inside a <style> tag for the settings menu visibility toggle */
-    .settings-menu.show {
-      display: flex !important;
-    }
-  </style>
 </head>
 <body>
   <header class="navbar">
@@ -19,29 +13,17 @@
         <img src="images/home-icon.png" alt="Home" class="icon-img" />
       </a>
     </div>
+
     <nav class="nav-center">
       <a href="games.html" class="nav-link">GAMES</a>
       <a href="listen.html" class="nav-link">LISTEN</a>
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
+
     <div class="nav-right">
-      <div class="settings-wrapper" aria-label="Settings">
-        <div
-          class="settings-container"
-          id="settings-toggle"
-          tabindex="0"
-          role="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <img src="images/settings-icon.png" alt="Settings" class="icon-img settings-icon" />
-        </div>
-        <div class="settings-menu" role="menu" id="settings-menu">
-          <button onclick="switchTo('desktop')">Desktop Mode</button>
-          <button onclick="switchTo('mobile')">Mobile Mode</button>
-          <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
-        </div>
-      </div>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">
+        <img src="images/moon.png" alt="Toggle Theme" class="icon-img" id="theme-icon" />
+      </button>
     </div>
   </header>
 
@@ -53,45 +35,20 @@
   </main>
 
   <script>
-    function switchTo(mode) {
-      if (mode === 'desktop') {
-        window.location.href = '../desktop/index.html';
-      } else if (mode === 'mobile') {
-        window.location.href = '../mobile/index.html';
-      }
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    // Apply saved theme on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      themeIcon.src = 'images/sun.png';
     }
 
-    function toggleTheme() {
+    themeToggle.addEventListener('click', () => {
       const isDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    // On page load, apply saved theme
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-      } else {
-        document.body.classList.remove('dark');
-      }
-    });
-
-    // Toggle settings menu visibility on icon click
-    const settingsToggle = document.getElementById('settings-toggle');
-    const settingsMenu = document.getElementById('settings-menu');
-
-    settingsToggle.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent event bubbling to document
-      const isShown = settingsMenu.classList.toggle('show');
-      settingsToggle.setAttribute('aria-expanded', isShown);
-    });
-
-    // Close settings menu if clicking outside
-    document.addEventListener('click', (event) => {
-      if (!settingsToggle.contains(event.target) && !settingsMenu.contains(event.target)) {
-        settingsMenu.classList.remove('show');
-        settingsToggle.setAttribute('aria-expanded', false);
-      }
+      themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
     });
   </script>
 </body>
