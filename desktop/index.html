@@ -1,52 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diljit Dosanjh Fan Site</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Diljit Dosanjh</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="nav-bar">
+  <header class="top-nav">
     <div class="nav-left">
-      <a href="index.html" class="nav-icon">🏠</a>
+      <a href="index.html" class="home-icon">🏠</a>
     </div>
-    <div class="nav-center">
+    <nav class="nav-center">
       <a href="#">Listen</a>
       <a href="#">Lyrics</a>
       <a href="#">Quizzes</a>
-    </div>
+    </nav>
     <div class="nav-right">
-      <button id="settings-button">⚙️</button>
+      <button id="settings-btn">⚙️</button>
     </div>
   </header>
 
-  <div class="settings-menu hidden" id="settings-menu">
-    <label><input type="radio" name="mode" value="desktop" checked /> Desktop Mode</label><br />
-    <label><input type="radio" name="mode" value="mobile" /> Phone Mode</label><br />
-    <label><input type="checkbox" id="dark-mode-toggle" /> Dark Mode</label>
-  </div>
-
-  <main>
-    <section class="hero">
-      <div class="overlay">
-        <h1>Diljit Dosanjh</h1>
-        <p>A journey of music, movies, and magic ✨</p>
-      </div>
-    </section>
-
-    <section class="about">
-      <h2>About Diljit</h2>
-      <p>Here you’ll learn about his life, career, and more. Pictures, quotes, milestones coming soon.</p>
-    </section>
+  <main class="home-content">
+    <div class="diljit-intro">
+      <h1>Welcome to the World of Diljit Dosanjh</h1>
+      <p>Discover his journey, his music, his legacy.</p>
+    </div>
   </main>
-
-  <script>
-    const settingsButton = document.getElementById('settings-button');
-    const settingsMenu = document.getElementById('settings-menu');
-    settingsButton.addEventListener('click', () => {
-      settingsMenu.classList.toggle('hidden');
-    });
-  </script>
 </body>
 </html>
