@@ -37,7 +37,7 @@ body.dark {
   display: flex;
   justify-content: space-between;  /* spread out */
   align-items: center;
-  width: 600px;  /* or bigger to control total space */
+  width: 650px;  /* or bigger to control total space */
   text-transform: uppercase;
   margin: 0 auto;  /* centers this nav container */
 }
@@ -93,6 +93,7 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
 
 
 
