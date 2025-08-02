@@ -97,7 +97,9 @@ body.dark {
   pointer-events: auto;
 }
 
-.settings-container:hover .settings-menu {
+/* Keep dropdown visible when hovering button or dropdown itself */
+.settings-container:hover .settings-menu,
+.settings-menu:hover {
   display: flex;
 }
 
