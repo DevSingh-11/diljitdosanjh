@@ -63,19 +63,31 @@ body.dark {
   color: #66ccff;
 }
 
+/* Edited section starts here */
+
 .nav-right {
-  position: relative;
+  /* no positioning here, handled in settings-container */
 }
 
 .settings-container {
-  position: relative;
-  display: inline-flex; /* changed from inline-block */
-  align-items: center;  /* vertically center icon */
+  position: fixed;      /* Fix position relative to viewport */
+  top: 60px;            /* 40px navbar height + 20px gap */
+  right: 20px;          /* 20px gap from right side */
+  display: inline-flex;
+  align-items: center;
+
+  padding: 20px;        /* invisible padding to increase hover area */
+  margin-top: -20px;    /* pull icon visually back to navbar */
+  margin-right: -20px;  /* pull icon visually back */
+
+  background: transparent;
+  cursor: pointer;
+  z-index: 20;
 }
 
 .settings-menu {
   position: absolute;
-  top: calc(100% + 8px); /* visually adds 8px gap */
+  top: 100%;            /* directly below icon */
   right: 0;
   background-color: #333;
   border: 1px solid #555;
@@ -83,26 +95,15 @@ body.dark {
   display: none;
   flex-direction: column;
   min-width: 160px;
-  z-index: 10;
-  
-  /* extend invisible hover area */
+  z-index: 30;
   pointer-events: auto;
-}
-
-.settings-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-
-  /* add a small invisible area below the icon to bridge the gap */
-  padding-bottom: 8px; /* same as the gap size */
-  margin-bottom: -8px; /* pull content back up so no visible shift */
 }
 
 .settings-container:hover .settings-menu {
   display: flex;
 }
 
+/* Edited section ends here */
 
 .settings-menu button {
   margin: 5px 0;
@@ -123,5 +124,3 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
-
-
