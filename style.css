@@ -35,10 +35,11 @@ body.dark {
 
 .nav-center {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;  /* spread out */
   align-items: center;
-  gap: 1000px; /* Space between GAMES, LISTEN, LYRICS */
-  text-transform: uppercase; /* ALL CAPS */
+  width: 600px;  /* or bigger to control total space */
+  text-transform: uppercase;
+  margin: 0 auto;  /* centers this nav container */
 }
 
 .nav-center a.nav-link:hover {
@@ -92,5 +93,6 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
 
 
