@@ -36,7 +36,9 @@ body.dark {
 
 .nav-center {
   display: flex;
-  gap: 2000px; /* Enlarged gap between nav links */
+  justify-content: center;
+  align-items: center;
+  gap: 60px; /* Adjust this value as needed */
   text-transform: uppercase; /* ALL CAPS */
 }
 
@@ -91,5 +93,3 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
-
-
