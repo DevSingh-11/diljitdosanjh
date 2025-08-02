@@ -89,6 +89,7 @@ body.dark {
   align-items: center;
 }
 
+/* Hide by default */
 .settings-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -103,8 +104,8 @@ body.dark {
   pointer-events: auto;
 }
 
-/* Show menu on hover of entire wrapper */
-.settings-wrapper:hover .settings-menu {
+/* Show menu when JS adds .show */
+.settings-menu.show {
   display: flex;
 }
 
