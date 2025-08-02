@@ -69,13 +69,15 @@ body.dark {
 
 .settings-container {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* changed from inline-block */
+  align-items: center;  /* vertically center icon */
 }
 
 .settings-menu {
   position: absolute;
-  top: 100%;
+  top: 100%;   /* dropdown appears just below icon */
   right: 0;
+  margin-top: 4px; /* small gap to avoid flicker */
   background-color: #333;
   border: 1px solid #555;
   padding: 10px;
@@ -88,6 +90,7 @@ body.dark {
 .settings-container:hover .settings-menu {
   display: flex;
 }
+
 
 .settings-menu button {
   margin: 5px 0;
@@ -108,3 +111,4 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
