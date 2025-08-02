@@ -1,1 +1,64 @@
+/* desktop/style.css */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #222;
+  color: white;
+}
+
+.nav-left a,
+.nav-center a,
+.nav-right button {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.nav-right {
+  position: relative;
+}
+
+.settings-menu {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background-color: #333;
+  border: 1px solid #555;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-menu button {
+  margin: 5px 0;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
