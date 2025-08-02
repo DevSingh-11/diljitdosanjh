@@ -32,14 +32,23 @@ body.dark {
 
 .nav-left a.nav-icon {
   font-size: 1.6rem;
+  display: flex;
+  align-items: center;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.nav-left a.nav-icon:hover,
+.icon-img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.nav-left a.nav-icon:hover .icon-img,
 .nav-center a.nav-link:hover,
-.settings-btn:hover {
-  transform: scale(1.1); /* Slight enlarge on hover */
-  color: #66ccff;        /* Light blue on hover */
+.settings-btn:hover .icon-img {
+  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(63%) sepia(81%) saturate(1966%) hue-rotate(169deg) brightness(92%) contrast(89%);
 }
 
 .nav-center {
@@ -49,6 +58,10 @@ body.dark {
   width: 700px;
   text-transform: uppercase;
   margin: 0 auto;
+}
+
+.nav-center a.nav-link:hover {
+  color: #66ccff;
 }
 
 .nav-right {
@@ -62,6 +75,9 @@ body.dark {
   font-size: 1.6rem;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 
 .settings-menu {
