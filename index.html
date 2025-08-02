@@ -19,9 +19,11 @@
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
     <div class="nav-right">
-      <div class="settings-container" aria-label="Settings">
-        <img src="images/settings-icon.png" alt="Settings" class="icon-img settings-icon" />
-        <div class="settings-menu" role="menu">
+      <div class="settings-wrapper" aria-label="Settings">
+        <div class="settings-container" id="settings-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+          <img src="images/settings-icon.png" alt="Settings" class="icon-img settings-icon" />
+        </div>
+        <div class="settings-menu" role="menu" id="settings-menu">
           <button onclick="switchTo('desktop')">Desktop Mode</button>
           <button onclick="switchTo('mobile')">Mobile Mode</button>
           <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
@@ -49,6 +51,23 @@
     function toggleTheme() {
       document.body.classList.toggle('dark');
     }
+
+    // Toggle settings menu visibility on icon click
+    const settingsToggle = document.getElementById('settings-toggle');
+    const settingsMenu = document.getElementById('settings-menu');
+
+    settingsToggle.addEventListener('click', () => {
+      const isShown = settingsMenu.classList.toggle('show');
+      settingsToggle.setAttribute('aria-expanded', isShown);
+    });
+
+    // Close settings menu if clicking outside
+    document.addEventListener('click', (event) => {
+      if (!settingsToggle.contains(event.target) && !settingsMenu.contains(event.target)) {
+        settingsMenu.classList.remove('show');
+        settingsToggle.setAttribute('aria-expanded', false);
+      }
+    });
   </script>
 </body>
 </html>
