@@ -68,3 +68,16 @@ body {
   margin-top: 1rem;
   border-radius: 10px;
 }
+
+.dark-mode {
+  background: #111;
+  color: #eee;
+}
+
+.dark-mode .navbar {
+  background: #222;
+}
+
+.dark-mode .settings-dropdown {
+  background: #333;
+}
