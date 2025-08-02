@@ -1,3 +1,4 @@
+<!-- desktop/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +20,13 @@
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
     <div class="nav-right">
-      <div class="settings-container" aria-label="Settings">
-        <img src="images/settings-icon.png" alt="Settings" class="icon-img settings-icon" />
-        <div class="settings-menu" role="menu">
-          <button onclick="switchTo('desktop')">Desktop Mode</button>
-          <button onclick="switchTo('mobile')">Mobile Mode</button>
-          <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
-        </div>
+      <button class="settings-btn" onclick="toggleSettings()" aria-label="Settings">
+        <img src="images/settings-icon.png" alt="Settings" class="icon-img" />
+      </button>
+      <div id="settings-menu" class="settings-menu hidden" role="menu" aria-hidden="true">
+        <button onclick="switchTo('desktop')">Desktop Mode</button>
+        <button onclick="switchTo('mobile')">Mobile Mode</button>
+        <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
       </div>
     </div>
   </header>
@@ -38,6 +39,12 @@
   </main>
 
   <script>
+    function toggleSettings() {
+      const menu = document.getElementById('settings-menu');
+      menu.classList.toggle('hidden');
+      menu.setAttribute('aria-hidden', menu.classList.contains('hidden'));
+    }
+
     function switchTo(mode) {
       if (mode === 'desktop') {
         window.location.href = '../desktop/index.html';
