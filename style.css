@@ -46,8 +46,7 @@ body.dark {
 }
 
 .nav-left a.nav-icon:hover .icon-img,
-.nav-center a.nav-link:hover,
-.theme-toggle:hover .icon-img {
+.nav-center a.nav-link:hover {
   transform: scale(1.1);
   filter: brightness(0) saturate(100%) invert(63%) sepia(81%) saturate(1966%) hue-rotate(169deg) brightness(92%) contrast(89%);
 }
@@ -76,6 +75,21 @@ body.dark {
   border: none;
   cursor: pointer;
   padding: 10px;
+}
+
+/* Prevent hover, focus, active effects on the theme icon */
+.theme-toggle .icon-img {
+  filter: none !important;
+  transform: none !important;
+  outline: none;
+  user-select: none;
+}
+
+.theme-toggle:hover .icon-img,
+.theme-toggle:focus .icon-img,
+.theme-toggle:active .icon-img {
+  filter: none !important;
+  transform: none !important;
 }
 
 .hero {
