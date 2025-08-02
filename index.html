@@ -10,7 +10,9 @@
 <body>
   <header class="navbar">
     <div class="nav-left">
-      <a href="index.html" class="nav-icon" title="Home">🏠</a>
+      <a href="index.html" class="nav-icon" title="Home">
+        <img src="images/home-icon.png" alt="Home" class="icon-img" />
+      </a>
     </div>
     <nav class="nav-center">
       <a href="games.html" class="nav-link">GAMES</a>
@@ -18,7 +20,9 @@
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
     <div class="nav-right">
-      <button class="settings-btn" onclick="toggleSettings()" aria-label="Settings">⚙️</button>
+      <button class="settings-btn" onclick="toggleSettings()" aria-label="Settings">
+        <img src="images/settings-icon.png" alt="Settings" class="icon-img" />
+      </button>
       <div id="settings-menu" class="settings-menu hidden" role="menu" aria-hidden="true">
         <button onclick="switchTo('desktop')">Desktop Mode</button>
         <button onclick="switchTo('mobile')">Mobile Mode</button>
