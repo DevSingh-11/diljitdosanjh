@@ -3,23 +3,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diljit Dosanjh</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="nav-left">
-      <a href="index.html" class="nav-icon">🏠</a>
+      <a href="index.html" class="nav-icon" title="Home">🏠</a>
     </div>
-    <div class="nav-center">
-      <a href="listen.html">Listen</a>
-      <a href="lyrics.html">Lyrics</a>
-      <a href="quizzes.html">Games</a>
-    </div>
+    <nav class="nav-center">
+      <a href="games.html" class="nav-link">GAMES</a>
+      <a href="listen.html" class="nav-link">LISTEN</a>
+      <a href="lyrics.html" class="nav-link">LYRICS</a>
+    </nav>
     <div class="nav-right">
-      <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
-      <div id="settings-menu" class="settings-menu hidden">
+      <button class="settings-btn" onclick="toggleSettings()" aria-label="Settings">⚙️</button>
+      <div id="settings-menu" class="settings-menu hidden" role="menu" aria-hidden="true">
         <button onclick="switchTo('desktop')">Desktop Mode</button>
         <button onclick="switchTo('mobile')">Mobile Mode</button>
         <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
@@ -36,7 +36,9 @@
 
   <script>
     function toggleSettings() {
-      document.getElementById('settings-menu').classList.toggle('hidden');
+      const menu = document.getElementById('settings-menu');
+      menu.classList.toggle('hidden');
+      menu.setAttribute('aria-hidden', menu.classList.contains('hidden'));
     }
 
     function switchTo(mode) {
