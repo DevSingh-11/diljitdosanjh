@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: url('assets/images/collage.jpg') center/cover no-repeat fixed;
+  color: #fff;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.8rem 2rem;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a, .nav-icon {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  display: none;
+}
+
+.settings-dropdown label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.settings-dropdown.hidden {
+  display: none;
+}
+
+.home-content {
+  padding: 2rem;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.about-diljit img {
+  max-width: 100%;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
