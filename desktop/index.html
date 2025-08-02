@@ -1,1 +1,55 @@
+<!-- desktop/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diljit Dosanjh</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-icon">🏠</a>
+    </div>
+    <div class="nav-center">
+      <a href="listen.html">Listen</a>
+      <a href="lyrics.html">Lyrics</a>
+      <a href="quizzes.html">Games</a>
+    </div>
+    <div class="nav-right">
+      <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
+      <div id="settings-menu" class="settings-menu hidden">
+        <button onclick="switchTo('desktop')">Desktop Mode</button>
+        <button onclick="switchTo('mobile')">Mobile Mode</button>
+        <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+      </div>
+    </div>
+  </header>
 
+  <main>
+    <section class="hero">
+      <h1>Welcome to the World of Diljit Dosanjh</h1>
+      <p>Explore his music, lyrics, games, and more.</p>
+    </section>
+  </main>
+
+  <script>
+    function toggleSettings() {
+      document.getElementById('settings-menu').classList.toggle('hidden');
+    }
+
+    function switchTo(mode) {
+      if (mode === 'desktop') {
+        window.location.href = '../desktop/index.html';
+      } else if (mode === 'mobile') {
+        window.location.href = '../mobile/index.html';
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
