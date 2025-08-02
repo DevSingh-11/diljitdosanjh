@@ -35,7 +35,7 @@ body.dark {
   font-size: 1.6rem;
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .icon-img {
@@ -45,12 +45,12 @@ body.dark {
   display: block;
 }
 
-.nav-left a.nav-icon:hover .icon-img,
-.nav-center a.nav-link:hover {
+/* Only scale home icon */
+.nav-left a.nav-icon:hover .icon-img {
   transform: scale(1.1);
-  filter: brightness(0) saturate(100%) invert(63%) sepia(81%) saturate(1966%) hue-rotate(169deg) brightness(92%) contrast(89%);
 }
 
+/* Center links: scale AND change color */
 .nav-center {
   display: flex;
   justify-content: space-between;
@@ -62,8 +62,10 @@ body.dark {
 
 .nav-center a.nav-link:hover {
   color: #66ccff;
+  transform: scale(1.1);
 }
 
+/* Right section */
 .nav-right {
   display: flex;
   align-items: center;
@@ -77,19 +79,17 @@ body.dark {
   padding: 10px;
 }
 
-/* Prevent hover, focus, active effects on the theme icon */
+/* Dark/light icon only scales on hover, no color/filter */
 .theme-toggle .icon-img {
-  filter: none !important;
-  transform: none !important;
+  filter: none;
+  transform: none;
   outline: none;
   user-select: none;
+  transition: transform 0.2s ease;
 }
 
-.theme-toggle:hover .icon-img,
-.theme-toggle:focus .icon-img,
-.theme-toggle:active .icon-img {
-  filter: none !important;
-  transform: none !important;
+.theme-toggle:hover .icon-img {
+  transform: scale(1.1);
 }
 
 .hero {
