@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diljit Dosanjh | Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-icon home-icon">🏠</a>
+    <nav class="nav-links">
+      <a href="listen.html">Listen</a>
+      <a href="lyrics.html">Lyrics</a>
+      <a href="quizzes.html">Quizzes</a>
+    </nav>
+    <button class="nav-icon settings-icon" onclick="toggleSettings()">⚙️</button>
+  </header>
+
+  <!-- SETTINGS DROPDOWN -->
+  <div id="settingsDropdown" class="settings-dropdown hidden">
+    <label><input type="checkbox" id="darkModeToggle" /> Dark Mode</label><br>
+    <label><input type="checkbox" id="desktopModeToggle" checked /> PC Mode</label>
+  </div>
+
+  <!-- BACKGROUND & MAIN CONTENT -->
+  <main class="home-content">
+    <div class="overlay">
+      <section class="about-diljit">
+        <h1>Welcome to Diljit Dosanjh Lyrics Hub</h1>
+        <p>
+          Diljit Dosanjh is a celebrated Punjabi singer, actor, and performer. His journey from local talent to global icon is inspiring and powerful...
+        </p>
+        <img src="assets/images/diljit1.jpg" alt="Diljit Image" />
+        <blockquote>"Music is the language of the spirit." – Diljit Dosanjh</blockquote>
+        <!-- Add more info, images, and quotes later -->
+      </section>
+    </div>
+  </main>
+
+  <script src="settings.js"></script>
+</body>
+</html>
