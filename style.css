@@ -32,7 +32,7 @@ body.dark {
   justify-content: center;
   align-items: center;
   padding: 20px;        /* reduced top padding */
-  margin-top: 80px;     /* push down below fixed navbar */
+  margin-top: 60px;     /* push down below fixed navbar */
   text-align: center;
   box-sizing: border-box;
 }
@@ -220,4 +220,5 @@ body.dark {
     gap: 30px;
   }
 }
+
 
