@@ -15,7 +15,7 @@
     </div>
 
     <nav class="nav-center">
-      <a href="games.html" class="nav-link active">GAMES</a>
+      <a href="games.html" class="nav-link">GAMES</a>
       <a href="listen.html" class="nav-link">LISTEN</a>
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
@@ -37,7 +37,6 @@
   </main>
 
   <script>
-    // Dark mode toggle script
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
@@ -51,44 +50,6 @@
       const isDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
-    });
-
-    // Sliding underline navigation script
-    const navCenter = document.querySelector('.nav-center');
-    const links = document.querySelectorAll('.nav-link');
-
-    // Create the underline element
-    const underline = document.createElement('div');
-    underline.classList.add('nav-underline');
-    navCenter.appendChild(underline);
-
-    function moveUnderlineTo(link) {
-      const rect = link.getBoundingClientRect();
-      const parentRect = navCenter.getBoundingClientRect();
-      underline.style.width = `${rect.width}px`;
-      underline.style.left = `${rect.left - parentRect.left}px`;
-    }
-
-    // Initialize underline on the active link (or first link if none active)
-    let activeLink = document.querySelector('.nav-link.active') || links[0];
-    if (!activeLink.classList.contains('active')) {
-      activeLink.classList.add('active');
-    }
-    moveUnderlineTo(activeLink);
-
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        moveUnderlineTo(link);
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      const active = document.querySelector('.nav-link.active');
-      if (active) {
-        moveUnderlineTo(active);
-      }
     });
   </script>
 </body>
