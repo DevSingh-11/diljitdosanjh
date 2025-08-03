@@ -7,13 +7,15 @@ html, body {
   background-color: #fff;
   color: #000;
   transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Dark mode */
 body.dark {
   background-color: #121212;
   color: #f1f1f1;
-  /* Removed background-image here to avoid double image */
 }
 
 /* Background Section */
@@ -32,13 +34,13 @@ body.dark {
   padding: 60px 20px;
   text-align: center;
   box-sizing: border-box;
+  flex: 1;
 }
 
 /* Headings */
 .background-section h1 {
   font-size: 2.8rem;
   margin-bottom: 10px;
-  /* Subtle text shadow for readability */
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
 }
 
@@ -51,7 +53,7 @@ body.dark {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: fixed;       /* Always on top */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -62,11 +64,10 @@ body.dark {
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 9999;         /* Make sure it stays above everything */
+  z-index: 9999;
   user-select: none;
 }
 
-/* Left and Right nav containers */
 .nav-left,
 .nav-right {
   flex: 0 0 auto;
@@ -84,7 +85,6 @@ body.dark {
   margin-left: auto;
 }
 
-/* Nav center */
 .nav-center {
   display: flex;
   justify-content: center;
@@ -94,7 +94,6 @@ body.dark {
   flex: 1;
 }
 
-/* Nav links */
 .nav-center a.nav-link {
   color: white;
   text-decoration: none;
@@ -115,7 +114,6 @@ body.dark {
   color: #66ccff;
 }
 
-/* Nav icons (home & theme toggle) */
 .nav-left a.nav-icon,
 .theme-toggle {
   display: flex;
@@ -128,7 +126,6 @@ body.dark {
   transition: transform 0.2s ease;
 }
 
-/* Icon image size - fixed smaller */
 .icon-img {
   width: 24px;
   height: 24px;
@@ -136,7 +133,6 @@ body.dark {
   transition: transform 0.2s ease;
 }
 
-/* Hover scaling */
 .nav-left a.nav-icon:hover .icon-img,
 .theme-toggle:hover .icon-img {
   transform: scale(1.1);
@@ -168,8 +164,6 @@ body.dark {
     align-items: center;
     gap: 50px;
     padding: 50px 100px;
-    
-    /* Remove white background */
     background: transparent !important;
   }
 
@@ -203,10 +197,9 @@ body.dark {
     height: 80px;
     width: 100%;
     background-color: #222;
-    margin-top: 0;
+    margin-top: auto;
   }
 
-  /* Nav center spacing on desktop */
   .nav-center {
     gap: 260px;
   }
