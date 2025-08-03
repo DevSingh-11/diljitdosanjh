@@ -13,7 +13,7 @@ html, body {
 body.dark {
   background-color: #121212;
   color: #f1f1f1;
-  background-image: url('images/back.png'); /* Keep background in dark mode */
+  /* Removed background-image here to avoid double image */
 }
 
 /* Background Section */
