@@ -31,7 +31,8 @@ body.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 104px 20px 20px; /* increased top padding to clear navbar */
+  padding: 20px;        /* reduced top padding */
+  margin-top: 44px;     /* push down below fixed navbar */
   text-align: center;
   box-sizing: border-box;
 }
