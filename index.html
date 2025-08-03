@@ -28,6 +28,8 @@
   </header>
 
   <main>
+    <section class="background-section"></section>
+
     <section class="hero">
       <h1>Welcome to the World of Diljit Dosanjh</h1>
       <p>Explore his music, lyrics, games, and more.</p>
@@ -38,7 +40,6 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
-    // Apply saved theme on load
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
