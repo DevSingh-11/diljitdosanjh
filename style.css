@@ -122,7 +122,8 @@ body.dark {
 /* ===== DESKTOP STYLES ===== */
 @media (min-width: 769px) {
   .nav-center {
-    gap: 300px; /* more spaced out for desktop */
+    gap: 260px; /* more spaced out for desktop */
   }
 }
+
 
