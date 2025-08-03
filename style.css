@@ -12,6 +12,17 @@ html, body {
   flex-direction: column;
 }
 
+/* Overscroll background at top */
+.overscroll-background {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #222;
+  z-index: -1;
+}
+
 /* Dark mode */
 body.dark {
   background-color: #121212;
@@ -31,8 +42,8 @@ body.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;        /* reduced top padding */
-  margin-top: 60px;     /* push down below fixed navbar */
+  padding: 20px;
+  margin-top: 50px;
   text-align: center;
   box-sizing: border-box;
 }
@@ -220,5 +231,3 @@ body.dark {
     gap: 30px;
   }
 }
-
-
