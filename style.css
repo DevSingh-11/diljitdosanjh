@@ -1,215 +1,89 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
+/* Move background image to body for whole page */
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff;
-  color: #000;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark {
-  background-color: #121212;
-  color: #f1f1f1;
-}
-
-body.dark .background-section {
-  background-image: url('images/back.png');
-}
-
-.background-section {
   background-image: url('images/back.png');
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  width: 100%;
-  min-height: 100vh;
+  background-attachment: fixed; /* optional for parallax feel */
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark mode overrides */
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+  /* You can keep same background or swap to a darker version */
+  background-image: url('images/back.png');
+}
+
+/* Remove background and padding from background-section */
+.background-section {
+  background: transparent;
+  min-height: auto;
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  text-align: center;
-  box-sizing: border-box;
 }
 
-.background-section h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.background-section .subtitle {
-  font-size: 1.3rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #222;
-  color: white;
-  height: 44px;
-  box-sizing: border-box;
-}
-
-.nav-left,
-.nav-right {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-}
-
-.nav-left {
-  justify-content: flex-start;
-}
-
-.nav-right {
-  justify-content: flex-end;
-  margin-left: auto;
-}
-
-.nav-left a.nav-icon {
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  transition: transform 0.2s ease;
-}
-
-.icon-img {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.2s ease;
-  display: block;
-}
-
-.nav-left a.nav-icon:hover .icon-img {
-  transform: scale(1.1);
-}
-
-.nav-center {
-  display: flex;
+/* Remove white backgrounds from bio sections */
+.bio-section-1,
+.bio-section-2 {
+  background: transparent;
+  padding: 50px 100px;
+  gap: 50px;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  text-transform: uppercase;
-  flex: 1;
+  display: flex;
 }
 
-.nav-center a.nav-link {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: normal;
-  transition: transform 0.2s ease, color 0.2s ease;
+/* Remove background from bio-text and bio-image */
+.bio-text,
+.bio-image,
+.bio-video {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-.nav-center a.nav-link:hover {
-  color: #66ccff;
-  transform: scale(1.1);
+/* Optional: add subtle text-shadow for readability */
+.bio-text p,
+.background-section h1,
+.background-section .subtitle {
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
 }
 
-.nav-center a.nav-link.active {
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  font-weight: normal;
-  color: #66ccff;
+/* Bio image styling */
+.bio-section-1 .bio-image img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+/* Bio video styling */
+.bio-video iframe {
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.theme-toggle .icon-img {
-  filter: none;
-  transform: none;
-  outline: none;
-  user-select: none;
-  transition: transform 0.2s ease;
+/* Footer */
+.footer-strip {
+  height: 80px;
+  width: 100%;
+  background-color: #222;
+  margin-top: 0;
 }
 
-.theme-toggle:hover .icon-img {
-  transform: scale(1.1);
-}
-
-.hero {
-  display: none;
-}
-
-/* ===== BIOGRAPHY SECTION – DESKTOP ONLY ===== */
-.desktop-only {
-  display: none;
-}
-
-@media (min-width: 769px) {
-  body {
-    overscroll-behavior-y: none;
-  }
-
-  .desktop-only {
-    display: flex;
-  }
-
-  .bio-section-1,
-  .bio-section-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    padding: 50px 100px;
-  }
-
-  .bio-section-1 .bio-image img {
-    max-width: 200px;
-    height: auto;
-    border-radius: 20px;
-  }
-
-  .bio-text {
-    max-width: 600px;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-
-  .bio-video iframe {
-    max-width: 500px;
-    border-radius: 20px;
-  }
-
-  .footer-strip {
-    height: 80px;
-    width: 100%;
-    background-color: #222;
-    margin-top: 0;
-  }
-
-  .nav-center {
-    gap: 260px;
-  }
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 10px;
-  }
-
-  .nav-left,
-  .nav-right {
-    padding: 0;
-  }
-
-  .nav-center {
-    gap: 30px;
-  }
+/* Adjust nav center spacing if needed */
+.nav-center {
+  gap: 260px;
 }
