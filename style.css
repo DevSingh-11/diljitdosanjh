@@ -136,7 +136,7 @@ body.dark .background-section {
   }
 
   .bio-section-1 .bio-image img {
-    max-width: 350px;
+    max-width: 280px;
     height: auto;
     border-radius: 20px;
   }
@@ -186,3 +186,4 @@ body.dark .background-section {
   font-weight: normal;
   color: #66ccff;
 }
+
