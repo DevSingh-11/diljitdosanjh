@@ -27,7 +27,7 @@ body.dark {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  padding: 0 20px; /* equal padding from edges */
+  padding: 0 5px; /* equal padding from edges */
 }
 
 .nav-left {
@@ -105,3 +105,4 @@ body.dark {
   text-align: center;
   padding: 50px 20px;
 }
+
