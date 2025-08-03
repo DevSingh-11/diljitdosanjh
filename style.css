@@ -134,10 +134,19 @@ body.dark .background-section {
   }
 }
 
+.nav-center a.nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-weight: bold;
+  color: #66ccff; /* Matches hover color */
+}
+
+
 /* ===== DESKTOP STYLES ===== */
 @media (min-width: 769px) {
   .nav-center {
     gap: 260px;
   }
 }
+
 
