@@ -168,6 +168,9 @@ body.dark {
     align-items: center;
     gap: 50px;
     padding: 50px 100px;
+    
+    /* Remove white background */
+    background: transparent !important;
   }
 
   .bio-section-1 .bio-image img {
@@ -175,6 +178,12 @@ body.dark {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .bio-image,
+  .bio-text,
+  .bio-video {
+    background: transparent !important;
   }
 
   .bio-text {
