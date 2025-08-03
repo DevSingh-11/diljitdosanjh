@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diljit Dosanjh</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: -100vh;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #222;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -100vh;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #222;
+      z-index: -2;
+    }
+  </style>
 </head>
 <body>
   <header class="navbar">
