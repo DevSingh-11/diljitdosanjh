@@ -38,7 +38,7 @@ body.dark {
 .background-section h1 {
   font-size: 2.8rem;
   margin-bottom: 10px;
-  /* Removed heavy text-shadow; added subtle for readability */
+  /* Subtle text shadow for readability */
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
 }
 
