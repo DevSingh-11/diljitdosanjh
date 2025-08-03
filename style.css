@@ -72,7 +72,9 @@ body.dark .background-section {
   transform: scale(1.1);
 }
 
+/* Make nav-center relative for underline positioning */
 .nav-center {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,12 +83,15 @@ body.dark .background-section {
   flex: 1;
 }
 
+/* Nav links */
 .nav-center a.nav-link {
   color: white;
-  text-decoration: none;
+  text-decoration: none; /* Remove underline from links */
   font-size: 1.2rem;
   font-weight: normal;
   transition: transform 0.2s ease, color 0.2s ease;
+  padding-bottom: 4px; /* space for underline */
+  cursor: pointer;
 }
 
 .nav-center a.nav-link:hover {
@@ -94,6 +99,19 @@ body.dark .background-section {
   transform: scale(1.1);
 }
 
+/* Sliding underline bar */
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  height: 2.5px;
+  background-color: #66ccff;
+  border-radius: 1.25px;
+  transition: left 0.3s ease, width 0.3s ease;
+  will-change: left, width;
+  pointer-events: none;
+}
+
+/* Theme toggle button */
 .theme-toggle {
   background: none;
   border: none;
@@ -134,19 +152,9 @@ body.dark .background-section {
   }
 }
 
-.nav-center a.nav-link.active {
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  font-weight: bold;
-  color: #66ccff; /* Matches hover color */
-}
-
-
 /* ===== DESKTOP STYLES ===== */
 @media (min-width: 769px) {
   .nav-center {
     gap: 260px;
   }
 }
-
-
