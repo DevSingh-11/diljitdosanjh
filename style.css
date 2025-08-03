@@ -2,6 +2,10 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #fff;
+  background-image: url('images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #000;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -125,5 +129,3 @@ body.dark {
     gap: 260px; /* more spaced out for desktop */
   }
 }
-
-
