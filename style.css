@@ -12,7 +12,6 @@ body.dark {
 }
 
 .navbar {
-  position: relative; /* for absolute children */
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -27,7 +26,7 @@ body.dark {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  padding: 0 5px; /* equal padding from edges (default for desktop) */
+  padding: 0 5px;
 }
 
 .nav-left {
@@ -53,19 +52,18 @@ body.dark {
   display: block;
 }
 
-/* Only scale home icon */
 .nav-left a.nav-icon:hover .icon-img {
   transform: scale(1.1);
 }
 
-/* Center links: absolute centered */
+/* Center links: flex layout */
 .nav-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 40px; /* default gap for smaller screens */
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* default gap */
   text-transform: uppercase;
+  flex: 1; /* allow it to center properly in the flex container */
 }
 
 .nav-center a.nav-link {
@@ -81,12 +79,11 @@ body.dark {
   transform: scale(1.1);
 }
 
-/* Dark/light icon only scales on hover, no color/filter */
 .theme-toggle {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0px;
+  padding: 0;
 }
 
 .theme-toggle .icon-img {
@@ -114,7 +111,17 @@ body.dark {
 
   .nav-left,
   .nav-right {
-    padding: 0;
+    padding: 0; /* remove side padding */
   }
 
   .nav-center {
+    gap: 30px; /* slightly tighter spacing for mobile */
+  }
+}
+
+/* ===== DESKTOP STYLES ===== */
+@media (min-width: 769px) {
+  .nav-center {
+    gap: 150px; /* more spaced out for desktop */
+  }
+}
