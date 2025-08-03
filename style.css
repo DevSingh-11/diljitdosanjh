@@ -13,7 +13,7 @@ body.dark {
 
 /* Show background image in its own scrollable section */
 .background-section {
-  background-image: url('images/background.png');
+  background-image: url('images/back.png');
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@ body.dark {
 
 /* Optional dark theme background if different */
 body.dark .background-section {
-  background-image: url('images/background.png');
+  background-image: url('images/back.png');
 }
 
 .navbar {
@@ -140,3 +140,4 @@ body.dark .background-section {
     gap: 260px;
   }
 }
+
