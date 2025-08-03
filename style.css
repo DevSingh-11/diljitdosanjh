@@ -17,6 +17,10 @@ body.dark {
   color: #f1f1f1;
 }
 
+body.dark .background-section {
+  background-image: url('images/back.png');
+}
+
 .background-section {
   background-image: url('images/back.png');
   background-size: cover;
@@ -24,11 +28,25 @@ body.dark {
   background-repeat: no-repeat;
   background-attachment: scroll;
   width: 100%;
-  height: 1000px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-body.dark .background-section {
-  background-image: url('images/back.png');
+.background-section h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.background-section .subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .navbar {
@@ -125,8 +143,7 @@ body.dark .background-section {
 }
 
 .hero {
-  text-align: center;
-  padding: 50px 20px;
+  display: none;
 }
 
 /* ===== BIOGRAPHY SECTION – DESKTOP ONLY ===== */
@@ -153,7 +170,7 @@ body.dark .background-section {
   }
 
   .bio-section-1 .bio-image img {
-    max-width: 240px;
+    max-width: 200px;
     height: auto;
     border-radius: 20px;
   }
@@ -172,8 +189,8 @@ body.dark .background-section {
   .footer-strip {
     height: 80px;
     width: 100%;
-    background-color: #fff;
-    margin-top: 60px;
+    background-color: #222;
+    margin-top: 0;
   }
 
   .nav-center {
