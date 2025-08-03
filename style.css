@@ -27,7 +27,7 @@ body.dark {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  padding: 0 5px; /* equal padding from edges */
+  padding: 0 5px; /* equal padding from edges (default for desktop) */
 }
 
 .nav-left {
@@ -64,7 +64,7 @@ body.dark {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 40px; /* spacing between links */
+  gap: 40px; /* default gap for smaller screens */
   text-transform: uppercase;
 }
 
@@ -106,4 +106,15 @@ body.dark {
   padding: 50px 20px;
 }
 
+/* ===== MOBILE STYLES ===== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
 
+  .nav-left,
+  .nav-right {
+    padding: 0;
+  }
+
+  .nav-center {
