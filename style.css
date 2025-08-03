@@ -1,89 +1,220 @@
-/* Move background image to body for whole page */
-body {
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
   font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+  background-image: url('images/back.png'); /* Keep background in dark mode */
+}
+
+/* Background Section */
+.background-section {
   background-image: url('images/back.png');
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* optional for parallax feel */
-  color: #000;
-  transition: background-color 0.3s, color 0.3s;
-  margin: 0;
-  padding: 0;
-}
-
-/* Dark mode overrides */
-body.dark {
-  background-color: #121212;
-  color: #f1f1f1;
-  /* You can keep same background or swap to a darker version */
-  background-image: url('images/back.png');
-}
-
-/* Remove background and padding from background-section */
-.background-section {
-  background: transparent;
-  min-height: auto;
-  padding: 60px 20px 20px 20px;
-  text-align: center;
-  box-sizing: border-box;
+  background-attachment: scroll;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-/* Remove white backgrounds from bio sections */
-.bio-section-1,
-.bio-section-2 {
-  background: transparent;
-  padding: 50px 100px;
-  gap: 50px;
+/* Headings */
+.background-section h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  /* Removed heavy text-shadow; added subtle for readability */
+  text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
+}
+
+.background-section .subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;       /* Always on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 9999;         /* Make sure it stays above everything */
+  user-select: none;
+}
+
+/* Left and Right nav containers */
+.nav-left,
+.nav-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.nav-left {
+  justify-content: flex-start;
+}
+
+.nav-right {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+/* Nav center */
+.nav-center {
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 40px;
+  text-transform: uppercase;
+  flex: 1;
+}
+
+/* Nav links */
+.nav-center a.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: normal;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-center a.nav-link:hover {
+  color: #66ccff;
+  transform: scale(1.1);
+}
+
+.nav-center a.nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-weight: normal;
+  color: #66ccff;
+}
+
+/* Nav icons (home & theme toggle) */
+.nav-left a.nav-icon,
+.theme-toggle {
   display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+  user-select: none;
+  transition: transform 0.2s ease;
 }
 
-/* Remove background from bio-text and bio-image */
-.bio-text,
-.bio-image,
-.bio-video {
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
+/* Icon image size - fixed smaller */
+.icon-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: transform 0.2s ease;
 }
 
-/* Optional: add subtle text-shadow for readability */
-.bio-text p,
-.background-section h1,
-.background-section .subtitle {
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+/* Hover scaling */
+.nav-left a.nav-icon:hover .icon-img,
+.theme-toggle:hover .icon-img {
+  transform: scale(1.1);
 }
 
-/* Bio image styling */
-.bio-section-1 .bio-image img {
-  max-width: 200px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* Hero section hidden */
+.hero {
+  display: none;
 }
 
-/* Bio video styling */
-.bio-video iframe {
-  max-width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* ===== BIOGRAPHY SECTION – DESKTOP ONLY ===== */
+.desktop-only {
+  display: none;
 }
 
-/* Footer */
-.footer-strip {
-  height: 80px;
-  width: 100%;
-  background-color: #222;
-  margin-top: 0;
+@media (min-width: 769px) {
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  .desktop-only {
+    display: flex;
+  }
+
+  .bio-section-1,
+  .bio-section-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 50px 100px;
+  }
+
+  .bio-section-1 .bio-image img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .bio-text {
+    max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: inherit;
+  }
+
+  .bio-video iframe {
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .footer-strip {
+    height: 80px;
+    width: 100%;
+    background-color: #222;
+    margin-top: 0;
+  }
+
+  /* Nav center spacing on desktop */
+  .nav-center {
+    gap: 260px;
+  }
 }
 
-/* Adjust nav center spacing if needed */
-.nav-center {
-  gap: 260px;
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .nav-left,
+  .nav-right {
+    padding: 0;
+  }
+
+  .nav-center {
+    gap: 30px;
+  }
 }
