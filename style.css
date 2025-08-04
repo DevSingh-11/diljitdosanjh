@@ -237,11 +237,11 @@ body.dark .background-section {
   }
 
   .bio-section-1 {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
   }
   
   .bio-section-2 {
-    padding-top: 30px;
+    padding-top: 10px;
   }
 
   .bio-video iframe {
@@ -306,6 +306,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
