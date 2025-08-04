@@ -188,7 +188,7 @@ body.dark {
     content: "";
     position: absolute;
     top: 20px;    /* margin inside bio-section */
-    bottom: 200px;
+    bottom: 20px;
     left: 20px;
     right: 20px;
     border-radius: 25px;
@@ -287,5 +287,6 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
