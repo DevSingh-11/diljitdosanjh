@@ -232,7 +232,9 @@ body.dark .background-section {
   }
 
   .bio-section-2 {
-    margin-top: -1rem; /* 👈 move bio2 and video 1 line up */
+    position: relative;
+    top: -1.2em; /* visually move one line up without affecting layout */
+    margin-top: 0; /* reset previous margin */
   }
 
   .bio-video iframe {
