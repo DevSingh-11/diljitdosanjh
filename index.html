@@ -27,6 +27,28 @@
       background-color: #222;
       z-index: -2;
     }
+
+    .hover-term {
+      position: relative;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .hover-term .hover-image {
+      display: none;
+      position: absolute;
+      top: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .hover-term:hover .hover-image {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -63,7 +85,16 @@
         </div>
         <div class="bio-text">
           <p>
-            Born in Punjab, Diljit Dosanjh revolutionised Punjabi music by blending folk traditions with contemporary beats. From local gigs to sold-out world tours, his journey embodies resilience and artistry. With songs like 'Water' and 'Born to Shine', Diljit's music transcends borders, while collaborations with global stars like Sia, Ed Sheeran and Saweetie highlight his genre-defying versatility. His 2022 Coachella performance – a historical first for a Punjabi artist – showcased his global appeal, merging Bhangra rhythms with hip-hop energy. His impact echoed at the 2025 Met Gala, where Diljit commanded attention in a regal sherwani, layered with Indian jewellery, transforming fashion's biggest night into a celebration of Punjabi heritage. Whether through soulful ballads or stadium bangers, Diljit bridges cultures, one anthem at a time.
+            Born in Punjab, Diljit Dosanjh revolutionised Punjabi music by blending folk traditions with contemporary beats. From local gigs to sold-out world tours, his journey embodies resilience and artistry. With songs like 'Water' and 'Born to Shine', Diljit's music transcends borders, while collaborations with global stars like 
+            <span class="hover-term">Ed Sheeran
+              <img src="images/ed-sheeran.png" alt="Ed Sheeran" class="hover-image" />
+            </span>, 
+            <span class="hover-term">Sia
+              <img src="images/sia.png" alt="Sia" class="hover-image" />
+            </span> and 
+            <span class="hover-term">Saweetie
+              <img src="images/saweetie.png" alt="Saweetie" class="hover-image" />
+            </span> highlight his genre-defying versatility. His 2022 Coachella performance – a historical first for a Punjabi artist – showcased his global appeal, merging Bhangra rhythms with hip-hop energy. His impact echoed at the 2025 Met Gala, where Diljit commanded attention in a regal sherwani, layered with Indian jewellery, transforming fashion's biggest night into a celebration of Punjabi heritage. Whether through soulful ballads or stadium bangers, Diljit bridges cultures, one anthem at a time.
           </p>
         </div>
       </div>
@@ -71,7 +102,13 @@
       <div class="bio-section-2 desktop-only">
         <div class="bio-text">
           <p>
-            As an actor, Diljit shines in films like 'Jatt & Juliet' and 'Good Newwz' portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media. He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allows him to represent Punjabi culture, making him an icon for regional pride worldwide.
+            As an actor, Diljit shines in films like 
+            <span class="hover-term">Jatt & Juliet
+              <img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" />
+            </span> and 
+            <span class="hover-term">Good Newwz
+              <img src="images/good-newwz.png" alt="Good Newwz" class="hover-image" />
+            </span> portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media. He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allows him to represent Punjabi culture, making him an icon for regional pride worldwide.
           </p>
         </div>
         <div class="bio-video">
