@@ -44,7 +44,7 @@ body.dark {
   align-items: center;
   padding: 20px;
   margin-top: 0px;
-  text-align: center;
+  text-align: left;
   box-sizing: border-box;
 }
 
@@ -284,3 +284,4 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
