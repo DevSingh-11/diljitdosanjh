@@ -170,12 +170,36 @@ body.dark {
 
   .bio-section-1,
   .bio-section-2 {
+    position: relative; /* needed for ::before */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
     padding: 50px 100px;
     background: transparent !important;
+  }
+
+  /* Rounded rectangle behind bio content */
+  .bio-section-1::before,
+  .bio-section-2::before {
+    content: "";
+    position: absolute;
+    top: 20px;    /* margin from edges */
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.85); /* light mode */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: -1; /* behind text/image/video but above background */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Dark mode for rounded rectangle */
+  body.dark .bio-section-1::before,
+  body.dark .bio-section-2::before {
+    background-color: rgba(30, 30, 30, 0.85);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
   }
 
   .bio-section-1 .bio-image img {
