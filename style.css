@@ -236,8 +236,12 @@ body.dark .background-section {
     color: inherit;
   }
 
+  .bio-section-1 {
+    padding-bottom: 30px;
+  }
+  
   .bio-section-2 {
-    margin-top: -1rem; /* 👈 move bio2 and video 1 line up */
+    padding-top: 30px;
   }
 
   .bio-video iframe {
@@ -302,6 +306,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
