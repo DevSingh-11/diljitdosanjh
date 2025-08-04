@@ -59,24 +59,18 @@
       display: block;
     }
 
-    /* New styles for the bio-content-wrapper rectangle */
+    /* Removed rectangle styling from bio-content-wrapper */
     .bio-content-wrapper {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 25px;
-      padding: 40px 60px 60px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background-color: transparent !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
       max-width: 100%;
       box-sizing: border-box;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       gap: 50px;
       align-items: center;
       justify-content: center;
-    }
-
-    body.dark .bio-content-wrapper {
-      background-color: rgba(30, 30, 30, 0.85);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
     }
 
     /* Image styling inside wrapper */
