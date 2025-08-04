@@ -59,7 +59,7 @@ body.dark .background-section {
   font-size: 2.8rem;
   margin-bottom: 10px;
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
-  margin-top: 3rem; /* 👈 one line down */
+  margin-top: 3rem; /* one line down */
 }
 
 .background-section .subtitle {
@@ -69,7 +69,7 @@ body.dark .background-section {
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
   text-align: center;
   width: 100%;
-  margin-top: 1rem; /* 👈 one line down */
+  margin-top: 1rem; /* one line down */
 }
 
 /* ===== NAVBAR ===== */
@@ -189,9 +189,9 @@ body.dark .background-section {
     background: transparent !important;
   }
 
-  /* Move bio-section-1 one line down */
+  /* one line down */
   .bio-section-1 {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   /* Rounded rectangle behind bio content */
@@ -302,4 +302,5 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
