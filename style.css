@@ -59,6 +59,7 @@ body.dark .background-section {
   font-size: 2.8rem;
   margin-bottom: 10px;
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
+  margin-top: 1rem; /* 👈 one line down */
 }
 
 .background-section .subtitle {
@@ -68,6 +69,7 @@ body.dark .background-section {
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
   text-align: center;
   width: 100%;
+  margin-top: 1rem; /* 👈 one line down */
 }
 
 /* ===== NAVBAR ===== */
@@ -192,18 +194,17 @@ body.dark .background-section {
   .bio-section-2::before {
     content: "";
     position: absolute;
-    top: 20px;    /* margin inside bio-section */
+    top: 20px;
     bottom: 20px;
     left: 20px;
     right: 20px;
     border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.85); /* light mode */
+    background-color: rgba(255, 255, 255, 0.85);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    z-index: -1; /* behind text/image/video but above background */
+    z-index: -1;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Dark mode for rounded rectangle */
   body.dark .bio-section-1::before,
   body.dark .bio-section-2::before {
     background-color: rgba(30, 30, 30, 0.85);
@@ -228,6 +229,10 @@ body.dark .background-section {
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
+  }
+
+  .bio-section-2 {
+    margin-top: -1rem; /* 👈 move bio2 and video 1 line up */
   }
 
   .bio-video iframe {
