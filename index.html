@@ -68,14 +68,14 @@
       </a>
     </div>
 
-    <nav class="nav-center">
+    <nav class="nav-center" role="navigation" aria-label="Primary Navigation">
       <a href="games.html" class="nav-link">GAMES</a>
       <a href="listen.html" class="nav-link">LISTEN</a>
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
 
     <div class="nav-right">
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode" aria-pressed="false" aria-label="Toggle Dark Mode">
         <img src="images/moon.png" alt="Toggle Theme" class="icon-img" id="theme-icon" />
       </button>
     </div>
@@ -90,7 +90,7 @@
 
       <div class="bio-section-1 desktop-only">
         <div class="bio-image">
-          <img src="images/met-gala.png" alt="Diljit Dosanjh" />
+          <img src="images/met-gala.png" alt="Diljit Dosanjh at the Met Gala" />
         </div>
         <div class="bio-text">
           <p>
@@ -116,11 +116,10 @@
           <p>
             As an actor, Diljit shines in films like 
             <span class="hover-term">Jatt &amp; Juliet<img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" /></span> and 
-            <span class="hover-term">Good<img src="images/good-newwz.png" alt="Good" class="hover-image" /></span> 
-            <span class="hover-term">Newwz<img src="images/good-newwz.png" alt="Newwz" class="hover-image" /></span> portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media.
+            <span class="hover-term">Good Newwz<img src="images/good-newwz.png" alt="Good Newwz" class="hover-image" /></span>, portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media.
           </p>
           <p>
-            He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allows him to represent Punjabi culture, making him an icon for regional pride worldwide.
+            He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allow him to represent Punjabi culture, making him an icon for regional pride worldwide.
           </p>
         </div>
         <div class="bio-video">
@@ -143,12 +142,14 @@
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
       themeIcon.src = 'images/sun.png';
+      themeToggle.setAttribute('aria-pressed', 'true');
     }
 
     themeToggle.addEventListener('click', () => {
       const isDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
+      themeToggle.setAttribute('aria-pressed', isDark.toString());
     });
   </script>
 </body>
