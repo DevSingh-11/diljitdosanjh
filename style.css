@@ -189,6 +189,11 @@ body.dark .background-section {
     background: transparent !important;
   }
 
+  /* Move bio-section-1 one line down */
+  .bio-section-1 {
+    margin-top: 1rem;
+  }
+
   /* Rounded rectangle behind bio content */
   .bio-section-1::before,
   .bio-section-2::before {
@@ -232,9 +237,7 @@ body.dark .background-section {
   }
 
   .bio-section-2 {
-    position: relative;
-    top: -1.2em; /* visually move one line up without affecting layout */
-    margin-top: 0; /* reset previous margin */
+    margin-top: -1rem; /* 👈 move bio2 and video 1 line up */
   }
 
   .bio-video iframe {
