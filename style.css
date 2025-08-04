@@ -59,7 +59,7 @@ body.dark .background-section {
   font-size: 2.8rem;
   margin-bottom: 10px;
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
-  margin-top: 3rem; /* one line down */
+  margin-top: 3.5rem; /* one line down */
 }
 
 .background-section .subtitle {
@@ -302,5 +302,6 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
