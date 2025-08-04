@@ -232,3 +232,31 @@ body.dark {
   }
 }
 
+/* ===== POPUP HOVER STYLE ===== */
+.popup-hover {
+  position: relative;
+  display: inline-block;
+  border-bottom: 2px solid currentColor;
+  cursor: pointer;
+}
+
+.popup-hover .popup-image {
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 1000;
+  background-color: white;
+}
+
+body.dark .popup-hover .popup-image {
+  background-color: #222;
+}
+
+.popup-hover:hover .popup-image {
+  display: block;
+}
