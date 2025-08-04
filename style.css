@@ -31,6 +31,7 @@ body.dark {
 
 /* Background Section */
 .background-section {
+  position: relative;  /* <-- added this */
   background-image: url('images/back.png');
   background-size: cover;
   background-position: top center;
@@ -184,13 +185,13 @@ body.dark {
   .bio-section-2::before {
     content: "";
     position: absolute;
-    top: 20px;    /* margin from edges */
+    top: 20px;    /* margin inside bio-section */
     bottom: 20px;
     left: 20px;
     right: 20px;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.85); /* light mode */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     z-index: -1; /* behind text/image/video but above background */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
@@ -199,7 +200,7 @@ body.dark {
   body.dark .bio-section-1::before,
   body.dark .bio-section-2::before {
     background-color: rgba(30, 30, 30, 0.85);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
   }
 
   .bio-section-1 .bio-image img {
@@ -284,6 +285,3 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
-
-
-
