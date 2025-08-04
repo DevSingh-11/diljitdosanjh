@@ -6,6 +6,7 @@
   <title>Diljit Dosanjh</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* Background overlays at top and bottom */
     body::before {
       content: "";
       position: fixed;
@@ -28,6 +29,7 @@
       z-index: -2;
     }
 
+    /* Hover term style with image popup */
     .hover-term {
       position: relative;
       text-decoration: underline;
@@ -45,10 +47,12 @@
       border: 2px solid black;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       z-index: 10;
+      background-color: white;
     }
 
     body.dark .hover-term .hover-image {
       border-color: white;
+      background-color: #222;
     }
 
     .hover-term:hover .hover-image {
@@ -107,7 +111,6 @@
         </div>
       </div>
 
-
       <div class="bio-section-2 desktop-only">
         <div class="bio-text">
           <p>
@@ -135,6 +138,7 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
+    // Load saved theme from localStorage
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
@@ -149,9 +153,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
