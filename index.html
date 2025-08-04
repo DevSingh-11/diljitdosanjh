@@ -58,55 +58,6 @@
     .hover-term:hover .hover-image {
       display: block;
     }
-
-    /* Removed rectangle styling from bio-content-wrapper */
-    .bio-content-wrapper {
-      background-color: transparent !important;
-      border-radius: 0 !important;
-      padding: 0 !important;
-      box-shadow: none !important;
-      max-width: 100%;
-      box-sizing: border-box;
-      display: flex;
-      gap: 50px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Image styling inside wrapper */
-    .bio-image img {
-      max-width: 350px;
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      display: block;
-    }
-
-    /* Flex settings for text and video blocks inside wrapper */
-    .bio-text {
-      max-width: 600px;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    .bio-video iframe {
-      border-radius: 12px;
-      max-width: 500px;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      display: block;
-    }
-
-    /* For desktop layout, keep sections flex containers but no padding/margin */
-    .bio-section-1,
-    .bio-section-2 {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      margin: 40px 0;
-      background: transparent !important;
-    }
   </style>
 </head>
 <body>
@@ -138,46 +89,42 @@
       </div>
 
       <div class="bio-section-1 desktop-only">
-        <div class="bio-content-wrapper">
-          <div class="bio-image">
-            <img src="images/met-gala.png" alt="Diljit Dosanjh" />
-          </div>
-          <div class="bio-text">
-            <p>
-              Born in Punjab, Diljit Dosanjh revolutionised Punjabi music by blending folk traditions with contemporary beats. From local gigs to sold-out world tours, his journey embodies resilience and artistry.
-            </p>
-            <p>
-              With songs like 'Water' and 'Born to Shine', Diljit's music transcends borders, while collaborations with global stars like 
-              <span class="hover-term">Ed Sheeran<img src="images/ed-sheeran.png" alt="Ed Sheeran" class="hover-image" /></span>, 
-              <span class="hover-term">Sia<img src="images/sia.png" alt="Sia" class="hover-image" /></span> and 
-              <span class="hover-term">Saweetie<img src="images/saweetie.png" alt="Saweetie" class="hover-image" /></span> highlight his genre-defying versatility. His 2023 Coachella performance – a historical first for a Punjabi artist – showcased his global appeal, merging Bhangra rhythms with hip-hop energy.
-            </p>
-            <p>
-              His impact echoed at the 2025 Met Gala, where Diljit commanded attention in a regal sherwani, layered with Indian jewellery, transforming fashion's biggest night into a celebration of Punjabi heritage.
-            </p>
-            <p>
-              Whether through soulful ballads or stadium bangers, Diljit bridges cultures one anthem at a time – but of course, he doesn't stop at music.
-            </p>
-          </div>
+        <div class="bio-image">
+          <img src="images/met-gala.png" alt="Diljit Dosanjh" />
+        </div>
+        <div class="bio-text">
+          <p>
+            Born in Punjab, Diljit Dosanjh revolutionised Punjabi music by blending folk traditions with contemporary beats. From local gigs to sold-out world tours, his journey embodies resilience and artistry.
+          </p>
+          <p>
+            With songs like 'Water' and 'Born to Shine', Diljit's music transcends borders, while collaborations with global stars like 
+            <span class="hover-term">Ed Sheeran<img src="images/ed-sheeran.png" alt="Ed Sheeran" class="hover-image" /></span>, 
+            <span class="hover-term">Sia<img src="images/sia.png" alt="Sia" class="hover-image" /></span> and 
+            <span class="hover-term">Saweetie<img src="images/saweetie.png" alt="Saweetie" class="hover-image" /></span> highlight his genre-defying versatility. His 2023 Coachella performance – a historical first for a Punjabi artist – showcased his global appeal, merging Bhangra rhythms with hip-hop energy.
+          </p>
+          <p>
+            His impact echoed at the 2025 Met Gala, where Diljit commanded attention in a regal sherwani, layered with Indian jewellery, transforming fashion's biggest night into a celebration of Punjabi heritage.
+          </p>
+          <p>
+            Whether through soulful ballads or stadium bangers, Diljit bridges cultures one anthem at a time – but of course, he doesn't stop at music.
+          </p>
         </div>
       </div>
 
       <div class="bio-section-2 desktop-only">
-        <div class="bio-content-wrapper">
-          <div class="bio-text">
-            <p>
-              As an actor, Diljit shines in films like 
-              <span class="hover-term">Jatt &amp; Juliet<img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" /></span> and 
-              <span class="hover-term">Good<img src="images/good-newwz.png" alt="Good" class="hover-image" /></span> 
-              <span class="hover-term">Newwz<img src="images/good-newwz.png" alt="Newwz" class="hover-image" /></span> portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media.
-            </p>
-            <p>
-              He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allows him to represent Punjabi culture, making him an icon for regional pride worldwide.
-            </p>
-          </div>
-          <div class="bio-video">
-            <iframe width="500" height="281" src="https://www.youtube.com/embed/In57alIHnUc" title="Alexa Play Diljit" frameborder="0" allowfullscreen></iframe>
-          </div>
+        <div class="bio-text">
+          <p>
+            As an actor, Diljit shines in films like 
+            <span class="hover-term">Jatt &amp; Juliet<img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" /></span> and 
+            <span class="hover-term">Good<img src="images/good-newwz.png" alt="Good" class="hover-image" /></span> 
+            <span class="hover-term">Newwz<img src="images/good-newwz.png" alt="Newwz" class="hover-image" /></span> portraying raw, relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media.
+          </p>
+          <p>
+            He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allows him to represent Punjabi culture, making him an icon for regional pride worldwide.
+          </p>
+        </div>
+        <div class="bio-video">
+          <iframe width="500" height="281" src="https://www.youtube.com/embed/In57alIHnUc" title="Alexa Play Diljit" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </section>
