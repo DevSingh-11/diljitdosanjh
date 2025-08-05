@@ -43,7 +43,7 @@ body.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 5px; /* Reduced padding for tighter gap below headings */
   margin-top: 0px;
   text-align: left;
   box-sizing: border-box;
@@ -180,7 +180,7 @@ body.dark .background-section {
 
   .bio-section-1,
   .bio-section-2 {
-    position: relative; /* needed for ::before */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,9 +189,8 @@ body.dark .background-section {
     background: transparent !important;
   }
 
-  /* one line down */
   .bio-section-1 {
-    margin-top: 2rem;
+    margin-top: 0rem; /* Removed extra gap */
   }
 
   /* Rounded rectangle behind bio content */
@@ -238,20 +237,19 @@ body.dark .background-section {
 
   .bio-section-1 {
     padding-top: 0px;
-  }
-  
-  .bio-section-1 {
     padding-bottom: 20px;
   }
-  
+
   .bio-section-2 {
     padding-top: 0px;
+    padding-bottom: 20px;
   }
 
-  .bio-section-2 {
-    padding-bottom: 90px;
-  }  
-
+  .bio-section-3 {
+    padding-top: 0px;
+    padding-bottom: 150px; /* Extra scroll space */
+  }
+  
   .bio-video iframe {
     max-width: 500px;
     border-radius: 20px;
@@ -314,15 +312,3 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
