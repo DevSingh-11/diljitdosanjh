@@ -6,7 +6,6 @@
   <title>Diljit Dosanjh</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Background overlays at top and bottom */
     body::before {
       content: "";
       position: fixed;
@@ -29,7 +28,6 @@
       z-index: -2;
     }
 
-    /* Hover term style with image popup */
     .hover-term {
       position: relative;
       text-decoration: underline;
@@ -67,13 +65,11 @@
         <img src="images/home-icon.png" alt="Home" class="icon-img" />
       </a>
     </div>
-
     <nav class="nav-center" role="navigation" aria-label="Primary Navigation">
       <a href="games.html" class="nav-link">GAMES</a>
       <a href="listen.html" class="nav-link">LISTEN</a>
       <a href="lyrics.html" class="nav-link">LYRICS</a>
     </nav>
-
     <div class="nav-right">
       <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode" aria-pressed="false" aria-label="Toggle Dark Mode">
         <img src="images/moon.png" alt="Toggle Theme" class="icon-img" id="theme-icon" />
@@ -88,6 +84,7 @@
         <p class="subtitle">Singer &bull; Actor &bull; Global Icon</p>
       </div>
 
+      <!-- Bio Section 1 -->
       <div class="bio-section-1 desktop-only">
         <div class="bio-image">
           <img src="images/met-gala.png" alt="Diljit Dosanjh at the Met Gala" />
@@ -111,22 +108,35 @@
         </div>
       </div>
 
+      <!-- Bio Section 2 -->
       <div class="bio-section-2 desktop-only">
         <div class="bio-text">
           <p>
-            As an actor, Diljit shines in films like 
-            <span class="hover-term">Jatt &amp; Juliet<img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" /></span> and 
-            <span class="hover-term">Good<img src="images/good-newwz.png" alt="Good" class="hover-image" /></span> 
-            <span class="hover-term">Newwz<img src="images/good-newwz.png" alt="Newwz" class="hover-image" /></span>, portraying relatable characters. His charisma on screen has made him one of Punjabi cinema's most beloved stars, while off screen, Diljit has mastered the art of connecting with fans on social media.
-          </p>
+            As an actor, Diljit brings charm and depth to a wide range of roles — from hilarious hits like  
+            <span class="hover-term">Jatt &amp; Juliet<img src="images/jatt-and-juliet.png" alt="Jatt and Juliet" class="hover-image" /></span> and  
+            <span class="hover-term">Good Newwz<img src="images/good-newwz.png" alt="Good Newwz" class="hover-image" /></span> to powerful performances in
+            <span class="hover-term">Udta Punjab<img src="images/udta-punjabi.png" alt="Udta Punjab" class="hover-image" /></span> and 
+            <span class="hover-term">Jogi<img src="images/jogi.png" alt="Jogi" class="hover-image" /></span>. His ability to switch between comedy and drama showcases his versatility on screen. In 2024, he won the Filmfare OTT Award for Best Actor for his gripping portrayal in 
+            <span class="hover-term">Chamkila<img src="images/chamkila.png" alt="Chamkila" class="hover-image" /></span>, a biopic that added another milestone to his career. Whether leading in light-hearted blockbusters or intense dramas, Diljit has become a defining figure in Bollywood and Punjabi cinema.
           <p>
-            He frequently goes live on Instagram, creating spontaneous, unfiltered moments like his viral clip demanding Alexa to play his song. His music, acting roles and popularity online allow him to represent Punjabi culture, making him an icon for regional pride worldwide.
-          </p>
         </div>
+        <div class="bio-image">
+          <img src="images/film-award.png" alt="Diljit at the Film Awards" />
+        </div>
+      </div>
+
+      <!-- Bio Section 3 -->
+      <div class="bio-section-3 desktop-only">
         <div class="bio-video">
           <iframe width="500" height="281" src="https://www.youtube.com/embed/In57alIHnUc" title="Alexa Play Diljit" frameborder="0" allowfullscreen></iframe>
         </div>
+        <div class="bio-text">
+          <p>
+            Diljit’s off-screen presence is just as compelling as his performances. He regularly goes live on Instagram, creating spontaneous viral moments — like the time he demanded Alexa to play his own track. Known for his humility and grounded nature, Diljit remains relatable despite his global fame. His daily updates, humour, and direct interaction with fans have earned him a reputation as one of the most authentic celebrities online. Through his digital presence, he continues to represent Punjabi culture proudly, connecting deeply with audiences around the world.
+          </p>
+        </div>
       </div>
+
     </section>
   </main>
 
@@ -138,7 +148,6 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
-    // Load saved theme from localStorage
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
@@ -155,5 +164,3 @@
   </script>
 </body>
 </html>
-
-
