@@ -43,7 +43,7 @@ body.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px; /* Reduced padding for tighter gap below headings */
+  padding: 5px;
   margin-top: 0px;
   text-align: left;
   box-sizing: border-box;
@@ -59,7 +59,7 @@ body.dark .background-section {
   font-size: 2.8rem;
   margin-bottom: 10px;
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
-  margin-top: 4.5rem; /* one line down */
+  margin-top: 4.5rem;
 }
 
 .background-section .subtitle {
@@ -69,7 +69,7 @@ body.dark .background-section {
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
   text-align: center;
   width: 100%;
-  margin-top: 1rem; /* one line down */
+  margin-top: 1rem;
 }
 
 /* ===== NAVBAR ===== */
@@ -190,23 +190,7 @@ body.dark .background-section {
   }
 
   .bio-section-1 {
-    margin-top: 0rem; /* Removed extra gap */
-  }
-
-  /* Rounded rectangle behind bio content */
-  .bio-section-1::before,
-  .bio-section-2::before {
-    content: "";
-    position: absolute;
-    top: 20px;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    z-index: -1;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 0rem;
   }
 
   body.dark .bio-section-1::before,
@@ -222,14 +206,27 @@ body.dark .background-section {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
+  .bio-section-2 .bio-image img {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
   .bio-image,
   .bio-text,
   .bio-video {
     background: transparent !important;
   }
 
-  .bio-text {
-    max-width: 600px;
+  .bio-section-1 .bio-text,
+  .bio-section-2 .bio-text {
+    max-width: 500px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: inherit;
+  }
+
+  .bio-section-3 .bio-text {
+    max-width: 350px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
@@ -247,9 +244,15 @@ body.dark .background-section {
 
   .bio-section-3 {
     padding-top: 0px;
-    padding-bottom: 150px; /* Extra scroll space */
+    padding-bottom: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
-  
+
   .bio-video iframe {
     max-width: 500px;
     border-radius: 20px;
