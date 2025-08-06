@@ -217,12 +217,13 @@ body.dark .background-section {
     background: transparent !important;
   }
 
-  .bio-section-1 .bio-text,
+  .bio-section-1 .bio-text {
     max-width: 500px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
   }
+
   .bio-section-2 .bio-text {
     max-width: 500px;
     font-size: 1.1rem;
@@ -320,4 +321,5 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
