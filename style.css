@@ -178,7 +178,16 @@ body.dark .background-section {
     display: flex;
   }
 
-  .bio-section-1,
+  .bio-section-1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 50px 100px;
+    background: transparent !important;
+  }
+  
   .bio-section-2 {
     position: relative;
     display: flex;
@@ -207,6 +216,8 @@ body.dark .background-section {
   }
 
   .bio-section-2 .bio-image img {
+    max-width: 350px;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
@@ -218,14 +229,14 @@ body.dark .background-section {
   }
 
   .bio-section-1 .bio-text {
-    max-width: 500px;
+    max-width: 600px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
   }
 
   .bio-section-2 .bio-text {
-    max-width: 500px;
+    max-width: 600px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
@@ -321,5 +332,6 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
