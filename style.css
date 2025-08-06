@@ -33,7 +33,7 @@ body.dark {
 .background-section {
   position: relative;
   background-image: url('images/desktop-light-back.png');
-  background-size: cover;
+  background-size: 100% auto;
   background-position: top center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -52,6 +52,7 @@ body.dark {
 /* Dark mode background override */
 body.dark .background-section {
   background-image: url('images/desktop-dark-back.png');
+  background-size: 100% auto;
 }
 
 /* Headings */
@@ -332,6 +333,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
