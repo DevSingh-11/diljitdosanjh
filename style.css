@@ -251,7 +251,7 @@ body.dark .background-section {
   }
 
   .bio-section-1 {
-    padding-top: 20px;
+    padding-top: 40px;
     padding-bottom: 20px;
   }
 
@@ -333,6 +333,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
