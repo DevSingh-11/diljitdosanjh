@@ -229,7 +229,7 @@ body.dark .background-section {
   }
 
   .bio-section-1 .bio-text {
-    max-width: 600px;
+    max-width: 650px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: inherit;
@@ -332,6 +332,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
