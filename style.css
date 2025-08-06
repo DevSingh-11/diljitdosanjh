@@ -282,6 +282,21 @@ body.dark .background-section {
     background-color: #222;
     padding: 32px 0;
     margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .footer-strip img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .footer-strip img:hover {
+    transform: scale(1.2);
   }
 
   .nav-center {
@@ -333,6 +348,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
