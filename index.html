@@ -56,6 +56,45 @@
     .hover-term:hover .hover-image {
       display: block;
     }
+
+    .footer-strip {
+      background-color: #f0f0f0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body.dark .footer-strip {
+      background-color: #111;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      max-width: 1000px;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: sans-serif;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .desktop-only {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -142,13 +181,28 @@
           </p>
         </div>
       </div>
-
-
     </section>
   </main>
 
   <footer class="footer-strip desktop-only">
-    <!-- Placeholder for socials and footer content -->
+    <div class="footer-socials">
+      <div class="social-item">
+        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+        <span>@diljitdosanjh</span>
+      </div>
+      <div class="social-item">
+        <img src="images/spotify.png" alt="Spotify" class="social-icon">
+        <span>Diljit Dosanjh</span>
+      </div>
+      <div class="social-item">
+        <img src="images/x.png" alt="X" class="social-icon">
+        <span>@diljitdosanjh</span>
+      </div>
+      <div class="social-item">
+        <img src="images/youtube.png" alt="YouTube" class="social-icon">
+        <span>Diljit Dosanjh</span>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -171,5 +225,3 @@
   </script>
 </body>
 </html>
-
-
