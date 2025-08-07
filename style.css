@@ -291,7 +291,7 @@ body.dark .background-section {
 
   .bio-section-3 {
     padding-top: 0px;
-    padding-bottom: 150px;
+    padding-bottom: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -377,6 +377,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
