@@ -23,6 +23,14 @@ html, body {
   z-index: -1;
 }
 
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.theme-transition {
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
 /* Dark mode */
 body.dark {
   background-color: #121212;
@@ -377,6 +385,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
