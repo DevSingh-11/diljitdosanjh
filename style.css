@@ -179,6 +179,13 @@ body.dark .background-section {
   justify-content: center;
   align-items: center;
   gap: 30px;
+  color: white !important; /* Forces white text in footer */
+}
+
+/* Ensure social media links stay white */
+.footer-strip a,
+.footer-strip span {
+  color: inherit !important; /* Inherits white from parent */
 }
 
 .footer-strip img {
@@ -370,6 +377,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
