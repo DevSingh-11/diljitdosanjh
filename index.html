@@ -90,6 +90,16 @@
       height: 20px;
     }
 
+    /* Added for clickable social links */
+    .footer-socials a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    body.dark .footer-socials a {
+      color: white;
+    }
+
     @media screen and (max-width: 768px) {
       .desktop-only {
         display: none;
@@ -186,22 +196,29 @@
 
   <footer class="footer-strip desktop-only">
     <div class="footer-socials">
-      <div class="social-item">
+      <!-- Instagram Link -->
+      <a href="https://www.instagram.com/diljitdosanjh/?hl=en" target="_blank" class="social-item">
         <img src="images/instagram.png" alt="Instagram" class="social-icon">
         <span>@diljitdosanjh</span>
-      </div>
-      <div class="social-item">
+      </a>
+
+      <!-- Spotify Link -->
+      <a href="https://open.spotify.com/artist/2FKWNmZWDBZR4dE5KX4plR" target="_blank" class="social-item">
         <img src="images/spotify.png" alt="Spotify" class="social-icon">
         <span>Diljit Dosanjh</span>
-      </div>
-      <div class="social-item">
+      </a>
+
+      <!-- X (Twitter) Link -->
+      <a href="https://x.com/diljitdosanjh" target="_blank" class="social-item">
         <img src="images/x.png" alt="X" class="social-icon">
         <span>@diljitdosanjh</span>
-      </div>
-      <div class="social-item">
+      </a>
+
+      <!-- YouTube Link -->
+      <a href="https://www.youtube.com/channel/UCZRdNleCgW-BGUJf-bbjzQg" target="_blank" class="social-item">
         <img src="images/youtube.png" alt="YouTube" class="social-icon">
         <span>Diljit Dosanjh</span>
-      </div>
+      </a>
     </div>
   </footer>
 
