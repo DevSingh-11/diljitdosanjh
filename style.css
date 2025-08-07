@@ -170,6 +170,28 @@ body.dark .background-section {
   display: none;
 }
 
+.footer-strip {
+  width: 100%;
+  background-color: #222 !important;
+  padding: 32px 0;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-strip img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.footer-strip img:hover {
+  transform: scale(1.2);
+}
+
 @media (min-width: 769px) {
   body {
     overscroll-behavior-y: none;
@@ -348,6 +370,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
