@@ -100,6 +100,15 @@
       color: white;
     }
 
+    /* Added for smooth theme transitions */
+    body, .nav-link, .footer-strip, .background-section, .bio-text {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    
+    img, iframe {
+      transition: opacity 0.4s ease;
+    }
+
     @media screen and (max-width: 768px) {
       .desktop-only {
         display: none;
@@ -226,6 +235,16 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
+    // Apply transitions to key elements
+    function applyThemeTransitions() {
+      const elements = document.querySelectorAll('body, .nav-link, .footer-strip, .background-section, .bio-text, img, iframe');
+      elements.forEach(el => {
+        el.style.transition = 'background-color 0.5s ease, color 0.5s ease, opacity 0.4s ease';
+      });
+    }
+
+    // Initialize
+    applyThemeTransitions();
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
@@ -234,6 +253,9 @@
     }
 
     themeToggle.addEventListener('click', () => {
+      // Re-apply transitions before toggle (just to be safe)
+      applyThemeTransitions();
+      
       const isDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
