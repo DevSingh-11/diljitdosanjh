@@ -1,47 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Games | Diljit Dosanjh</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-  <header class="navbar">
+<body class="has-content">
+  <!-- NAVBAR -->
+  <div class="navbar">
     <div class="nav-left">
-      <a href="index.html" class="nav-icon" title="Home">
-        <img src="images/home-icon.png" alt="Home" class="icon-img" />
-      </a>
+      <a href="../index.html" class="nav-icon"><img src="../images/home.png" class="icon-img" alt="Home"></a>
     </div>
-    <nav class="nav-center">
-      <a href="games.html" class="nav-link active">GAMES</a>
-      <a href="listen.html" class="nav-link">LISTEN</a>
-      <a href="lyrics.html" class="nav-link">LYRICS</a>
-    </nav>
+    <div class="nav-center">
+      <a href="games.html" class="nav-link active">Games</a>
+      <a href="listen.html" class="nav-link">Listen</a>
+      <a href="lyrics.html" class="nav-link">Lyrics</a>
+    </div>
     <div class="nav-right">
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">
-        <img src="images/moon.png" alt="Toggle Theme" class="icon-img" id="theme-icon" />
-      </button>
+      <button class="theme-toggle"><img src="../images/moon.png" class="icon-img" alt="Theme Toggle"></button>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <!-- Blank page -->
-  </main>
-
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark');
-      themeIcon.src = 'images/sun.png';
-    }
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
-    });
-  </script>
+  <script src="../darkmode.js"></script>
 </body>
 </html>
