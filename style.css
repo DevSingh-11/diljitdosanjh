@@ -45,15 +45,15 @@ body.dark {
 .background-section {
   position: relative;
   width: 100%;
-  flex: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  margin-top: 0px;
-  text-align: left;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  text-align: left;
 }
 
 /* Background image container */
@@ -64,16 +64,15 @@ body.dark {
   right: 0;
   bottom: 0;
   background-image: url('images/background.png');
-  background-size: 100% auto;
+  background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
   z-index: -2; /* Behind the overlay */
 }
 
 body.dark .background-image-container {
   background-image: url('images/background.png');
-  background-size: 100% auto;
+  background-size: cover;
 }
 
 /* Semi-transparent overlay */
@@ -420,3 +419,4 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
