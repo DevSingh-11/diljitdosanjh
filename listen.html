@@ -3,41 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
   <title>Listen</title>
 </head>
 <body class="has-content">
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-left">
-      <a href="../index.html" class="nav-icon">
-        <img src="../images/home.png" alt="Home" class="icon-img">
+      <a href="index.html" class="nav-icon">
+        <img src="images/home.png" alt="Home" class="icon-img">
       </a>
     </div>
     <div class="nav-center">
       <a href="games.html" class="nav-link">Games</a>
-      <a href="listen.html" class="nav-link">Listen</a>
+      <a href="listen.html" class="nav-link active">Listen</a>
       <a href="lyrics.html" class="nav-link">Lyrics</a>
     </div>
     <div class="nav-right">
       <button class="theme-toggle">
-        <img src="../images/moon.png" alt="Toggle Dark Mode" class="icon-img">
+        <img src="images/moon.png" alt="Toggle Dark Mode" class="icon-img">
       </button>
     </div>
   </nav>
-
-  <!-- Background -->
-  <div class="background-section">
-    <div class="background-image-container" style="background-image: url('../images/background.png');"></div>
-    <div class="background-overlay"></div>
-  </div>
 
   <script>
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
       document.body.classList.add('dark');
-      const icon = document.querySelector('.theme-toggle img');
-      if (icon) icon.src = "../images/sun.png";
+      document.querySelector('.theme-toggle img').src = "images/sun.png";
     }
 
     const toggle = document.querySelector('.theme-toggle');
@@ -46,10 +38,10 @@
       const icon = document.querySelector('.theme-toggle img');
       if (document.body.classList.contains('dark')) {
         localStorage.setItem('theme', 'dark');
-        if (icon) icon.src = "../images/sun.png";
+        icon.src = "images/sun.png";
       } else {
         localStorage.setItem('theme', 'light');
-        if (icon) icon.src = "../images/moon.png";
+        icon.src = "images/moon.png";
       }
     });
   </script>
