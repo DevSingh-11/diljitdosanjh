@@ -33,23 +33,23 @@
 
     /* Make background-section positioned for the overlay */
     .background-section {
-      position: relative;
+      position: relative !important;
     }
 
     /* Full page semi-transparent overlay */
     .background-section::before {
-      content: "";
+      content: "" !important;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(255, 255, 255, 0.7); /* White 70% opacity */
+      background-color: rgba(255, 255, 255, 0.7) !important; /* White 70% opacity */
       z-index: -1; /* Behind content but above background */
     }
 
     body.dark .background-section::before {
-      background-color: rgba(0, 0, 0, 0.7); /* Black 70% opacity in dark mode */
+      background-color: rgba(0, 0, 0, 0.7) !important; /* Black 70% opacity in dark mode */
     }
 
     .hover-term {
