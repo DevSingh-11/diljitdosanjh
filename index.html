@@ -1,1 +1,40 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Diljit Dosanjh - Redirecting</title>
+    <script>
+        // Detect mobile device
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Redirect to appropriate version
+        if (isMobile) {
+            window.location.href = "mobile-index.html";
+        } else {
+            window.location.href = "desktop-index.html";
+        }
+    </script>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .loading {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <p>Redirecting to Diljit Dosanjh's website...</p>
+        <p>If you are not redirected automatically, <a href="desktop-index.html" style="color: #66ccff;">click here</a></p>
+    </div>
+</body>
+</html>
