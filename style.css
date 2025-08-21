@@ -7,6 +7,10 @@ html, body {
   background-color: #fff;
   color: #000;
   transition: background-color 0.3s, color 0.3s;
+}
+
+/* Only apply flex properties to pages that need it */
+body.has-content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -208,7 +212,7 @@ body.dark .background-section {
 }
 
 @media (min-width: 769px) {
-  body {
+  body.has-content {
     overscroll-behavior-y: none;
   }
 
@@ -385,16 +389,3 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
