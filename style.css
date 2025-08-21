@@ -27,6 +27,19 @@ body.has-content {
   z-index: -1;
 }
 
+/* Background images for desktop homepage */
+.background-section {
+  background-image: url('images/light-background.png');
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+body.dark .background-section {
+  background-image: url('images/dark-background.png');
+  background-size: 100% auto;
+}
+
 body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -386,5 +399,6 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
