@@ -3,26 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Games</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body class="has-content">
+
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-left">
-      <a href="../index.html" class="nav-icon"><img src="../images/home.png" class="icon-img" alt="Home"></a>
+      <a href="../index.html" class="nav-icon">
+        <img src="../images/home.png" alt="Home" class="icon-img">
+      </a>
     </div>
     <div class="nav-center">
       <a href="games.html" class="nav-link">Games</a>
       <a href="listen.html" class="nav-link active">Listen</a>
       <a href="lyrics.html" class="nav-link">Lyrics</a>
-
     </div>
     <div class="nav-right">
-      <button class="theme-toggle"><img src="../images/moon.png" class="icon-img" alt="Theme Toggle"></button>
+      <button class="theme-toggle">
+        <img src="../images/moon.png" alt="Toggle Dark Mode" class="icon-img">
+      </button>
     </div>
   </div>
 
-  <script src="../darkmode.js"></script>
+  <!-- Empty content -->
+
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  </script>
+
 </body>
 </html>
