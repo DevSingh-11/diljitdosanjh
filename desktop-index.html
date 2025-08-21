@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diljit Dosanjh</title>
   <!-- Favicon Links -->
   <link rel="icon" href="images/favicon.png" type="image/png">
@@ -112,12 +111,6 @@
     img, iframe {
       transition: opacity 0.4s ease;
     }
-
-    @media screen and (max-width: 768px) {
-      .desktop-only {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -128,9 +121,9 @@
       </a>
     </div>
     <nav class="nav-center" role="navigation" aria-label="Primary Navigation">
-      <a href="games.html" class="nav-link">GAMES</a>
-      <a href="listen.html" class="nav-link">LISTEN</a>
-      <a href="lyrics.html" class="nav-link">LYRICS</a>
+      <a href="pages/games.html" class="nav-link">GAMES</a>
+      <a href="pages/listen.html" class="nav-link">LISTEN</a>
+      <a href="pages/lyrics.html" class="nav-link">LYRICS</a>
     </nav>
     <div class="nav-right">
       <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode" aria-pressed="false" aria-label="Toggle Dark Mode">
@@ -147,7 +140,7 @@
       </div>
 
       <!-- Bio Section 1 -->
-      <div class="bio-section-1 desktop-only">
+      <div class="bio-section-1">
         <div class="bio-image">
           <img src="images/met-gala.png" alt="Diljit Dosanjh at the Met Gala" />
         </div>
@@ -171,7 +164,7 @@
       </div>
 
       <!-- Bio Section 2 -->
-      <div class="bio-section-2 desktop-only">
+      <div class="bio-section-2">
         <div class="bio-text" style="max-width: 600px;">
           <p>
             As an actor, Diljit brings charm and depth to a wide range of roles — from hilarious hits like  
@@ -191,7 +184,7 @@
       </div>
       
       <!-- Bio Section 3 -->
-      <div class="bio-section-3 desktop-only">
+      <div class="bio-section-3">
         <div class="bio-video">
           <iframe width="500" height="281" src="https://www.youtube.com/embed/In57alIHnUc" title="Alexa Play Diljit" frameborder="0" allowfullscreen></iframe>
         </div>
@@ -207,7 +200,7 @@
     </section>
   </main>
 
-  <footer class="footer-strip desktop-only">
+  <footer class="footer-strip">
     <div class="footer-socials">
       <!-- Instagram Link -->
       <a href="https://www.instagram.com/diljitdosanjh/?hl=en" target="_blank" class="social-item">
@@ -268,4 +261,3 @@
   </script>
 </body>
 </html>
-
