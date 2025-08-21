@@ -56,39 +56,6 @@ body.dark {
   text-align: left;
 }
 
-/* Background image container */
-.background-image-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('images/background.png');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  z-index: -2; /* Behind the overlay */
-}
-
-body.dark .background-image-container {
-  background-image: url('images/background.png');
-  background-size: cover;
-}
-
-/* Semi-transparent overlay */
-.background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.7); /* White 70% opacity */
-  z-index: -1; /* Between background and content */
-}
-
-body.dark .background-overlay {
-  background-color: rgba(0, 0, 0, 0.7); /* Black 70% opacity in dark mode */
-}
 
 /* Headings */
 .background-section h1 {
@@ -419,4 +386,5 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
