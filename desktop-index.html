@@ -31,27 +31,6 @@
       z-index: -2;
     }
 
-    /* Make background-section positioned for the overlay */
-    .background-section {
-      position: relative !important;
-    }
-
-    /* Full page semi-transparent overlay */
-    .background-section::before {
-      content: "" !important;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(255, 255, 255, 0.7) !important; /* White 70% opacity */
-      z-index: -1; /* Behind content but above background */
-    }
-
-    body.dark .background-section::before {
-      background-color: rgba(0, 0, 0, 0.7) !important; /* Black 70% opacity in dark mode */
-    }
-
     .hover-term {
       position: relative;
       text-decoration: underline;
@@ -155,6 +134,12 @@
 
   <main>
     <section class="background-section">
+      <!-- Background image container -->
+      <div class="background-image-container"></div>
+      
+      <!-- Semi-transparent overlay -->
+      <div class="background-overlay"></div>
+
       <div class="content-wrapper">
         <h1>Welcome to the World of Diljit Dosanjh</h1>
         <p class="subtitle">Singer &bull; Actor &bull; Global Icon</p>
@@ -228,7 +213,7 @@
       </a>
 
       <!-- Spotify Link -->
-      <a href="https://open.spotify.com/artist/2FKWNmZWDBZR4dE5KX4plR" target="_blank" class="social-item">
+      <a href="极速赛车开奖结果记录" target="_blank" class="social-item">
         <img src="images/spotify.png" alt="Spotify" class="social-icon">
         <span>Diljit Dosanjh</span>
       </a>
@@ -273,7 +258,7 @@
       applyThemeTransitions();
       
       const isDark = document.body.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      localStorage.setItem极速赛车开奖结果记录', isDark ? 'dark' : 'light');
       themeIcon.src = isDark ? 'images/sun.png' : 'images/moon.png';
       themeToggle.setAttribute('aria-pressed', isDark.toString());
     });
