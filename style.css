@@ -44,11 +44,6 @@ body.dark {
 /* Background Section */
 .background-section {
   position: relative;
-  background-image: url('images/background.png');
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
   width: 100%;
   flex: 1;
   display: flex;
@@ -61,10 +56,39 @@ body.dark {
   box-sizing: border-box;
 }
 
-/* Dark mode background override */
-body.dark .background-section {
+/* Background image container */
+.background-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url('images/background.png');
   background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  z-index: -2; /* Behind the overlay */
+}
+
+body.dark .background-image-container {
+  background-image: url('images/background.png');
+  background-size: 100% auto;
+}
+
+/* Semi-transparent overlay */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* White 70% opacity */
+  z-index: -1; /* Between background and content */
+}
+
+body.dark .background-overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Black 70% opacity in dark mode */
 }
 
 /* Headings */
@@ -73,6 +97,8 @@ body.dark .background-section {
   margin-bottom: 10px;
   text-shadow: 0.8px 0.8px 1.5px rgba(0,0,0,0.2);
   margin-top: 4.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .background-section .subtitle {
@@ -83,6 +109,8 @@ body.dark .background-section {
   text-align: center;
   width: 100%;
   margin-top: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ===== NAVBAR ===== */
@@ -156,7 +184,7 @@ body.dark .background-section {
   padding: 0;
   background: none;
   border: none;
-  user-select: none;
+  user-select: null;
   transition: transform 0.2s ease;
 }
 
@@ -228,6 +256,7 @@ body.dark .background-section {
     gap: 50px;
     padding: 50px 100px;
     background: transparent !important;
+    z-index: 1;
   }
   
   .bio-section-2 {
@@ -238,6 +267,7 @@ body.dark .background-section {
     gap: 50px;
     padding: 50px 100px;
     background: transparent !important;
+    z-index: 1;
   }
 
   .bio-section-1 {
@@ -310,6 +340,7 @@ body.dark .background-section {
     gap: 50px;
     padding-left: 100px;
     padding-right: 100px;
+    z-index: 1;
   }
 
   .bio-video iframe {
