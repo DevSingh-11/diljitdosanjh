@@ -235,10 +235,6 @@ body.dark {
     background: transparent !important;
 }
 
-/* Alternate layout for even-numbered sections */
-.bio-section-2 {
-    flex-direction: row-reverse;
-}
 
 /* Content and media areas */
 .bio-content {
@@ -407,4 +403,5 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
