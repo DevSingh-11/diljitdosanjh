@@ -230,7 +230,6 @@ body.dark {
     max-width: 1800px;
     box-sizing: border-box;
     position: relative;
-    z-index: 1;
     background: transparent !important;
 }
 
@@ -453,4 +452,5 @@ body.dark .hover-term .hover-image {
 .hover-term:hover .hover-image {
   display: block;
 }
+
 
