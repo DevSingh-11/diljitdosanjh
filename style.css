@@ -226,13 +226,24 @@ body.dark {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    padding: 70px 13%;
     margin: 0 auto;
     max-width: 1800px;
     box-sizing: border-box;
     position: relative;
     z-index: 1;
     background: transparent !important;
+}
+
+.bio-section-1 {
+    padding: 70px 13% 40px 13%;
+}
+
+.bio-section-2 {
+    padding: 40px 13%;
+}
+
+.bio-section-3 {
+    padding: 40px 13% 70px 13%;
 }
 
 
@@ -297,19 +308,35 @@ body.dark {
 
 /* Responsive adjustments */
 @media (max-width: 1400px) {
+    .bio-section-1 {
+        padding: 60px 11% 30px 11%;
+    }
+    .bio-section-2 {
+        padding: 30px 11%;
+    }
+    .bio-section-3 {
+        padding: 30px 11% 60px 11%;
+    }
     .bio-section-1, 
     .bio-section-2, 
     .bio-section-3 {
-        padding: 60px 11%;
         gap: 50px;
     }
 }
 
 @media (max-width: 1200px) {
+    .bio-section-1 {
+        padding: 50px 9% 25px 9%;
+    }
+    .bio-section-2 {
+        padding: 25px 9%;
+    }
+    .bio-section-3 {
+        padding: 25px 9% 50px 9%;
+    }
     .bio-section-1, 
     .bio-section-2, 
     .bio-section-3 {
-        padding: 50px 9%;
         gap: 40px;
     }
 }
@@ -340,10 +367,18 @@ body.dark {
 }
 
 @media (max-width: 600px) {
+    .bio-section-1 {
+        padding: 30px 4% 15px 4%;
+    }
+    .bio-section-2 {
+        padding: 15px 4%;
+    }
+    .bio-section-3 {
+        padding: 15px 4% 30px 4%;
+    }
     .bio-section-1, 
     .bio-section-2, 
     .bio-section-3 {
-        padding: 30px 4%;
         gap: 30px;
     }
     
@@ -409,14 +444,3 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
