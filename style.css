@@ -259,12 +259,8 @@ body.dark {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease;
 }
 
-.bio-media img:hover {
-    transform: scale(1.02);
-}
 
 .bio-media iframe {
     max-width: 100%;
@@ -402,5 +398,6 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
