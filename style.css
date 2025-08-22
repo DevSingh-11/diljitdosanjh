@@ -244,6 +244,9 @@ body.dark {
 .bio-content {
     flex: 1;
     max-width: 600px;
+    height: 100%; /* Match the height of the bio-media */
+    display: flex;
+    align-items: center; /* Vertically center the text */
 }
 
 .bio-media {
@@ -277,6 +280,11 @@ body.dark {
     font-size: 1.15rem;
     line-height: 1.7;
     color: inherit;
+    max-height: 100%; /* Limit to container height */
+    overflow: hidden; /* Cut off any text that overflows */
+    width: 100%; /* Ensure it takes full width */
+    /* Temporary border for debugging - remove when done */
+    border: 1px solid red;
 }
 
 /* First bio section specific adjustment */
@@ -399,3 +407,4 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
