@@ -250,7 +250,7 @@ body.dark {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* ← Align media to top */
+    align-items: center;
 }
 
 /* Consistent media styling */
