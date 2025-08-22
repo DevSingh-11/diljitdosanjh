@@ -327,7 +327,6 @@ body.dark {
     .bio-media img,
     .bio-media iframe {
         max-width: 100%;
-        width: 100%;
     }
 }
 
@@ -401,6 +400,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
