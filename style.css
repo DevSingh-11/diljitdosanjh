@@ -273,8 +273,6 @@ body.dark {
     line-height: 1.7;
     color: inherit;
     width: 100%;
-    border: 1px solid red; /* Keep for debugging */
-    /* Removed max-height and overflow - let flexbox handle it */
 }
 
 /* First bio section specific adjustment */
@@ -396,6 +394,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
