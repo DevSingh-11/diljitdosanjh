@@ -273,6 +273,21 @@ body.dark {
     line-height: 1.7;
     color: inherit;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ← Centers text content precisely */
+    min-height: 0; /* ← Allows proper centering */
+}
+
+.bio-text p {
+    margin: 0;
+    padding: 0;
+}
+
+.bio-text p + p {
+    margin-top: 1rem;
 }
 
 /* First bio section specific adjustment */
@@ -394,6 +409,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
