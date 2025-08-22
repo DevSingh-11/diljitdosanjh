@@ -254,17 +254,17 @@ body.dark {
 }
 
 /* Consistent media styling */
-.bio-media img,
-.bio-media iframe {
-    max-width: 100%; /* ← Both use same constraints */
-    width: 100%; /* ← Both take full container width */
+.bio-media img {
+    max-width: 100%;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.25);
 }
 
 .bio-media iframe {
-    aspect-ratio: 16 / 9; /* ← Only video needs this */
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
 }
 
 /* Text styling */
@@ -317,7 +317,6 @@ body.dark {
     .bio-content, 
     .bio-media {
         max-width: 100%;
-        width: 100%;
     }
     
     .bio-media img,
