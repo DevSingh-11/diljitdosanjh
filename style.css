@@ -235,7 +235,7 @@ body.dark {
 }
 
 .bio-section-1 {
-    padding: 70px 13% 40px 13%;
+    padding: 40px 13% 40px 13%;
 }
 
 .bio-section-2 {
@@ -243,8 +243,7 @@ body.dark {
 }
 
 .bio-section-3 {
-    padding: 40px 13% 70px 13%;
-}
+    padding: 40px 13% 100px 13%;
 
 
 /* Content and media areas */
@@ -309,13 +308,13 @@ body.dark {
 /* Responsive adjustments */
 @media (max-width: 1400px) {
     .bio-section-1 {
-        padding: 60px 11% 30px 11%;
+        padding: 35px 11% 30px 11%;
     }
     .bio-section-2 {
         padding: 30px 11%;
     }
     .bio-section-3 {
-        padding: 30px 11% 60px 11%;
+        padding: 30px 11% 85px 11%;
     }
     .bio-section-1, 
     .bio-section-2, 
@@ -326,13 +325,13 @@ body.dark {
 
 @media (max-width: 1200px) {
     .bio-section-1 {
-        padding: 50px 9% 25px 9%;
+        padding: 30px 9% 25px 9%;
     }
     .bio-section-2 {
         padding: 25px 9%;
     }
     .bio-section-3 {
-        padding: 25px 9% 50px 9%;
+        padding: 25px 9% 70px 9%;
     }
     .bio-section-1, 
     .bio-section-2, 
@@ -342,12 +341,20 @@ body.dark {
 }
 
 @media (max-width: 900px) {
+    .bio-section-1 {
+        padding: 25px 7% 20px 7%; /* ← Reduced top for title gap */
+    }
+    .bio-section-2 {
+        padding: 20px 7%; /* ← Middle section */
+    }
+    .bio-section-3 {
+        padding: 20px 7% 55px 7%; /* ← Increased bottom for footer gap */
+    }
     .bio-section-1, 
     .bio-section-2, 
     .bio-section-3 {
         flex-direction: column;
         gap: 35px;
-        padding: 40px 7%;
     }
     
     .bio-section-2 {
@@ -368,13 +375,13 @@ body.dark {
 
 @media (max-width: 600px) {
     .bio-section-1 {
-        padding: 30px 4% 15px 4%;
+        padding: 20px 4% 15px 4%;
     }
     .bio-section-2 {
         padding: 15px 4%;
     }
     .bio-section-3 {
-        padding: 15px 4% 30px 4%;
+        padding: 15px 4% 40px 4%;
     }
     .bio-section-1, 
     .bio-section-2, 
@@ -444,3 +451,4 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
