@@ -424,33 +424,32 @@ body.dark {
 
 
 /* ===== POPUP HOVER STYLE ===== */
-.popup-hover {
+.hover-term {
   position: relative;
   display: inline-block;
   border-bottom: 2px solid currentColor;
   cursor: pointer;
 }
 
-.popup-hover .popup-image {
+.hover-term .hover-image {
   display: none;
   position: absolute;
   top: 120%;
   left: 50%;
   transform: translateX(-50%);
-  width: 140px;
+  width: 160px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  border: 2px solid black;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   z-index: 99999;
   background-color: white;
 }
 
-body.dark .popup-hover .popup-image {
+body.dark .hover-term .hover-image {
+  border-color: white;
   background-color: #222;
 }
 
-.popup-hover:hover .popup-image {
+.hover-term:hover .hover-image {
   display: block;
 }
-
-
-
