@@ -263,12 +263,12 @@ body.dark {
 
 
 .bio-media iframe {
-    max-width: 100%;
+    max-width: 100%; /* ← Matches image max-width behavior */
+    width: auto; /* ← Changed from 100% to auto */
+    height: auto; /* ← Maintains aspect ratio */
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    aspect-ratio: 16 / 9; /* ← YouTube's actual aspect ratio */
-    width: 100%; /* ← Ensures it respects the aspect ratio */
-    height: auto; /* ← Prevents fixed height cutting off sides */
+    aspect-ratio: 16 / 9;
 }
 
 /* Text styling */
@@ -401,6 +401,7 @@ body.dark .popup-hover .popup-image {
 .popup-hover:hover .popup-image {
   display: block;
 }
+
 
 
 
