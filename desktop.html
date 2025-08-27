@@ -33,24 +33,30 @@
         <div class="settings-header">
             <h3>Theme</h3>
             <div class="theme-toggle-container">
-                <span>Light</span>
-                <label class="switch">
+                <span class="toggle-label">Appearance</span>
+                <label class="toggle-switch">
                     <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
+                    <span class="toggle-slider"></span>
                 </label>
-                <span>Dark</span>
+            </div>
+            <div class="toggle-labels">
+                <span class="light-label">Light</span>
+                <span class="dark-label">Dark</span>
             </div>
         </div>
         
         <div class="settings-header">
             <h3>Game Difficulty</h3>
             <div class="theme-toggle-container">
-                <span>Easy</span>
-                <label class="switch">
+                <span class="toggle-label">Difficulty Level</span>
+                <label class="toggle-switch">
                     <input type="checkbox" id="difficulty-toggle">
-                    <span class="slider"></span>
+                    <span class="toggle-slider"></span>
                 </label>
-                <span>Hard</span>
+            </div>
+            <div class="toggle-labels">
+                <span class="easy-label">Easy</span>
+                <span class="hard-label">Hard</span>
             </div>
         </div>
     </div>
@@ -103,6 +109,34 @@
             }
         }
 
+        // Update toggle labels
+        function updateToggleLabels() {
+            const themeLabels = document.querySelector('.settings-header:first-child .toggle-labels');
+            const difficultyLabels = document.querySelector('.settings-header:last-child .toggle-labels');
+            
+            // Update theme labels
+            if (themeToggle.checked) {
+                themeLabels.querySelector('.light-label').style.color = '#999';
+                themeLabels.querySelector('.dark-label').style.color = '#66ccff';
+                themeLabels.querySelector('.dark-label').style.fontWeight = '600';
+            } else {
+                themeLabels.querySelector('.light-label').style.color = '#66ccff';
+                themeLabels.querySelector('.light-label').style.fontWeight = '600';
+                themeLabels.querySelector('.dark-label').style.color = '#999';
+            }
+            
+            // Update difficulty labels
+            if (difficultyToggle.checked) {
+                difficultyLabels.querySelector('.easy-label').style.color = '#999';
+                difficultyLabels.querySelector('.hard-label').style.color = '#66ccff';
+                difficultyLabels.querySelector('.hard-label').style.fontWeight = '600';
+            } else {
+                difficultyLabels.querySelector('.easy-label').style.color = '#66ccff';
+                difficultyLabels.querySelector('.easy-label').style.fontWeight = '600';
+                difficultyLabels.querySelector('.hard-label').style.color = '#999';
+            }
+        }
+
         // Load saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
@@ -110,21 +144,27 @@
             applyTheme(true);
         }
 
-        // Theme toggle event
-        themeToggle.addEventListener('change', () => {
-            const isDark = themeToggle.checked;
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            applyTheme(isDark);
-        });
-
-        // Game difficulty functionality
+        // Load saved difficulty
         const savedDifficulty = localStorage.getItem('difficulty');
         if (savedDifficulty === 'hard') {
             difficultyToggle.checked = true;
         }
 
+        // Update labels on load
+        updateToggleLabels();
+
+        // Theme toggle event
+        themeToggle.addEventListener('change', () => {
+            const isDark = themeToggle.checked;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            applyTheme(isDark);
+            updateToggleLabels();
+        });
+
+        // Game difficulty functionality
         difficultyToggle.addEventListener('change', () => {
             localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
         });
     </script>
 </body>
