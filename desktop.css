@@ -86,7 +86,7 @@ body {
     box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     z-index: 1001;
     display: none;
-    min-width: 280px;
+    min-width: 215px;
     border: 1px solid #eee;
 }
 
