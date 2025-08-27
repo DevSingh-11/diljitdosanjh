@@ -105,29 +105,33 @@
 
         // Update toggle labels
         function updateToggleLabels() {
-            const themeLabels = document.querySelector('.settings-header:first-child .toggle-labels');
-            const difficultyLabels = document.querySelector('.settings-header:last-child .toggle-labels');
+            const themeLabels = document.querySelector('.settings-header:first-child .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:last-child .toggle-container');
             
             // Update theme labels
             if (themeToggle.checked) {
-                themeLabels.querySelector('.light-label').style.color = '#999';
-                themeLabels.querySelector('.dark-label').style.color = '#66ccff';
-                themeLabels.querySelector('.dark-label').style.fontWeight = '600';
+                themeLabels.querySelector('.toggle-label.left').style.color = '#999';
+                themeLabels.querySelector('.toggle-label.left').style.fontWeight = '500';
+                themeLabels.querySelector('.toggle-label.right').style.color = '#66ccff';
+                themeLabels.querySelector('.toggle-label.right').style.fontWeight = '600';
             } else {
-                themeLabels.querySelector('.light-label').style.color = '#66ccff';
-                themeLabels.querySelector('.light-label').style.fontWeight = '600';
-                themeLabels.querySelector('.dark-label').style.color = '#999';
+                themeLabels.querySelector('.toggle-label.left').style.color = '#66ccff';
+                themeLabels.querySelector('.toggle-label.left').style.fontWeight = '600';
+                themeLabels.querySelector('.toggle-label.right').style.color = '#999';
+                themeLabels.querySelector('.toggle-label.right').style.fontWeight = '500';
             }
             
             // Update difficulty labels
             if (difficultyToggle.checked) {
-                difficultyLabels.querySelector('.easy-label').style.color = '#999';
-                difficultyLabels.querySelector('.hard-label').style.color = '#66ccff';
-                difficultyLabels.querySelector('.hard-label').style.fontWeight = '600';
+                difficultyLabels.querySelector('.toggle-label.left').style.color = '#999';
+                difficultyLabels.querySelector('.toggle-label.left').style.fontWeight = '500';
+                difficultyLabels.querySelector('.toggle-label.right').style.color = '#66ccff';
+                difficultyLabels.querySelector('.toggle-label.right').style.fontWeight = '600';
             } else {
-                difficultyLabels.querySelector('.easy-label').style.color = '#66ccff';
-                difficultyLabels.querySelector('.easy-label').style.fontWeight = '600';
-                difficultyLabels.querySelector('.hard-label').style.color = '#999';
+                difficultyLabels.querySelector('.toggle-label.left').style.color = '#66ccff';
+                difficultyLabels.querySelector('.toggle-label.left').style.fontWeight = '600';
+                difficultyLabels.querySelector('.toggle-label.right').style.color = '#999';
+                difficultyLabels.querySelector('.toggle-label.right').style.fontWeight = '500';
             }
         }
 
