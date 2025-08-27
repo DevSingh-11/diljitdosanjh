@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen - Diljit Dosanjh</title>
+    <link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="desktop.html" class="nav-icon" title="Home">
+                <div class="icon-placeholder"></div>
+            </a>
+        </div>
+        
+        <div class="nav-center">
+            <a href="desktop-games.html" class="nav-link">GAMES</a>
+            <a href="desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="desktop-lyrics.html" class="nav-link">LYRICS</a>
+        </div>
+        
+        <div class="nav-right">
+            <button class="settings-toggle" title="Settings">
+                <div class="icon-placeholder"></div>
+            </button>
+        </div>
+    </nav>
 
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-header">
+            <h3>Theme</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Light</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Dark</span>
+            </div>
+        </div>
+        
+        <div class="settings-header">
+            <h3>Game Difficulty</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Easy</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="difficulty-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Hard</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Page Content -->
+    <main>
+        <h1>Listen</h1>
+        <p>Diljit Dosanjh's music collection coming soon!</p>
+        <p>Stream all his hit songs and albums.</p>
+    </main>
+
+    <script>
+        // Same JavaScript as desktop-games.html
+    </script>
+</body>
+</html>
