@@ -33,7 +33,7 @@ body {
 .nav-center {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 260px;
     flex: 1;
 }
 
