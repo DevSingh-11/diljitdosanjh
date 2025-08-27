@@ -103,20 +103,33 @@ body {
     color: #222;
     font-size: 16px;
     font-weight: 600;
+    text-align: center;
 }
 
-.theme-toggle-container {
+/* Toggle container with labels on sides */
+.toggle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5px;
+    gap: 15px;
 }
 
 .toggle-label {
     font-size: 14px;
-    color: #666;
     font-weight: 500;
-    flex: 1;
+    min-width: 40px;
+    text-align: center;
+}
+
+.toggle-label.left {
+    text-align: right;
+    color: #66ccff; /* Light mode color by default */
+    font-weight: 600;
+}
+
+.toggle-label.right {
+    text-align: left;
+    color: #999; /* Default off color */
 }
 
 /* iPhone-style Toggle Switch */
@@ -125,6 +138,7 @@ body {
     display: inline-block;
     width: 51px;
     height: 31px;
+    flex-shrink: 0;
 }
 
 .toggle-switch input {
@@ -163,20 +177,6 @@ input:checked + .toggle-slider {
 
 input:checked + .toggle-slider:before {
     transform: translateX(20px);
-}
-
-/* Toggle states labels */
-.toggle-labels {
-    display: flex;
-    justify-content: space-between;
-    width: 51px;
-    margin-left: auto;
-}
-
-.toggle-labels span {
-    font-size: 10px;
-    color: #999;
-    font-weight: 500;
 }
 
 /* Overlay */
@@ -219,10 +219,6 @@ body.dark .settings-header h3 {
 
 body.dark .toggle-label {
     color: #ccc;
-}
-
-body.dark .toggle-labels span {
-    color: #888;
 }
 
 /* Main content */
