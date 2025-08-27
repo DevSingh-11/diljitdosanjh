@@ -236,13 +236,13 @@ body.dark h1 {
     color: #ffffff;
 }
 
-/* Active navigation link styling */
-.nav-link.active {
+/* Active navigation link styling for Games, Listen, Lyrics only */
+.nav-center .nav-link.active {
     color: #66ccff !important;
     position: relative;
 }
 
-.nav-link.active::after {
+.nav-center .nav-link.active::after {
     content: '';
     position: absolute;
     bottom: -5px;
