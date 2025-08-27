@@ -235,3 +235,21 @@ h1 {
 body.dark h1 {
     color: #ffffff;
 }
+
+/* Active navigation link styling */
+.nav-link.active {
+    color: #66ccff !important;
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #66ccff;
+    border-radius: 50%;
+}
