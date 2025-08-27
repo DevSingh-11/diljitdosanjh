@@ -239,17 +239,4 @@ body.dark h1 {
 /* Active navigation link styling for Games, Listen, Lyrics only */
 .nav-center .nav-link.active {
     color: #66ccff !important;
-    position: relative;
-}
-
-.nav-center .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 5px;
-    height: 5px;
-    background-color: #66ccff;
-    border-radius: 50%;
 }
