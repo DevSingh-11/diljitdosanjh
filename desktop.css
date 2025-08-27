@@ -20,7 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    height: 60px;
+    height: 48px;
     background-color: #222222;
     z-index: 1000;
 }
@@ -33,7 +33,7 @@ body {
 .nav-center {
     display: flex;
     justify-content: center;
-    gap: 260px;
+    gap: 215px;
     flex: 1;
 }
 
