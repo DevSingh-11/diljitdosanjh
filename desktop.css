@@ -270,3 +270,35 @@ body.dark .content-box {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Two-column desktop layout with equal height */
+.content-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.image-box {
+    flex: 0 0 300px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    min-height: 400px;
+}
+
+.text-box {
+    flex: 1;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+body.dark .image-box {
+    background-color: #2a2a2a;
+}
+
+body.dark .text-box {
+    background-color: rgba(30, 30, 30, 0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
