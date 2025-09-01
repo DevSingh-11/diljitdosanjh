@@ -270,16 +270,3 @@ body.dark .content-box {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Image placeholder styling */
-.image-placeholder {
-    width: 70%;
-    height: 300px;
-    margin: 30px auto;
-    background-color: #66ccff;
-    border-radius: 4px;
-}
-
-/* Dark mode support for image placeholder */
-body.dark .image-placeholder {
-    background-color: #2a7aaa;
-}
