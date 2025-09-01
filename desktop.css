@@ -241,8 +241,6 @@ body.dark h1 {
     color: #66ccff !important;
 }
 
-/* Add this to your desktop.css file - preferably at the bottom */
-
 /* Content box styling */
 .content-box {
     max-width: 800px;
