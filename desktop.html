@@ -18,9 +18,14 @@
         /* Second section with reversed order */
         .content-container.reversed {
             flex-direction: row-reverse;
-            margin-top: 60px; /* Same gap as between boxes */
+            margin-top: 30px; /* Same gap as between boxes */
         }
-
+        
+        /* Add margin to the third section specifically */
+        .content-container:nth-child(3) {
+            margin-top: 30px;
+        }
+        
         .image-box {
             flex: 0 0 300px; /* Fixed width */
             border-radius: 8px;
