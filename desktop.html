@@ -38,6 +38,21 @@
             left: 0;
         }
 
+        /* Video container styling */
+        .video-container {
+            flex: 0 0 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .text-box {
             flex: 1;
             padding: 30px;
@@ -48,7 +63,8 @@
         }
 
         /* Dark mode support */
-        body.dark .image-box {
+        body.dark .image-box,
+        body.dark .video-container {
             background-color: #2a2a2a;
         }
 
@@ -133,6 +149,20 @@
                 <p>As an actor, Diljit brings charm and depth to a wide range of roles — from hilarious hits like Jatt & Juliet and Good Newwz to powerful performances in Udta Punjab and Jogi. His ability to switch between comedy and drama showcases his versatility on screen. In 2024, he won the Filmfare OTT Award for Best Actor for his gripping portrayal in Chamkila, a biopic that added another milestone to his career. Whether in light-hearted blockbusters or intense dramas, Diljit has become a defining figure in Bollywood and Punjabi cinema.</p>
             </div>
         </div>
+
+        <!-- Third Section -->
+        <div class="content-container">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/In57alIHnUc?start=12" 
+                        title="Diljit Dosanjh Instagram Live Moment" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="text-box">
+                <p>Diljit's off-screen presence is just as compelling as his performances. He regularly goes live on Instagram, creating spontaneous viral moments — like the time he demanded Alexa to play his own track. Known for his humility and grounded nature, Diljit remains relatable despite his global fame. His daily updates, humour, and direct interaction with fans have earned him a reputation as one of the most authentic celebrities online.</p>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -206,18 +236,18 @@
             }
         }
 
-        // Match image height to text box height for all sections
+        // Match heights for all containers (images and videos)
         function matchHeights() {
             const textBoxes = document.querySelectorAll('.text-box');
-            const imageBoxes = document.querySelectorAll('.image-box');
+            const mediaContainers = document.querySelectorAll('.image-box, .video-container');
             
             // Match heights for each section
             for (let i = 0; i < textBoxes.length; i++) {
-                if (textBoxes[i] && imageBoxes[i]) {
+                if (textBoxes[i] && mediaContainers[i]) {
                     // Get the actual height of the text box
                     const textHeight = textBoxes[i].offsetHeight;
-                    // Set image box to match exactly
-                    imageBoxes[i].style.height = textHeight + 'px';
+                    // Set media container to match exactly
+                    mediaContainers[i].style.height = textHeight + 'px';
                 }
             }
         }
