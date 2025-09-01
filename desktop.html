@@ -15,6 +15,12 @@
             align-items: flex-start; /* Don't stretch - let text determine height */
         }
 
+        /* Second section with reversed order */
+        .content-container.reversed {
+            flex-direction: row-reverse;
+            margin-top: 60px; /* Same gap as between boxes */
+        }
+
         .image-box {
             flex: 0 0 300px; /* Fixed width */
             border-radius: 8px;
@@ -107,12 +113,24 @@
     <!-- Page content -->
     <main>
         <h1>Welcome to the World of Diljit Dosanjh</h1>
+        
+        <!-- First Section -->
         <div class="content-container">
             <div class="image-box">
                 <img src="images/gala.png" alt="Diljit Dosanjh at the Met Gala">
             </div>
             <div class="text-box">
                 <p>Born in Punjab, Diljit Dosanjh revolutionised Punjabi music by blending folk traditions with contemporary beats. From local gigs to sold-out world tours, his journey embodies resilience and artistry. With songs like 'Water' and 'Born to Shine', Diljit's music transcends borders, while collaborations with global stars like Sia, Saweetie and Ed Sheeran highlight his genre-defying versatility. His 2023 Coachella performance – a historical first for a Punjabi artist – showcased his global appeal, merging Bhangra rhythms with hip-hop energy. His impact echoed at the 2025 Met Gala, where Diljit commanded attention in a regal sherwani, layered with Indian jewellery, transforming fashion's biggest night into a celebration of Punjabi heritage.</p>
+            </div>
+        </div>
+
+        <!-- Second Section -->
+        <div class="content-container reversed">
+            <div class="image-box">
+                <img src="images/awards.png" alt="Diljit Dosanjh awards and achievements">
+            </div>
+            <div class="text-box">
+                <p>As an actor, Diljit brings charm and depth to a wide range of roles — from hilarious hits like Jatt & Juliet and Good Newwz to powerful performances in Udta Punjab and Jogi. His ability to switch between comedy and drama showcases his versatility on screen. In 2024, he won the Filmfare OTT Award for Best Actor for his gripping portrayal in Chamkila, a biopic that added another milestone to his career. Whether in light-hearted blockbusters or intense dramas, Diljit has become a defining figure in Bollywood and Punjabi cinema.</p>
             </div>
         </div>
     </main>
@@ -188,16 +206,19 @@
             }
         }
 
-        // Match image height to text box height
+        // Match image height to text box height for all sections
         function matchHeights() {
-            const textBox = document.querySelector('.text-box');
-            const imageBox = document.querySelector('.image-box');
+            const textBoxes = document.querySelectorAll('.text-box');
+            const imageBoxes = document.querySelectorAll('.image-box');
             
-            if (textBox && imageBox) {
-                // Get the actual height of the text box
-                const textHeight = textBox.offsetHeight;
-                // Set image box to match exactly
-                imageBox.style.height = textHeight + 'px';
+            // Match heights for each section
+            for (let i = 0; i < textBoxes.length; i++) {
+                if (textBoxes[i] && imageBoxes[i]) {
+                    // Get the actual height of the text box
+                    const textHeight = textBoxes[i].offsetHeight;
+                    // Set image box to match exactly
+                    imageBoxes[i].style.height = textHeight + 'px';
+                }
             }
         }
 
