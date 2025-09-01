@@ -53,6 +53,11 @@ body {
     color: #66ccff;
 }
 
+/* Active navigation link styling for Games, Listen, Lyrics only */
+.nav-center .nav-link.active {
+    color: #66ccff !important;
+}
+
 /* Icon placeholders (white circles) */
 .icon-placeholder {
     width: 30px;
@@ -123,13 +128,13 @@ body {
 
 .toggle-label.left {
     text-align: right;
-    color: #66ccff; /* Light mode color by default */
+    color: #66ccff;
     font-weight: 600;
 }
 
 .toggle-label.right {
     text-align: left;
-    color: #999; /* Default off color */
+    color: #999;
 }
 
 /* iPhone-style Toggle Switch */
@@ -225,29 +230,32 @@ body.dark .toggle-label {
 main {
     padding: 40px 20px;
     text-align: center;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     color: #222222;
+    font-size: 2.5rem;
 }
 
 body.dark h1 {
     color: #ffffff;
 }
 
-/* Active navigation link styling for Games, Listen, Lyrics only */
-.nav-center .nav-link.active {
-    color: #66ccff !important;
-}
-
 /* Content box styling */
 .content-box {
     max-width: 800px;
     margin: 0 auto;
-    padding: 30px;
-    line-height: 1.6;
+    padding: 40px;
+    line-height: 1.7;
     text-align: justify;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .content-box p {
@@ -255,7 +263,9 @@ body.dark h1 {
     margin-bottom: 0;
 }
 
-/* Dark mode support */
+/* Dark mode support for content box */
 body.dark .content-box {
+    background-color: rgba(30, 30, 30, 0.9);
     color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
