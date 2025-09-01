@@ -276,21 +276,24 @@ body.dark .content-box {
     max-width: 1000px;
     margin: 0 auto;
     gap: 30px;
+    align-items: flex-start; /* Don't stretch - let text determine height */
 }
 
 .image-box {
-    flex: 0 0 300px;
-    background-color: #f0f0f0;
+    flex: 0 0 300px; /* Fixed width */
     border-radius: 8px;
-    overflow: hidden;
-    /* Height will be determined by paragraph box */
+    overflow: hidden; /* Crop anything outside the box */
+    position: relative;
+    background-color: #f0f0f0;
 }
 
 .image-box img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Crop image to fill container */
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .text-box {
@@ -299,12 +302,12 @@ body.dark .content-box {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* This box determines the height for both */
+    /* Height is determined solely by content */
 }
 
-/* Make sure containers have same height */
-.content-container {
-    align-items: stretch; /* Force children to match height */
+/* JavaScript will handle height matching */
+.height-match {
+    height: 100%;
 }
 
 /* Dark mode support */
