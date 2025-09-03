@@ -319,3 +319,29 @@ body.dark .text-box {
     background-color: rgba(30, 30, 30, 0.9);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
+/* Title box styling */
+.title-box {
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.title-box h1 {
+    margin-bottom: 0;
+    color: #222222;
+}
+
+/* Dark mode support for title box */
+body.dark .title-box {
+    background-color: rgba(30, 30, 30, 0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .title-box h1 {
+    color: #ffffff;
+}
