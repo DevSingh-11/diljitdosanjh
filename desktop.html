@@ -77,6 +77,39 @@
             background-color: rgba(30, 30, 30, 0.9);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+        
+        /* Body background with images */
+        body {
+            background-image: url('images/lightback.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        
+        body.dark {
+            background-image: url('images/darkback.png');
+        }
+        
+        /* Ensure content has transparency to show background */
+        .text-box, .title-box {
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+        }
+        
+        body.dark .text-box,
+        body.dark .title-box {
+            background-color: rgba(30, 30, 30, 0.85); /* Slightly transparent */
+        }
+        
+        /* Navbar should be solid to separate from background */
+        .navbar {
+            background-color: #222222 !important; /* Force solid background */
+        }
+        
+        body.dark .navbar {
+            background-color: #222222 !important; /* Keep navbar solid in dark mode too */
+        }
+        
     </style>
 </head>
 <body>
@@ -202,11 +235,9 @@
         function applyTheme(isDark) {
             if (isDark) {
                 document.body.classList.add('dark');
-                document.body.style.backgroundColor = '#121212';
                 document.body.style.color = '#ffffff';
             } else {
                 document.body.classList.remove('dark');
-                document.body.style.backgroundColor = '#ffffff';
                 document.body.style.color = '#000000';
             }
         }
