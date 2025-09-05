@@ -345,3 +345,48 @@ body.dark .title-box {
 body.dark .title-box h1 {
     color: #ffffff;
 }
+
+/* Social Media Footer */
+.social-footer {
+    background-color: #222222;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 60px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover {
+    opacity: 0.8;
+}
+
+.social-circle {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.social-username {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
