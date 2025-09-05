@@ -390,3 +390,20 @@ body.dark .title-box h1 {
     font-weight: 500;
     white-space: nowrap;
 }
+
+/* Replace icon placeholders with actual images */
+.nav-icon-img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.nav-icon:hover .nav-icon-img,
+.settings-toggle:hover .nav-icon-img {
+    transform: scale(1.1);
+}
+
+/* Remove the old circle placeholder styles */
+.icon-placeholder {
+    display: none; /* Hide the circle placeholders */
+}
