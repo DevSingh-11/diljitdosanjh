@@ -415,3 +415,25 @@ body.dark .title-box h1 {
 .icon-placeholder {
     display: none; /* Hide the circle placeholders */
 }
+
+/* Center navbar icons vertically */
+.nav-icon-img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+    display: block; /* Add this */
+    margin: 0 auto; /* Add this */
+}
+
+.nav-icon, .settings-toggle {
+    display: flex; /* Add this */
+    align-items: center; /* Add this */
+    justify-content: center; /* Add this */
+    height: 100%; /* Add this */
+}
+
+/* Remove any padding/margin that might be affecting alignment */
+.nav-left, .nav-right {
+    padding: 0; /* Ensure no padding affects alignment */
+    margin: 0;
+}
