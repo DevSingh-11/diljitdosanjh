@@ -296,7 +296,7 @@ body.dark .content-box {
     left: 0;
 }
 
-.text-box {
+.content-box {
     flex: 1;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -315,7 +315,7 @@ body.dark .image-box {
     background-color: #2a2a2a;
 }
 
-body.dark .text-box {
+body.dark .content-box {
     background-color: rgba(30, 30, 30, 0.9);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
