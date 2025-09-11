@@ -18,7 +18,6 @@
         <div class="nav-center">
             <a href="desktop-games.html" class="nav-link">GAMES</a>
             <a href="desktop-listen.html" class="nav-link">LISTEN</a>
-            <a href="desktop-listen.html" class="nav-link">LISTEN</a>
             <a href="desktop-lyrics.html" class="nav-link active">LYRICS</a>
         </div>
         
@@ -126,7 +125,7 @@
                 </div>
                 
                 <!-- Search Bar (placeholder for now) -->
-                <div class="search-container" style="max-width: 800px; margin: 0 auto 30px auto;">
+                <div class="search-container" style="max-width: 1000px; margin: 0 auto 30px auto;">
                     <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
                 </div>
                 
@@ -138,7 +137,7 @@
                 </div>
                 
                 <!-- Albums Container -->
-                <div id="albums-container" style="max-width: 1000px; margin: 0 auto;"></div>
+                <div id="albums-container" style="max-width: 1200px; margin: 0 auto;"></div>
             `;
             
             const albumsContainer = document.getElementById('albums-container');
@@ -156,7 +155,7 @@
                             <span style="color: #666;">Album Art</span>
                         </div>
                         <div>
-                            <h2 style="margin: 0 0 5px 0; color: #222;">${album.title}</h2>
+                            <h2 style="margin: 0 0 5px 0; color: #222;" class="album-title">${album.title}</h2>
                             <p style="color: #666; margin: 0 0 5px 0;">Released: ${album.displayDate}</p>
                             <p style="color: #666; margin: 0;">${album.features}</p>
                         </div>
@@ -166,7 +165,7 @@
                         <ul style="list-style: none; padding: 0; margin: 0;">
                             ${album.songs.map(song => `
                                 <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                                    <a href="${song.page}" style="color: #66ccff; text-decoration: none;">${song.title}</a>
+                                    <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
                                 </li>
                             `).join('')}
                         </ul>
@@ -174,6 +173,23 @@
                 `;
                 
                 albumsContainer.appendChild(albumCard);
+            });
+        }
+
+        // Update styles for dark mode
+        function updateAlbumStyles() {
+            const isDark = document.body.classList.contains('dark');
+            const songLinks = document.querySelectorAll('.song-link');
+            const albumTitles = document.querySelectorAll('.album-title');
+            
+            // Update song link colors
+            songLinks.forEach(link => {
+                link.style.color = isDark ? '#ffffff' : '#000000';
+            });
+            
+            // Update album title colors
+            albumTitles.forEach(title => {
+                title.style.color = isDark ? '#ffffff' : '#222222';
             });
         }
 
@@ -209,6 +225,7 @@
                 document.body.style.backgroundColor = '#ffffff';
                 document.body.style.color = '#000000';
             }
+            updateAlbumStyles();
         }
 
         function updateToggleLabels() {
@@ -268,6 +285,20 @@
         // Initialize the album display when page loads
         document.addEventListener('DOMContentLoaded', function() {
             displayAlbums();
+            
+            // Add hover effect for song links
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.classList.contains('song-link')) {
+                    e.target.style.color = '#66ccff';
+                }
+            });
+            
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.classList.contains('song-link')) {
+                    const isDark = document.body.classList.contains('dark');
+                    e.target.style.color = isDark ? '#ffffff' : '#000000';
+                }
+            });
         });
     </script>
 </body>
