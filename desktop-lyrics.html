@@ -198,6 +198,7 @@
         <div class="nav-center">
             <a href="desktop-games.html" class="nav-link">GAMES</a>
             <a href="desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="desktop-listen.html" class="nav-link">LISTEN</a>
             <a href="desktop-lyrics.html" class="nav-link active">LYRICS</a>
         </div>
         
@@ -317,7 +318,7 @@
             if (difficultyToggle.checked) {
                 difficultyLabels.querySelector('.toggle-label.left').style.color = '#999';
                 difficultyLabels.querySelector('.toggle-label.left').style.fontWeight = '500';
-                difficultyLabels.querySelector('.toggle-label.right').style.color = '#66ccff';
+                difficultyLabels.querySelector('.toggle-label.right').style.color = #66ccff;
                 difficultyLabels.querySelector('.toggle-label.right').style.fontWeight = '600';
             } else {
                 difficultyLabels.querySelector('.toggle-label.left').style.color = '#66ccff';
@@ -564,4 +565,31 @@
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             themeToggle.checked = true;
-           
+            applyTheme(true);
+        }
+
+        // Load saved difficulty
+        const savedDifficulty = localStorage.getItem('difficulty');
+        if (savedDifficulty === 'hard') {
+            difficultyToggle.checked = true;
+        }
+
+        updateToggleLabels();
+
+        themeToggle.addEventListener('change', () => {
+            const isDark = themeToggle.checked;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            applyTheme(isDark);
+            updateToggleLabels();
+        });
+
+        difficultyToggle.addEventListener('change', () => {
+            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
+        });
+
+        // Initialize the lyrics page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initLyricsPage);
+    </script>
+</body>
+</html>
