@@ -5,6 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyrics - Diljit Dosanjh</title>
     <link rel="stylesheet" href="desktop.css">
+    <style>
+        /* Lyrics Page Specific Styles */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            position: relative;
+        }
+        
+        #lyrics-search {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        #lyrics-search:focus {
+            border-color: #66ccff;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .sorting-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .sort-btn, .sort-reverse {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .sort-btn.active, .sort-btn:hover, .sort-reverse:hover {
+            background: #66ccff;
+            color: white;
+        }
+        
+        .albums-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .album-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .album-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .album-cover {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+        
+        .album-info h2 {
+            margin: 0 0 5px 0;
+            color: #222;
+        }
+        
+        .album-info .release-date {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .songs-list {
+            list-style: none;
+        }
+        
+        .song-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .song-item:hover {
+            background-color: #f8f8f8;
+        }
+        
+        .song-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Dark mode styles */
+        body.dark .album-card {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        body.dark .album-info h2 {
+            color: #fff;
+        }
+        
+        body.dark .song-item {
+            border-bottom-color: #444;
+        }
+        
+        body.dark .song-item:hover {
+            background-color: #2a2a2a;
+        }
+        
+        body.dark #lyrics-search {
+            background: #2a2a2a;
+            border-color: #444;
+            color: #fff;
+        }
+        
+        body.dark .search-results {
+            background: #2a2a2a;
+            color: #fff;
+        }
+        
+        body.dark .sort-btn, 
+        body.dark .sort-reverse {
+            background: #2a2a2a;
+            color: #ccc;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -60,9 +215,27 @@
 
     <!-- Page Content -->
     <main>
-        <h1>Lyrics</h1>
-        <p>Diljit Dosanjh's song lyrics coming soon!</p>
-        <p>Find lyrics to all your favorite Punjabi hits.</p>
+        <div class="title-box">
+            <h1>Diljit Dosanjh Lyrics</h1>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="lyrics-search" placeholder="Search songs or albums...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        
+        <!-- Sorting Controls -->
+        <div class="sorting-controls">
+            <button class="sort-btn active" data-sort="name">Sort by Name</button>
+            <button class="sort-btn" data-sort="date">Sort by Date</button>
+            <button class="sort-reverse">Reverse Order</button>
+        </div>
+        
+        <!-- Albums Container -->
+        <div id="albums-container" class="albums-container">
+            <!-- Albums will be displayed here by JavaScript -->
+        </div>
     </main>
 
     <script>
@@ -129,12 +302,104 @@
             }
         }
 
+        // Music Database - English transliteration only
+        const musicData = {
+          albums: [
+            {
+              title: "Advisory",
+              releaseDate: "2024-01-15",
+              coverArt: "images/advisory.jpg",
+              songs: [
+                {
+                  title: "A",
+                  lyrics: "Jindagi ik safar hai suhana...\nYahan kal kya ho kisne jaana...",
+                  translation: "Life is a beautiful journey...\nWho knows what will happen tomorrow...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                },
+                {
+                  title: "B", 
+                  lyrics: "Dil vich tere main rehnda...\nTu hi meri har khushi hai...",
+                  translation: "I live in your heart...\nYou are my every happiness...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                }
+              ]
+            },
+            {
+              title: "Ghost",
+              releaseDate: "2023-10-20",
+              coverArt: "images/ghost.jpg",
+              songs: [
+                {
+                  title: "C",
+                  lyrics: "Raat di neend udaake...\nTere piche main aake...",
+                  translation: "Losing sleep at night...\nComing after you...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                },
+                {
+                  title: "D",
+                  lyrics: "Punjabi swag naal...\nDuniya nu dikhaunga...",
+                  translation: "With Punjabi swag...\nI'll show the world...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                }
+              ]
+            },
+            {
+              title: "MoonChild Era",
+              releaseDate: "2023-08-04",
+              coverArt: "images/moonchild.jpg",
+              songs: [
+                {
+                  title: "E",
+                  lyrics: "Chand tare main jaana...\nTere naal rehna hai...",
+                  translation: "I want to go to the moon and stars...\nI want to stay with you...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                },
+                {
+                  title: "F",
+                  lyrics: "Dil diyan gallan sun...\nMain tainu dassan...",
+                  translation: "Listen to matters of the heart...\nLet me tell you...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                }
+              ]
+            },
+            {
+              title: "G.O.A.T",
+              releaseDate: "2020-04-30",
+              coverArt: "images/goat.jpg",
+              songs: [
+                {
+                  title: "G",
+                  lyrics: "Sher aan vala hai...\nDuniya hilaan vala hai...",
+                  translation: "The lion is coming...\nGoing to shake the world...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                },
+                {
+                  title: "H",
+                  lyrics: "Punjabi putt sona...\nDiljit naam mera...",
+                  translation: "Golden Punjabi boy...\nMy name is Diljit...",
+                  spotifyLink: "#",
+                  youtubeLink: "#"
+                }
+              ]
+            }
+          ]
+        };
+
+        // Load saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             themeToggle.checked = true;
             applyTheme(true);
         }
 
+        // Load saved difficulty
         const savedDifficulty = localStorage.getItem('difficulty');
         if (savedDifficulty === 'hard') {
             difficultyToggle.checked = true;
@@ -153,6 +418,8 @@
             localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
             updateToggleLabels();
         });
+
+        // Lyrics Page Functionality will be added here next
     </script>
 </body>
 </html>
