@@ -18,6 +18,7 @@
         <div class="nav-center">
             <a href="desktop-games.html" class="nav-link">GAMES</a>
             <a href="desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="desktop-listen.html" class="nav-link">LISTEN</a>
             <a href="desktop-lyrics.html" class="nav-link active">LYRICS</a>
         </div>
         
@@ -114,6 +115,68 @@
           ]
         };
 
+        // Function to display albums
+        function displayAlbums() {
+            const mainElement = document.querySelector('main');
+            
+            // Clear the existing "coming soon" content
+            mainElement.innerHTML = `
+                <div class="title-box">
+                    <h1>Diljit Dosanjh Lyrics</h1>
+                </div>
+                
+                <!-- Search Bar (placeholder for now) -->
+                <div class="search-container" style="max-width: 800px; margin: 0 auto 30px auto;">
+                    <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
+                </div>
+                
+                <!-- Sorting Controls (placeholder for now) -->
+                <div class="sorting-controls" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
+                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
+                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
+                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
+                </div>
+                
+                <!-- Albums Container -->
+                <div id="albums-container" style="max-width: 1000px; margin: 0 auto;"></div>
+            `;
+            
+            const albumsContainer = document.getElementById('albums-container');
+            
+            // Display each album
+            musicData.albums.forEach(album => {
+                const albumCard = document.createElement('div');
+                albumCard.className = 'content-box'; // Use your existing content box style
+                albumCard.style.marginBottom = '30px';
+                
+                albumCard.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                        <!-- Album cover placeholder -->
+                        <div style="width: 120px; height: 120px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <span style="color: #666;">Album Art</span>
+                        </div>
+                        <div>
+                            <h2 style="margin: 0 0 5px 0; color: #222;">${album.title}</h2>
+                            <p style="color: #666; margin: 0 0 5px 0;">Released: ${album.displayDate}</p>
+                            <p style="color: #666; margin: 0;">${album.features}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 15px;">Songs</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            ${album.songs.map(song => `
+                                <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                                    <a href="${song.page}" style="color: #66ccff; text-decoration: none;">${song.title}</a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                albumsContainer.appendChild(albumCard);
+            });
+        }
+
         // Same JavaScript as desktop.html
         const settingsToggle = document.querySelector('.settings-toggle');
         const settingsMenu = document.getElementById('settings-menu');
@@ -200,6 +263,11 @@
         difficultyToggle.addEventListener('change', () => {
             localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
             updateToggleLabels();
+        });
+
+        // Initialize the album display when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            displayAlbums();
         });
     </script>
 </body>
