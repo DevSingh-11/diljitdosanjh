@@ -58,20 +58,6 @@ body {
     color: #66ccff !important;
 }
 
-/* Icon placeholders (white circles) */
-.icon-placeholder {
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-.nav-icon:hover .icon-placeholder,
-.settings-toggle:hover .icon-placeholder {
-    transform: scale(1.1);
-}
-
 /* Settings button */
 .settings-toggle {
     background: none;
@@ -247,7 +233,7 @@ body.dark h1 {
 }
 
 /* Content box styling */
-.content-box {
+.text-box {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px;
@@ -258,13 +244,13 @@ body.dark h1 {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.content-box p {
+.text-box p {
     font-size: 18px;
     margin-bottom: 0;
 }
 
 /* Dark mode support for content box */
-body.dark .content-box {
+body.dark .text-box {
     background-color: rgba(30, 30, 30, 0.9);
     color: #ffffff;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
@@ -296,7 +282,7 @@ body.dark .content-box {
     left: 0;
 }
 
-.content-box {
+.text-box {
     flex: 1;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -315,7 +301,7 @@ body.dark .image-box {
     background-color: #2a2a2a;
 }
 
-body.dark .content-box {
+body.dark .text-box {
     background-color: rgba(30, 30, 30, 0.9);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -388,11 +374,6 @@ body.dark .title-box h1 {
     transform: scale(1.1);
 }
 
-/* Remove the old circle styles */
-.social-circle {
-    display: none;
-}
-
 .social-username {
     font-size: 14px;
     font-weight: 500;
@@ -404,37 +385,28 @@ body.dark .title-box h1 {
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease;
-}
-
-.nav-icon:hover .nav-icon-img,
-.settings-toggle:hover .nav-icon-img {
-    transform: scale(1.1);
-}
-
-/* Remove the old circle placeholder styles */
-.icon-placeholder {
-    display: none; /* Hide the circle placeholders */
-}
-
-/* Center navbar icons vertically */
-.nav-icon-img {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    display: block; /* Add this */
-    margin: 0 auto; /* Add this */
+    display: block;
+    margin: 0 auto;
 }
 
 .nav-icon, .settings-toggle {
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
-    justify-content: center; /* Add this */
-    height: 100%; /* Add this */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* Remove any padding/margin that might be affecting alignment */
 .nav-left, .nav-right {
-    padding: 0; /* Ensure no padding affects alignment */
+    padding: 0;
     margin: 0;
 }
 
+/* Remove the old circle placeholder styles */
+.icon-placeholder {
+    display: none;
+}
+
+.social-circle {
+    display: none;
+}
