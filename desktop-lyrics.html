@@ -108,6 +108,8 @@
         
         .songs-list {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
         .song-item {
@@ -122,6 +124,21 @@
         }
         
         .song-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .search-result-item:last-child {
             border-bottom: none;
         }
         
@@ -158,6 +175,14 @@
         body.dark .sort-reverse {
             background: #2a2a2a;
             color: #ccc;
+        }
+
+        body.dark .search-result-item {
+            border-bottom-color: #444;
+        }
+
+        body.dark .search-result-item:hover {
+            background-color: #333;
         }
     </style>
 </head>
@@ -392,34 +417,151 @@
           ]
         };
 
+        // Lyrics Page Functionality
+        let currentAlbums = [...musicData.albums];
+        let isReversed = false;
+        let currentSort = 'name';
+
+        // Display albums function
+        function displayAlbums() {
+            const albumsContainer = document.getElementById('albums-container');
+            albumsContainer.innerHTML = '';
+            
+            currentAlbums.forEach(album => {
+                const albumCard = document.createElement('div');
+                albumCard.className = 'album-card';
+                
+                albumCard.innerHTML = `
+                    <div class="album-header">
+                        <img src="${album.coverArt}" alt="${album.title}" class="album-cover" onerror="this.style.display='none'">
+                        <div class="album-info">
+                            <h2>${album.title}</h2>
+                            <div class="release-date">Released: ${new Date(album.releaseDate).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                    <ul class="songs-list">
+                        ${album.songs.map(song => `
+                            <li class="song-item" data-song="${song.title}">
+                                ${song.title}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                
+                albumsContainer.appendChild(albumCard);
+            });
+        }
+
+        // Sort albums function
+        function sortAlbums(sortType) {
+            currentAlbums = [...musicData.albums];
+            
+            if (sortType === 'name') {
+                currentAlbums.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (sortType === 'date') {
+                currentAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+            }
+            
+            if (isReversed) {
+                currentAlbums.reverse();
+            }
+            
+            displayAlbums();
+            updateSortButtons(sortType);
+        }
+
+        // Update active sort button
+        function updateSortButtons(activeSort) {
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                if (btn.dataset.sort === activeSort) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize the page
+        function initLyricsPage() {
+            // Display albums initially
+            sortAlbums('name');
+            
+            // Add event listeners to sort buttons
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentSort = btn.dataset.sort;
+                    sortAlbums(currentSort);
+                });
+            });
+            
+            // Add event listener to reverse button
+            document.querySelector('.sort-reverse').addEventListener('click', () => {
+                isReversed = !isReversed;
+                sortAlbums(currentSort);
+            });
+            
+            // Add search functionality
+            const searchInput = document.getElementById('lyrics-search');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                if (searchTerm.length < 2) {
+                    searchResults.classList.remove('active');
+                    return;
+                }
+                
+                // Filter songs and albums
+                const results = [];
+                musicData.albums.forEach(album => {
+                    // Check album title
+                    if (album.title.toLowerCase().includes(searchTerm)) {
+                        results.push({
+                            type: 'album',
+                            title: album.title,
+                            album: album
+                        });
+                    }
+                    
+                    // Check songs
+                    album.songs.forEach(song => {
+                        if (song.title.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                type: 'song',
+                                title: song.title,
+                                album: album.title,
+                                song: song
+                            });
+                        }
+                    });
+                });
+                
+                // Display results
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(item => `
+                        <div class="search-result-item">
+                            ${item.type === 'album' ? '📀 ' : '🎵 '}
+                            ${item.title}
+                            ${item.type === 'song' ? ` (from ${item.album})` : ''}
+                        </div>
+                    `).join('');
+                    searchResults.classList.add('active');
+                } else {
+                    searchResults.classList.remove('active');
+                }
+            });
+            
+            // Hide search results when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('active');
+                }
+            });
+        }
+
         // Load saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             themeToggle.checked = true;
-            applyTheme(true);
-        }
-
-        // Load saved difficulty
-        const savedDifficulty = localStorage.getItem('difficulty');
-        if (savedDifficulty === 'hard') {
-            difficultyToggle.checked = true;
-        }
-
-        updateToggleLabels();
-
-        themeToggle.addEventListener('change', () => {
-            const isDark = themeToggle.checked;
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            applyTheme(isDark);
-            updateToggleLabels();
-        });
-
-        difficultyToggle.addEventListener('change', () => {
-            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
-            updateToggleLabels();
-        });
-
-        // Lyrics Page Functionality will be added here next
-    </script>
-</body>
-</html>
+           
