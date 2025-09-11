@@ -66,6 +66,54 @@
     </main>
 
     <script>
+        // Music Database Structure - Two Albums Only
+        const musicData = {
+          albums: [
+            {
+              title: "Advisory",
+              releaseDate: "2025-02-06", // Internal format for sorting (YYYY-MM-DD)
+              displayDate: "06-02-2025", // Display format (DD-MM-YYYY)
+              coverArt: "images/advisory.jpg",
+              features: "Solo Album",
+              songs: [
+                { title: "Baby Girl", page: "lyrics/baby-girl.html" },
+                { title: "Heer", page: "lyrics/heer.html" },
+                { title: "Holster", page: "lyrics/holster.html" },
+                { title: "IDGAF", page: "lyrics/idgaf.html" },
+                { title: "Pistol", page: "lyrics/pistol.html" },
+                { title: "Tension", page: "lyrics/tension.html" }
+              ].sort((a, b) => a.title.localeCompare(b.title))
+            },
+            {
+              title: "Ghost", 
+              releaseDate: "2023-09-29", // Internal format for sorting (YYYY-MM-DD)
+              displayDate: "29-09-2023", // Display format (DD-MM-YYYY)
+              coverArt: "images/ghost.jpg",
+              features: "Featuring Various Artists",
+              songs: [
+                { title: "Amiri", page: "lyrics/amiri.html" },
+                { title: "Bad Habits", page: "lyrics/bad-habits.html" },
+                { title: "Case", page: "lyrics/case.html" },
+                { title: "Cry Later", page: "lyrics/cry-later.html" },
+                { title: "Daytona", page: "lyrics/daytona.html" },
+                { title: "Drowning", page: "lyrics/drowning.html" },
+                { title: "Feel My Love", page: "lyrics/feel-my-love.html" },
+                { title: "Ghost", page: "lyrics/ghost.html" },
+                { title: "Icon", page: "lyrics/icon.html" },
+                { title: "Jatt Vailly", page: "lyrics/jatt-vailly.html" },
+                { title: "Kehkashan", page: "lyrics/kehkashan.html" },
+                { title: "Kinni Kinni", page: "lyrics/kinni-kinni.html" },
+                { title: "Lalkara", page: "lyrics/lalkara.html" },
+                { title: "Midnight Desires", page: "lyrics/midnight-desires.html" },
+                { title: "Poppin'", page: "lyrics/poppin.html" },
+                { title: "Psychotic", page: "lyrics/psychotic.html" },
+                { title: "Serenade Stars", page: "lyrics/serenade-stars.html" },
+                { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html" }
+              ].sort((a, b) => a.title.localeCompare(b.title))
+            }
+          ]
+        };
+
         // Same JavaScript as desktop.html
         const settingsToggle = document.querySelector('.settings-toggle');
         const settingsMenu = document.getElementById('settings-menu');
