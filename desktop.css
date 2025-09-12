@@ -414,6 +414,7 @@ body.dark .title-box h1 {
 .nav-icon:hover .nav-icon-img,
 .settings-toggle:hover .nav-icon-img {
     transform: scale(1.1);
+    filter: invert(67%) sepia(64%) saturate(2000%) hue-rotate(180deg) brightness(110%) contrast(100%); /* Turns white icon blue */
 }
 
 /* Remove the old circle placeholder styles */
