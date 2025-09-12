@@ -374,7 +374,12 @@ body.dark .title-box h1 {
 }
 
 .social-link:hover {
-    opacity: 0.8;
+    opacity: 1; /* Keeps the icon fully visible */
+    color: #66ccff !important; /* Forces the text color to your blue */
+}
+
+.social-link:hover .social-icon {
+    filter: invert(67%) sepia(64%) saturate(2000%) hue-rotate(180deg) brightness(110%) contrast(100%); /* This turns the white icon blue */
 }
 
 .social-icon {
