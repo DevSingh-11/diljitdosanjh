@@ -456,8 +456,8 @@ body.dark .title-box h1 {
 
 /* Force wider containers for lyrics page album cards */
 .lyrics-page #albums-container .content-box {
-    max-width: 1000px !important;
-    width: 1000px !important;
+    max-width: 800px !important;
+    width: 800px !important;
 }
 
 /* Remove any padding/margin that might be affecting alignment */
