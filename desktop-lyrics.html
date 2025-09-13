@@ -76,12 +76,12 @@
               coverArt: "images/albums/advisory.png",
               features: "6 songs",
               songs: [
-                { title: "Baby Girl", page: "lyrics/baby-girl.html" },
-                { title: "Heer", page: "lyrics/heer.html" },
-                { title: "Holster", page: "lyrics/holster.html" },
-                { title: "IDGAF", page: "lyrics/idgaf.html" },
-                { title: "Pistol", page: "lyrics/pistol.html" },
-                { title: "Tension", page: "lyrics/tension.html" }
+                { title: "Baby Girl", page: "lyrics/baby-girl.html", duration: "2:37" },
+                { title: "Heer", page: "lyrics/heer.html", duration: "2:44" },
+                { title: "Holster", page: "lyrics/holster.html", duration: "2:07" },
+                { title: "IDGAF", page: "lyrics/idgaf.html", duration: "3:33" },
+                { title: "Pistol", page: "lyrics/pistol.html", duration: "2:30" },
+                { title: "Tension", page: "lyrics/tension.html", duration: "2:48" }
               ].sort((a, b) => a.title.localeCompare(b.title))
             },
             {
@@ -91,25 +91,25 @@
               coverArt: "images/albums/ghost.png",
               features: "19 songs",
               songs: [
-                { title: "Amiri", page: "lyrics/amiri.html" },
-                { title: "Bad Habits", page: "lyrics/bad-habits.html" },
-                { title: "Case", page: "lyrics/case.html" },
-                { title: "Cry Later", page: "lyrics/cry-later.html" },
-                { title: "Daytona", page: "lyrics/daytona.html" },
-                { title: "Drowning", page: "lyrics/drowning.html" },
-                { title: "Feel My Love", page: "lyrics/feel-my-love.html" },
-                { title: "Ghost", page: "lyrics/ghost.html" },
-                { title: "Icon", page: "lyrics/icon.html" },
-                { title: "Jatt Vailly", page: "lyrics/jatt-vailly.html" },
-                { title: "Kehkashan", page: "lyrics/kehkashan.html" },
-                { title: "Kinni Kinni", page: "lyrics/kinni-kinni.html" },
-                { title: "Lalkara", page: "lyrics/lalkara.html" },
-                { title: "Midnight Desires", page: "lyrics/midnight-desires.html" },
-                { title: "Poppin'", page: "lyrics/poppin.html" },
-                { title: "Psychotic", page: "lyrics/psychotic.html" },
-                { title: "Serenade", page: "lyrics/serenade.html" },
-                { title: "Stars", page: "lyrics/stars.html" },
-                { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html" }
+                { title: "Amiri", page: "lyrics/amiri.html", duration: "1:57" },
+                { title: "Bad Habits", page: "lyrics/bad-habits.html", duration: "2:47" },
+                { title: "Case", page: "lyrics/case.html", duration: "2:15" },
+                { title: "Cry Later", page: "lyrics/cry-later.html", duration: "2:28" },
+                { title: "Daytona", page: "lyrics/daytona.html", duration: "3:00" },
+                { title: "Drowning", page: "lyrics/drowning.html", duration: "2:39" },
+                { title: "Feel My Love", page: "lyrics/feel-my-love.html", duration: "3:32" },
+                { title: "Ghost", page: "lyrics/ghost.html", duration: "2:45" },
+                { title: "Icon", page: "lyrics/icon.html", duration: "2:28" },
+                { title: "Jatt Vailly", page: "lyrics/jatt-vailly.html", duration: "2:31" },
+                { title: "Kehkashan", page: "lyrics/kehkashan.html", duration: "3:00" },
+                { title: "Kinni Kinni", page: "lyrics/kinni-kinni.html", duration: "3:33" },
+                { title: "Lalkara", page: "lyrics/lalkara.html", duration: "2:40" },
+                { title: "Midnight Desires", page: "lyrics/midnight-desires.html", duration: "2:52" },
+                { title: "Poppin'", page: "lyrics/poppin.html", duration: "2:34" },
+                { title: "Psychotic", page: "lyrics/psychotic.html", duration: "4:35" },
+                { title: "Serenade", page: "lyrics/serenade.html", duration: "1:37" },
+                { title: "Stars", page: "lyrics/stars.html", duration: "3:04" },
+                { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html", duration: "2:17" }
               ].sort((a, b) => a.title.localeCompare(b.title))
             }
           ]
@@ -165,9 +165,12 @@
                         <h3 style="margin-bottom: 15px;">Songs</h3>
                         <ul style="list-style: none; padding: 0; margin: 0;">
                             ${album.songs.map((song, index) => `
-                                <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                                    <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
-                                    <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <span style="color: #666; margin-right: 10px; font-weight: bold;">${index + 1}.</span>
+                                        <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
+                                    </div>
+                                    <span style="color: #666; font-size: 14px;">${song.duration}</span>
                                 </li>
                             `).join('')}
                         </ul>
