@@ -479,6 +479,26 @@ body.dark .title-box h1 {
     background-color: rgba(255, 255, 255, 0.85) !important; /* Light background with transparency */
 }
 
+/* Light mode styles for search and sort elements */
+.search-container input {
+    border: 2px solid #000000 !important;
+}
+
+.sorting-controls button {
+    border: 2px solid #000000 !important;
+}
+
+/* Dark mode overrides - remove black border */
+body.dark .search-container input {
+    border: 2px solid #ddd !important;
+}
+
+body.dark .sorting-controls button {
+    border: none !important;
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+}
+
 body.dark .content-box,
 body.dark .title-box {
     background-color: rgba(30, 30, 30, 0.85) !important; /* Dark background with transparency */
