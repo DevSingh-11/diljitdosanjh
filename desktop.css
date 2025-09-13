@@ -11,6 +11,12 @@ body {
     color: #000;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* NEW: Background image that starts after navbar */
+    background-image: url('images/lightback.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 /* Navigation Bar */
@@ -22,7 +28,7 @@ body {
     align-items: center;
     padding: 0 20px;
     height: 48px;
-    background-color: #222222;
+    background-color: #222222 !important; /* Force solid background */
     z-index: 1000;
 }
 
@@ -210,6 +216,8 @@ input:checked + .toggle-slider:before {
 body.dark {
     background-color: #121212;
     color: #ffffff;
+    /* NEW: Dark mode background */
+    background-image: url('images/darkback.png');
 }
 
 body.dark .settings-menu {
@@ -464,4 +472,14 @@ body.dark .title-box h1 {
 .nav-left, .nav-right {
     padding: 0; /* Ensure no padding affects alignment */
     margin: 0;
+}
+
+/* Ensure content boxes have background with transparency */
+.content-box, .title-box {
+    background-color: rgba(255, 255, 255, 0.85) !important; /* Light background with transparency */
+}
+
+body.dark .content-box,
+body.dark .title-box {
+    background-color: rgba(30, 30, 30, 0.85) !important; /* Dark background with transparency */
 }
