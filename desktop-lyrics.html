@@ -165,15 +165,13 @@
                         <h3 style="margin-bottom: 15px;">Songs</h3>
                         <ul style="list-style: none; padding: 0; margin: 0;">
                             ${album.songs.map((song, index) => `
-                                <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
-                                    <div>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 15px;">
+                                    <div style="display: flex; align-items: center;">
                                         <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
                                         <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 15px; margin-right: 40px;">
-                                        <span style="color: #888; font-size: 14px; font-style: italic; text-align: center; flex: 1;">${song.featured}</span>
-                                        <span style="color: #666; font-size: 14px;">${song.duration}</span>
-                                    </div>
+                                    <span style="color: #888; font-size: 14px; font-style: italic; text-align: center; justify-self: center;">${song.featured}</span>
+                                    <span style="color: #666; font-size: 14px; justify-self: end;">${song.duration}</span>
                                 </li>
                             `).join('')}
                         </ul>
