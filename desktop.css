@@ -454,9 +454,10 @@ body.dark .title-box h1 {
     transform: scale(1.1); /* This makes it bigger on hover */
 }
 
-/* Wider containers for lyrics page */
-.lyrics-page .content-box {
-    max-width: 1200px; 
+/* Force wider containers for lyrics page album cards */
+.lyrics-page #albums-container .content-box {
+    max-width: 1000px !important;
+    width: 1000px !important;
 }
 
 /* Remove any padding/margin that might be affecting alignment */
