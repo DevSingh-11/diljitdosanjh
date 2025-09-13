@@ -454,6 +454,11 @@ body.dark .title-box h1 {
     transform: scale(1.1); /* This makes it bigger on hover */
 }
 
+/* Wider containers for lyrics page */
+.lyrics-page .content-box {
+    max-width: 1200px; /* Increase from 800px to 1000px */
+}
+
 /* Remove any padding/margin that might be affecting alignment */
 .nav-left, .nav-right {
     padding: 0; /* Ensure no padding affects alignment */
