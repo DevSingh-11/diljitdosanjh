@@ -512,3 +512,10 @@ body.dark .title-box {
     color: #ffffff !important;
     border: 1px solid #66ccff !important;
 }
+
+/* Active sort button styling */
+.sorting-controls button.active {
+    background-color: #66ccff !important;
+    color: #ffffff !important;
+    border: 1px solid #66ccff !important;
+}
