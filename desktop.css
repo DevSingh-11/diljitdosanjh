@@ -379,18 +379,6 @@ body.dark .title-box h1 {
 }
 
 .social-link:hover .social-icon {
-    /* USE THE SAME FILTER - Ensures consistent blue color */
-    filter: brightness(0) saturate(100%) invert(63%) sepia(96%) saturate(350%) hue-rotate(160deg) brightness(105%) contrast(105%);
-}
-
-.social-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.social-link:hover .social-icon {
     transform: scale(1.1);
 }
 
@@ -422,6 +410,27 @@ body.dark .title-box h1 {
     align-items: center; /* Add this */
     justify-content: center; /* Add this */
     height: 100%; /* Add this */
+}
+
+/* NEW CODE: Mask technique for footer icons - exact blue color (#66ccff) */
+.social-icon-mask {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: block;
+    background-color: #ffffff; /* Default white color */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover .social-icon-mask {
+    background-color: #66ccff; /* Your EXACT blue color on hover */
+    transform: scale(1.1);
 }
 
 /* NEW CODE: Mask technique for exact blue color (#66ccff) */
