@@ -115,8 +115,40 @@
           ]
         };
 
+        // Function to create album card HTML
+        function createAlbumCard(album) {
+            return `
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                    <!-- Album cover - NOW SHOWS ACTUAL IMAGE -->
+                    <div style="width: 120px; height: 120px; border-radius: 8px; overflow: hidden; background: #f0f0f0;">
+                        <img src="${album.coverArt}" alt="${album.title} Cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <h2 style="margin: 0 0 5px 0; color: #222;" class="album-title">${album.title}</h2>
+                        <p style="color: #666; margin: 0 0 5px 0;">Released: ${album.displayDate}</p>
+                        <p style="color: #666; margin: 0;">${album.features}</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px;">Songs</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        ${album.songs.map((song, index) => `
+                            <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; position: relative;">
+                                <div style="display: flex; align-items: center; flex: 1;">
+                                    <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
+                                    <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
+                                </div>
+                                <span style="color: #888; font-size: 14px; font-style: italic; position: absolute; left: 50%; transform: translateX(-50%);">${song.featured}</span>
+                                <span style="color: #666; font-size: 14px;">${song.duration}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
         // Function to display albums
-        function displayAlbums() {
+        function displayAlbums(albumsArray = musicData.albums) {
             const mainElement = document.querySelector('main');
             
             // Clear the existing "coming soon" content
@@ -130,11 +162,11 @@
                     <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
                 </div>
                 
-                <!-- Sorting Controls (placeholder for now) -->
+                <!-- Sorting Controls -->
                 <div class="sorting-controls" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
-                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
-                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
-                    <button style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
+                    <button onclick="sortAlbums('name')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
+                    <button onclick="sortAlbums('date')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
+                    <button onclick="sortAlbums('reverse')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
                 </div>
                 
                 <!-- Albums Container -->
@@ -144,45 +176,36 @@
             const albumsContainer = document.getElementById('albums-container');
             
             // Display each album
-            musicData.albums.forEach(album => {
+            albumsArray.forEach(album => {
                 const albumCard = document.createElement('div');
-                albumCard.className = 'content-box'; // Use your existing content box style
+                albumCard.className = 'content-box';
                 albumCard.style.marginBottom = '30px';
-                
-                albumCard.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                        <!-- Album cover - NOW SHOWS ACTUAL IMAGE -->
-                        <div style="width: 120px; height: 120px; border-radius: 8px; overflow: hidden; background: #f0f0f0;">
-                            <img src="${album.coverArt}" alt="${album.title} Cover" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div>
-                            <h2 style="margin: 0 0 5px 0; color: #222;" class="album-title">${album.title}</h2>
-                            <p style="color: #666; margin: 0 0 5px 0;">Released: ${album.displayDate}</p>
-                            <p style="color: #666; margin: 0;">${album.features}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 style="margin-bottom: 15px;">Songs</h3>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            ${album.songs.map((song, index) => `
-                                <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; position: relative;">
-                                    <div style="display: flex; align-items: center; flex: 1;">
-                                        <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
-                                        <a href="${song.page}" style="color: #000000; text-decoration: none; transition: color 0.3s ease;" class="song-link">${song.title}</a>
-                                    </div>
-                                    <span style="color: #888; font-size: 14px; font-style: italic; position: absolute; left: 50%; transform: translateX(-50%);">${song.featured}</span>
-                                    <span style="color: #666; font-size: 14px;">${song.duration}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                `;
-                
+                albumCard.innerHTML = createAlbumCard(album);
                 albumsContainer.appendChild(albumCard);
             });
             
             // Update styles immediately after displaying albums
             updateAlbumStyles();
+        }
+
+        // Function to handle sorting
+        function sortAlbums(sortType) {
+            let sortedAlbums = [...musicData.albums]; // Create a copy
+            
+            switch(sortType) {
+                case 'name':
+                    sortedAlbums.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'date':
+                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                    break;
+                case 'reverse':
+                    sortedAlbums.reverse();
+                    break;
+            }
+            
+            // Re-render the albums with the new order
+            displayAlbums(sortedAlbums);
         }
 
         // Update styles for dark mode
