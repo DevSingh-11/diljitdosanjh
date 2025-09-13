@@ -412,25 +412,9 @@ body.dark .title-box h1 {
     transition: transform 0.3s ease;
 }
 
-.nav-icon:hover .nav-icon-img,
-.settings-toggle:hover .nav-icon-img {
-    transform: scale(1.1);
-    /* SIMPLIFIED FILTER - Better blue conversion */
-    filter: brightness(0) saturate(100%) invert(63%) sepia(96%) saturate(350%) hue-rotate(160deg) brightness(105%) contrast(105%);
-}
-
 /* Remove the old circle placeholder styles */
 .icon-placeholder {
     display: none; /* Hide the circle placeholders */
-}
-
-/* Center navbar icons vertically */
-.nav-icon-img {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    display: block; /* Add this */
-    margin: 0 auto; /* Add this */
 }
 
 .nav-icon, .settings-toggle {
@@ -438,6 +422,27 @@ body.dark .title-box h1 {
     align-items: center; /* Add this */
     justify-content: center; /* Add this */
     height: 100%; /* Add this */
+}
+
+/* NEW CODE: Mask technique for exact blue color (#66ccff) */
+.nav-icon-mask {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-color: #ffffff; /* Default white color */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    transition: all 0.3s ease;
+}
+
+.nav-icon:hover .nav-icon-mask,
+.settings-toggle:hover .nav-icon-mask {
+    background-color: #66ccff; /* Your EXACT blue color on hover */
+    transform: scale(1.1); /* This makes it bigger on hover */
 }
 
 /* Remove any padding/margin that might be affecting alignment */
