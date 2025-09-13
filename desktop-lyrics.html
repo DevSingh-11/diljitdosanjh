@@ -139,6 +139,9 @@
           ]
         };
 
+        let currentSort = null;
+        let isReversed = false;
+        
         // Function to create album card HTML
         function createAlbumCard(album) {
             return `
@@ -188,9 +191,9 @@
                 
                 <!-- Sorting Controls -->
                 <div class="sorting-controls" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
-                    <button onclick="sortAlbums('name')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
-                    <button onclick="sortAlbums('date')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
-                    <button onclick="sortAlbums('reverse')" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
+                    <button onclick="sortAlbums('name', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
+                    <button onclick="sortAlbums('date', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
+                    <button onclick="sortAlbums('reverse', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
                 </div>
                 
                 <!-- Albums Container -->
@@ -213,19 +216,41 @@
         }
 
         // Function to handle sorting
-        function sortAlbums(sortType) {
-            let sortedAlbums = [...musicData.albums]; // Create a copy
+        function sortAlbums(sortType, event) {
+            const buttons = document.querySelectorAll('.sorting-controls button');
+            buttons.forEach(btn => btn.classList.remove('active'));
             
-            switch(sortType) {
-                case 'name':
-                    sortedAlbums.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                case 'date':
-                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                    break;
-                case 'reverse':
+            let sortedAlbums = [...musicData.albums];
+            
+            if (sortType === 'reverse') {
+                // Toggle reverse state
+                isReversed = !isReversed;
+                if (currentSort) {
+                    // If we already have a sort, just reverse it
                     sortedAlbums.reverse();
-                    break;
+                } else {
+                    // If no current sort, just reverse the original order
+                    sortedAlbums.reverse();
+                }
+                // Highlight the reverse button if active
+                if (isReversed) {
+                    event.target.classList.add('active');
+                }
+            } else {
+                // For name/date sorting, reset reverse state
+                isReversed = false;
+                currentSort = sortType;
+                
+                switch(sortType) {
+                    case 'name':
+                        sortedAlbums.sort((a, b) => a.title.localeCompare(b.title));
+                        event.target.classList.add('active');
+                        break;
+                    case 'date':
+                        sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                        event.target.classList.add('active');
+                        break;
+                }
             }
             
             // Re-render the albums with the new order
