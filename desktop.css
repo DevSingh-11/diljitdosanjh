@@ -379,7 +379,8 @@ body.dark .title-box h1 {
 }
 
 .social-link:hover .social-icon {
-    filter: invert(67%) sepia(64%) saturate(2000%) hue-rotate(180deg) brightness(110%) contrast(100%); /* This turns the white icon blue */
+    /* USE THE SAME FILTER - Ensures consistent blue color */
+    filter: brightness(0) saturate(100%) invert(63%) sepia(96%) saturate(350%) hue-rotate(160deg) brightness(105%) contrast(105%);
 }
 
 .social-icon {
@@ -414,17 +415,8 @@ body.dark .title-box h1 {
 .nav-icon:hover .nav-icon-img,
 .settings-toggle:hover .nav-icon-img {
     transform: scale(1.1);
-    /* NEW CODE: Replace the filter with a background-color and mask */
-    filter: none; 
-    background-color: #66ccff; /* Your exact blue color */
-    -webkit-mask: url('images/home.png') center/contain no-repeat;
-    mask: url('images/home.png') center/contain no-repeat;
-}
-
-/* Specific adjustment for the Settings icon */
-.settings-toggle:hover .nav-icon-img {
-    -webkit-mask: url('images/settings.png') center/contain no-repeat;
-    mask: url('images/settings.png') center/contain no-repeat;
+    /* SIMPLIFIED FILTER - Better blue conversion */
+    filter: brightness(0) saturate(100%) invert(63%) sepia(96%) saturate(350%) hue-rotate(160deg) brightness(105%) contrast(105%);
 }
 
 /* Remove the old circle placeholder styles */
