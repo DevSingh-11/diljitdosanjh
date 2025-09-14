@@ -246,7 +246,7 @@
                 
                 switch(sortType) {
                     case 'name':
-                        sortedAlbums.sort((a, b) => a.title.localeCompare(b.sortTitle));
+                        sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
                         event.target.classList.add('active');
                         break;
                     case 'date':
