@@ -178,10 +178,6 @@
                                 </a>
                             </li>
                         `).join('')}
-                                    </div>
-                                </a>
-                            </li>
-                        `).join('')}
                     </ul>
                 </div>
             `;
@@ -391,7 +387,10 @@
 
         // Initialize the album display when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            displayAlbums();
+            // Only display albums if we're on the lyrics page
+            if (window.location.pathname.includes('lyrics')) {
+                displayAlbums();
+            }
             
             // Add hover effect for entire song rows
             document.addEventListener('mouseover', function(e) {
