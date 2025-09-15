@@ -228,19 +228,19 @@
             if (sortType === 'reverse') {
                 // Toggle reverse state
                 isReversed = !isReversed;
-                if (currentSort) {
-                    // If we already have a sort, just reverse it
-                    sortedAlbums.reverse();
-                } else {
-                    // If no current sort, just reverse the original order
-                    sortedAlbums.reverse();
+                // Apply the current sort first, then reverse if needed
+                if (currentSort === 'name') {
+                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+                } else if (currentSort === 'date') {
+                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
                 }
-                // Highlight the reverse button if active
+                // Reverse if isReversed is true
                 if (isReversed) {
+                    sortedAlbums.reverse();
                     event.target.classList.add('active');
                 }
             } else {
-                // For name/date sorting, reset reverse state
+                // For name/date sorting, reset reverse state and apply sort
                 isReversed = false;
                 currentSort = sortType;
                 
@@ -258,6 +258,18 @@
             
             // Re-render the albums with the new order
             displayAlbums(sortedAlbums);
+            
+            // Restore active button states after re-rendering
+            setTimeout(() => {
+                if (currentSort === 'name') {
+                    document.querySelector('.sorting-controls button:nth-child(1)').classList.add('active');
+                } else if (currentSort === 'date') {
+                    document.querySelector('.sorting-controls button:nth-child(2)').classList.add('active');
+                }
+                if (isReversed) {
+                    document.querySelector('.sorting-controls button:nth-child(3)').classList.add('active');
+                }
+            }, 0);
         }
 
         // Update styles for dark mode
