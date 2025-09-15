@@ -506,22 +506,32 @@ body.dark .title-box {
     background-color: rgba(30, 30, 30, 0.85) !important; /* Dark background with transparency */
 }
 
-/* Active sort button styling */
-.sorting-controls button.active {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
-    border: 1px solid #66ccff !important;
-}
-
-/* Active sort button styling - more specific selector */
-.sorting-controls button.active {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
-    border: 1px solid #66ccff !important;
-}
 
 /* Even more specific for dark mode */
 body.dark .sorting-controls button.active {
+    background-color: #66ccff !important;
+    color: #ffffff !important;
+    border: 1px solid #66ccff !important;
+}
+
+/* Override the inline styles specifically */
+.sorting-controls button.active[style] {
+    background-color: #66ccff !important;
+    color: #ffffff !important;
+    border: 1px solid #66ccff !important;
+}
+
+/* Active sort button styling - ensure it stays blue */
+.sorting-controls button.active,
+.sorting-controls button.active:hover {
+    background-color: #66ccff !important;
+    color: #ffffff !important;
+    border: 1px solid #66ccff !important;
+}
+
+/* Dark mode support */
+body.dark .sorting-controls button.active,
+body.dark .sorting-controls button.active:hover {
     background-color: #66ccff !important;
     color: #ffffff !important;
     border: 1px solid #66ccff !important;
