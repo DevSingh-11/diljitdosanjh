@@ -1,3 +1,4 @@
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -542,26 +543,4 @@ body.dark .sorting-controls button.active:hover {
     background-color: #66ccff !important;
     color: #ffffff !important;
     border: 1px solid #66ccff !important;
-}
-
-/* Hover effects for sort buttons */
-.sorting-controls button:hover {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
-}
-
-.sorting-controls button.sort-icon:hover {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
-}
-
-/* Dark mode hover effects */
-body.dark .sorting-controls button:hover {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
-}
-
-body.dark .sorting-controls button.sort-icon:hover {
-    background-color: #66ccff !important;
-    color: #ffffff !important;
 }
