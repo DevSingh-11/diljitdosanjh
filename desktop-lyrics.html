@@ -142,8 +142,11 @@
           ]
         };
 
-        let currentSort = null;
-        let isReversed = false;
+        // NEW: Add state variables for the new sorting system
+        let albumSortBy = 'name'; // 'name' or 'date'
+        let songSortBy = 'date';  // 'name' or 'date'
+        let albumsReversed = false;
+        let songsReversed = false;
         
         // Function to create album card HTML
         function createAlbumCard(album) {
@@ -200,11 +203,12 @@
                     <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
                 </div>
                 
-                <!-- Sorting Controls -->
+                <!-- Sorting Controls - UPDATED -->
                 <div class="sorting-controls" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
-                    <button onclick="sortAlbums('name', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Name</button>
-                    <button onclick="sortAlbums('date', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Sort by Date</button>
-                    <button onclick="sortAlbums('reverse', event)" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Reverse Order</button>
+                    <button id="reverse-albums" class="sort-icon" style="padding: 10px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer; width: 40px; height: 40px;">□</button>
+                    <button id="toggle-album-sort" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Albums by Name</button>
+                    <button id="toggle-song-sort" style="padding: 10px 20px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer;">Songs by Date</button>
+                    <button id="reverse-songs" class="sort-icon" style="padding: 10px; border: none; border-radius: 20px; background: #f0f0f0; cursor: pointer; width: 40px; height: 40px;">□</button>
                 </div>
                 
                 <!-- Albums Container -->
@@ -226,58 +230,45 @@
             updateAlbumStyles();
         }
 
-        // Function to handle sorting
-        function sortAlbums(sortType, event) {
-            const buttons = document.querySelectorAll('.sorting-controls button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
+        // Function to handle album sorting
+        function sortAlbums(sortBy, reversed = false) {
             let sortedAlbums = [...musicData.albums];
             
-            if (sortType === 'reverse') {
-                // Toggle reverse state
-                isReversed = !isReversed;
-                // Apply the current sort first, then reverse if needed
-                if (currentSort === 'name') {
-                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-                } else if (currentSort === 'date') {
-                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                }
-                // Reverse if isReversed is true
-                if (isReversed) {
-                    sortedAlbums.reverse();
-                    event.target.classList.add('active');
-                }
-            } else {
-                // For name/date sorting, reset reverse state and apply sort
-                isReversed = false;
-                currentSort = sortType;
-                
-                switch(sortType) {
-                    case 'name':
-                        sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-                        event.target.classList.add('active');
-                        break;
-                    case 'date':
-                        sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                        event.target.classList.add('active');
-                        break;
-                }
+            if (sortBy === 'name') {
+                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+            } else if (sortBy === 'date') {
+                sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
             }
             
-            // Re-render the albums with the new order
-            displayAlbums(sortedAlbums);
+            if (reversed) {
+                sortedAlbums.reverse();
+            }
             
-            // Restore active button states after re-rendering
-            setTimeout(() => {
-                if (currentSort === 'name') {
-                    document.querySelector('.sorting-controls button:nth-child(1)').classList.add('active');
-                } else if (currentSort === 'date') {
-                    document.querySelector('.sorting-controls button:nth-child(2)').classList.add('active');
+            return sortedAlbums;
+        }
+
+        // Function to sort songs within albums
+        function sortSongsInAlbums(albumsArray, sortBy, reversed = false) {
+            const sortedAlbums = albumsArray.map(album => {
+                const sortedSongs = [...album.songs];
+                
+                if (sortBy === 'name') {
+                    sortedSongs.sort((a, b) => a.title.localeCompare(b.title));
+                } else if (sortBy === 'date') {
+                    // Songs are already in their original order (date order)
                 }
-                if (isReversed) {
-                    document.querySelector('.sorting-controls button:nth-child(3)').classList.add('active');
+                
+                if (reversed) {
+                    sortedSongs.reverse();
                 }
-            }, 0);
+                
+                return {
+                    ...album,
+                    songs: sortedSongs
+                };
+            });
+            
+            return sortedAlbums;
         }
 
         // Update styles for dark mode
@@ -391,7 +382,48 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Only display albums if we're on the lyrics page
             if (window.location.pathname.includes('lyrics')) {
-                displayAlbums();
+                const sortedAlbums = sortAlbums(albumSortBy, albumsReversed);
+                const albumsWithSortedSongs = sortSongsInAlbums(sortedAlbums, songSortBy, songsReversed);
+                displayAlbums(albumsWithSortedSongs);
+                
+                // Add event listeners for the new sorting buttons
+                // Album sort toggle
+                document.getElementById('toggle-album-sort').addEventListener('click', function() {
+                    albumSortBy = albumSortBy === 'name' ? 'date' : 'name';
+                    this.textContent = albumSortBy === 'name' ? 'Albums by Name' : 'Albums by Date';
+                    
+                    const sortedAlbums = sortAlbums(albumSortBy, albumsReversed);
+                    const albumsWithSortedSongs = sortSongsInAlbums(sortedAlbums, songSortBy, songsReversed);
+                    displayAlbums(albumsWithSortedSongs);
+                });
+                
+                // Song sort toggle
+                document.getElementById('toggle-song-sort').addEventListener('click', function() {
+                    songSortBy = songSortBy === 'name' ? 'date' : 'name';
+                    this.textContent = songSortBy === 'name' ? 'Songs by Name' : 'Songs by Date';
+                    
+                    const sortedAlbums = sortAlbums(albumSortBy, albumsReversed);
+                    const albumsWithSortedSongs = sortSongsInAlbums(sortedAlbums, songSortBy, songsReversed);
+                    displayAlbums(albumsWithSortedSongs);
+                });
+                
+                // Album reverse toggle
+                document.getElementById('reverse-albums').addEventListener('click', function() {
+                    albumsReversed = !albumsReversed;
+                    
+                    const sortedAlbums = sortAlbums(albumSortBy, albumsReversed);
+                    const albumsWithSortedSongs = sortSongsInAlbums(sortedAlbums, songSortBy, songsReversed);
+                    displayAlbums(albumsWithSortedSongs);
+                });
+                
+                // Song reverse toggle
+                document.getElementById('reverse-songs').addEventListener('click', function() {
+                    songsReversed = !songsReversed;
+                    
+                    const sortedAlbums = sortAlbums(albumSortBy, albumsReversed);
+                    const albumsWithSortedSongs = sortSongsInAlbums(sortedAlbums, songSortBy, songsReversed);
+                    displayAlbums(albumsWithSortedSongs);
+                });
             }
             
             // Add hover effect for entire song rows
