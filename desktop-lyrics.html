@@ -159,8 +159,8 @@
             <div class="sorting-group">
                 <span class="sorting-label">Songs by:</span>
                 <select id="song-sort" class="sort-select">
-                    <option value="new-old">New → Old</option>
                     <option value="old-new">Old → New</option>
+                    <option value="new-old">New → Old</option>
                     <option value="a-z">A → Z</option>
                     <option value="z-a">Z → A</option>
                 </select>
@@ -189,7 +189,7 @@
                 { title: "IDGAF", page: "lyrics/idgaf.html", duration: "3:33", featured: "-" },
                 { title: "Pistol", page: "lyrics/pistol.html", duration: "2:30", featured: "ft. Amrit Maan" },
                 { title: "Tension", page: "lyrics/tension.html", duration: "2:48", featured: "-" }
-              ].sort((a, b) => a.title.localeCompare(b.title))
+              ]
             },
             {
               title: "Ghost", 
@@ -218,7 +218,7 @@
                 { title: "Serenade", page: "lyrics/serenade.html", duration: "1:37", featured: "-" },
                 { title: "Stars", page: "lyrics/stars.html", duration: "3:04", featured: "-" },
                 { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html", duration: "2:17", featured: "-" }
-              ].sort((a, b) => a.title.localeCompare(b.title))
+              ]
             },
             {
               title: "G.O.A.T.", 
@@ -243,7 +243,7 @@
                 { title: "Taare", page: "lyrics/taare.html", duration: "3:23", featured: "-" },
                 { title: "Track Suit", page: "lyrics/track-suit.html", duration: "3:18", featured: "ft. Nimrat Khaira" },
                 { title: "Whiskey", page: "lyrics/whiskey.html", duration: "3:25", featured: "-" }
-              ].sort((a, b) => a.title.localeCompare(b.title))
+              ]
             }
           ]
         };
@@ -277,7 +277,7 @@
                                             <span style="color: #888; font-size: 14px; font-style: italic; text-align: center;">${song.featured}</span>
                                         </div>
                                         <div style="display: flex; justify-content: flex-end; align-items: center; flex: 1;">
-                                            <span style="color: #666; font-size: 14px;">${song.duration}</span>
+                                            <span style="color: #666; font-size: 14px;">${song.duration</span>
                                         </div>
                                     </div>
                                 </a>
@@ -345,13 +345,14 @@
                         album.songs.sort((a, b) => b.title.localeCompare(a.title));
                         break;
                     case 'new-old':
-                        // Default order is new to old as per the original code
-                        break;
-                    case 'old-new':
+                        // Reverse the order to show newest first
                         album.songs.reverse();
                         break;
+                    case 'old-new':
+                        // Default order is old to new as per the original code
+                        break;
                     default:
-                        // Keep the default order (new to old)
+                        // Keep the default order (old to new)
                 }
             });
             
