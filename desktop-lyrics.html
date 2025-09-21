@@ -318,6 +318,12 @@
             return sortedAlbums;
         }
 
+        // Function to convert duration string to seconds for comparison
+        function durationToSeconds(duration) {
+            const [minutes, seconds] = duration.split(':').map(Number);
+            return minutes * 60 + seconds;
+        }
+
         // Function to sort songs based on selection
         function sortSongs(songs, sortType, originalOrder) {
             let sortedSongs = [...songs];
@@ -333,11 +339,16 @@
                     // Return to the original order
                     return [...originalOrder];
                 case 'time':
-                    // Sort by duration (shortest to longest)
+                    // Sort by duration (shortest to longest), then alphabetically for same durations
                     sortedSongs.sort((a, b) => {
-                        // Convert duration to seconds for comparison
-                        const aTime = a.duration.split(':').reduce((min, sec) => (parseInt(min) * 60) + parseInt(sec));
-                        const bTime = b.duration.split(':').reduce((min, sec) => (parseInt(min) * 60) + parseInt(sec));
+                        const aTime = durationToSeconds(a.duration);
+                        const bTime = durationToSeconds(b.duration);
+                        
+                        // If durations are equal, sort alphabetically
+                        if (aTime === bTime) {
+                            return a.title.localeCompare(b.title);
+                        }
+                        
                         return aTime - bTime;
                     });
                     break;
