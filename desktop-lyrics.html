@@ -307,59 +307,63 @@
         }
 
         // Function to sort albums based on selection
-        function sortAlbums(sortType) {
-            let sortedAlbums = [...musicData.albums];
-            
-            switch(sortType) {
-                case 'a-z':
-                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-                    break;
-                case 'z-a':
-                    sortedAlbums.sort((a, b) => b.sortTitle.localeCompare(a.sortTitle));
-                    break;
-                case 'new-old':
-                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                    break;
-                case 'old-new':
-                    sortedAlbums.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
-                    break;
-                default:
-                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-            }
-            
-            // Re-render the albums with the new order
-            displayAlbums(sortedAlbums);
+    function sortAlbums(sortType) {
+        let sortedAlbums = [...musicData.albums];
+        
+        switch(sortType) {
+            case 'a-z':
+                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+                break;
+            case 'z-a':
+                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+                sortedAlbums.reverse(); // Reverse A-Z for Z-A
+                break;
+            case 'new-old':
+                sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                break;
+            case 'old-new':
+                sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                sortedAlbums.reverse(); // Reverse New-Old for Old-New
+                break;
+            default:
+                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
         }
+        
+        // Re-render the albums with the new order
+        displayAlbums(sortedAlbums);
+    }
 
         // Function to sort songs based on selection
-        function sortSongs(sortType) {
-            // Create a deep copy of the albums to avoid modifying the original data
-            const albumsCopy = JSON.parse(JSON.stringify(musicData.albums));
-            
-            albumsCopy.forEach(album => {
-                switch(sortType) {
-                    case 'a-z':
-                        album.songs.sort((a, b) => a.title.localeCompare(b.title));
-                        break;
-                    case 'z-a':
-                        album.songs.sort((a, b) => b.title.localeCompare(a.title));
-                        break;
-                    case 'new-old':
-                        // Reverse the order to show newest first
-                        album.songs.reverse();
-                        break;
-                    case 'old-new':
-                        // Default order is old to new as per the original code
-                        break;
-                    default:
-                        // Keep the default order (old to new)
-                }
-            });
-            
-            // Re-render the albums with the new song order
-            displayAlbums(albumsCopy);
-        }
-
+    function sortSongs(sortType) {
+        // Create a deep copy of the albums to avoid modifying the original data
+        const albumsCopy = JSON.parse(JSON.stringify(musicData.albums));
+        
+        albumsCopy.forEach(album => {
+            switch(sortType) {
+                case 'a-z':
+                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'z-a':
+                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
+                    album.songs.reverse(); // Reverse A-Z for Z-A
+                    break;
+                case 'new-old':
+                    // Songs are already in the order you provided (new to old)
+                    // No need to change anything
+                    break;
+                case 'old-new':
+                    // Reverse the order to show oldest first
+                    album.songs.reverse();
+                    break;
+                default:
+                    // Default to A-Z sorting
+                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
+            }
+        });
+        
+        // Re-render the albums with the new song order
+        displayAlbums(albumsCopy);
+    }
         // Update styles for dark mode
         function updateAlbumStyles() {
             const isDark = document.body.classList.contains('dark');
@@ -378,21 +382,29 @@
         }
 
         // Initialize the album display when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Only display albums if we're on the lyrics page
-            if (window.location.pathname.includes('lyrics')) {
-                // Set up event listeners for dropdowns
-                document.getElementById('album-sort').addEventListener('change', function() {
-                    sortAlbums(this.value);
-                });
-                
-                document.getElementById('song-sort').addEventListener('change', function() {
-                    sortSongs(this.value);
-                });
-                
-                // Display albums with default sorting
-                displayAlbums();
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only display albums if we're on the lyrics page
+        if (window.location.pathname.includes('lyrics')) {
+            // Set up event listeners for dropdowns
+            const albumSortSelect = document.getElementById('album-sort');
+            const songSortSelect = document.getElementById('song-sort');
+            
+            // Set both dropdowns to A-Z by default
+            albumSortSelect.value = 'a-z';
+            songSortSelect.value = 'a-z';
+            
+            albumSortSelect.addEventListener('change', function() {
+                sortAlbums(this.value);
+            });
+            
+            songSortSelect.addEventListener('change', function() {
+                sortSongs(this.value);
+            });
+            
+            // Display albums with A-Z sorting for both albums and songs
+            sortAlbums('a-z');
+            sortSongs('a-z');
+        }
             
             // Add hover effect for entire song rows
             document.addEventListener('mouseover', function(e) {
