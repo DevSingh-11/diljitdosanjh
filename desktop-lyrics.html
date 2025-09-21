@@ -248,6 +248,12 @@
           ]
         };
 
+        // State to track current sorting preferences
+        let currentSortState = {
+            albumSort: 'a-z',
+            songSort: 'a-z'
+        };
+
         // Function to create album card HTML
         function createAlbumCard(album) {
             return `
@@ -288,8 +294,74 @@
             `;
         }
 
+        // Function to sort albums based on selection
+        function sortAlbums(albums, sortType) {
+            let sortedAlbums = [...albums];
+            
+            switch(sortType) {
+                case 'a-z':
+                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+                    break;
+                case 'z-a':
+                    sortedAlbums.sort((a, b) => b.sortTitle.localeCompare(a.sortTitle));
+                    break;
+                case 'new-old':
+                    sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                    break;
+                case 'old-new':
+                    sortedAlbums.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+                    break;
+                default:
+                    sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+            }
+            
+            return sortedAlbums;
+        }
+
+        // Function to sort songs based on selection
+        function sortSongs(songs, sortType) {
+            let sortedSongs = [...songs];
+            
+            switch(sortType) {
+                case 'a-z':
+                    sortedSongs.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'z-a':
+                    sortedSongs.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+                case 'new-old':
+                    // Keep original order (assumed to be newest first)
+                    break;
+                case 'old-new':
+                    sortedSongs.reverse();
+                    break;
+                default:
+                    // Default to A-Z sorting
+                    sortedSongs.sort((a, b) => a.title.localeCompare(b.title));
+            }
+            
+            return sortedSongs;
+        }
+
+        // Main function to apply both album and song sorting
+        function applySorting() {
+            // First sort albums
+            let sortedAlbums = sortAlbums(musicData.albums, currentSortState.albumSort);
+            
+            // Then sort songs within each album
+            sortedAlbums = sortedAlbums.map(album => {
+                return {
+                    ...album,
+                    songs: sortSongs(album.songs, currentSortState.songSort)
+                };
+            });
+            
+            // Display the fully sorted data
+            displayAlbums(sortedAlbums);
+        }
+
         // Function to display albums
-        function displayAlbums(albumsArray = musicData.albums) {
+        function displayAlbums(albumsArray) {
             const albumsContainer = document.getElementById('albums-container');
             albumsContainer.innerHTML = '';
             
@@ -306,64 +378,6 @@
             updateAlbumStyles();
         }
 
-        // Function to sort albums based on selection
-    function sortAlbums(sortType) {
-        let sortedAlbums = [...musicData.albums];
-        
-        switch(sortType) {
-            case 'a-z':
-                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-                break;
-            case 'z-a':
-                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-                sortedAlbums.reverse(); // Reverse A-Z for Z-A
-                break;
-            case 'new-old':
-                sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                break;
-            case 'old-new':
-                sortedAlbums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-                sortedAlbums.reverse(); // Reverse New-Old for Old-New
-                break;
-            default:
-                sortedAlbums.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
-        }
-        
-        // Re-render the albums with the new order
-        displayAlbums(sortedAlbums);
-    }
-
-        // Function to sort songs based on selection
-    function sortSongs(sortType) {
-        // Create a deep copy of the albums to avoid modifying the original data
-        const albumsCopy = JSON.parse(JSON.stringify(musicData.albums));
-        
-        albumsCopy.forEach(album => {
-            switch(sortType) {
-                case 'a-z':
-                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                case 'z-a':
-                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
-                    album.songs.reverse(); // Reverse A-Z for Z-A
-                    break;
-                case 'new-old':
-                    // Songs are already in the order you provided (new to old)
-                    // No need to change anything
-                    break;
-                case 'old-new':
-                    // Reverse the order to show oldest first
-                    album.songs.reverse();
-                    break;
-                default:
-                    // Default to A-Z sorting
-                    album.songs.sort((a, b) => a.title.localeCompare(b.title));
-            }
-        });
-        
-        // Re-render the albums with the new song order
-        displayAlbums(albumsCopy);
-    }
         // Update styles for dark mode
         function updateAlbumStyles() {
             const isDark = document.body.classList.contains('dark');
@@ -382,30 +396,43 @@
         }
 
         // Initialize the album display when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        // Only display albums if we're on the lyrics page
-        if (window.location.pathname.includes('lyrics')) {
-            // Set up event listeners for dropdowns
-            const albumSortSelect = document.getElementById('album-sort');
-            const songSortSelect = document.getElementById('song-sort');
-            
-            // Set both dropdowns to A-Z by default
-            albumSortSelect.value = 'a-z';
-            songSortSelect.value = 'a-z';
-            
-            albumSortSelect.addEventListener('change', function() {
-                sortAlbums(this.value);
-            });
-            
-            songSortSelect.addEventListener('change', function() {
-                sortSongs(this.value);
-            });
-            
-            // Display albums with A-Z sorting for both albums and songs
-            sortAlbums('a-z');
-            sortSongs('a-z');
-        }
-            
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only display albums if we're on the lyrics page
+            if (window.location.pathname.includes('lyrics')) {
+                // Set up event listeners for dropdowns
+                const albumSortSelect = document.getElementById('album-sort');
+                const songSortSelect = document.getElementById('song-sort');
+                
+                // Load saved sorting preferences if available
+                const savedAlbumSort = localStorage.getItem('albumSort');
+                const savedSongSort = localStorage.getItem('songSort');
+                
+                if (savedAlbumSort) {
+                    albumSortSelect.value = savedAlbumSort;
+                    currentSortState.albumSort = savedAlbumSort;
+                }
+                
+                if (savedSongSort) {
+                    songSortSelect.value = savedSongSort;
+                    currentSortState.songSort = savedSongSort;
+                }
+                
+                albumSortSelect.addEventListener('change', function() {
+                    currentSortState.albumSort = this.value;
+                    localStorage.setItem('albumSort', this.value);
+                    applySorting();
+                });
+                
+                songSortSelect.addEventListener('change', function() {
+                    currentSortState.songSort = this.value;
+                    localStorage.setItem('songSort', this.value);
+                    applySorting();
+                });
+                
+                // Apply initial sorting
+                applySorting();
+            }
+                
             // Add hover effect for entire song rows
             document.addEventListener('mouseover', function(e) {
                 const songRow = e.target.closest('a[href*="lyrics/"]');
