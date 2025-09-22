@@ -51,19 +51,79 @@
             box-shadow: 0 0 0 2px rgba(102, 204, 255, 0.2);
         }
         
+        /* Search container styles */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            padding: 0 20px;
+        }
+        
+        .search-label {
+            font-weight: 600;
+            color: #222;
+            white-space: nowrap;
+            font-size: 16px;
+        }
+        
+        .search-type-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 100px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-type-select:hover {
+            border-color: #66ccff;
+        }
+        
+        .search-type-select:focus {
+            outline: none;
+            border-color: #66ccff;
+            box-shadow: 0 0 0 2px rgba(102, 204, 255, 0.2);
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #66ccff;
+            box-shadow: 0 0 0 2px rgba(102, 204, 255, 0.2);
+        }
+        
         /* Dark mode styles */
-        body.dark .sorting-label {
+        body.dark .sorting-label,
+        body.dark .search-label {
             color: #ffffff;
         }
         
-        body.dark .sort-select {
+        body.dark .sort-select,
+        body.dark .search-type-select,
+        body.dark .search-input {
             background-color: #2a2a2a;
             color: #ffffff;
             border-color: #666;
         }
         
         body.dark .sort-select:hover,
-        body.dark .sort-select:focus {
+        body.dark .sort-select:focus,
+        body.dark .search-type-select:hover,
+        body.dark .search-type-select:focus,
+        body.dark .search-input:hover,
+        body.dark .search-input:focus {
             border-color: #66ccff;
         }
         
@@ -77,6 +137,16 @@
             .sorting-group {
                 width: 100%;
                 justify-content: space-between;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .search-container > * {
+                width: 100%;
             }
         }
     </style>
@@ -139,9 +209,15 @@
             <h1>Diljit Dosanjh - Lyrics</h1>
         </div>
         
-        <!-- Search Bar -->
-        <div class="search-container" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
-            <input type="text" id="search-input" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
+        <!-- Search Bar - UPDATED WITH DROPDOWN -->
+        <div class="search-container">
+            <span class="search-label">Search for</span>
+            <select id="search-type" class="search-type-select">
+                <option value="songs">Songs</option>
+                <option value="albums">Albums</option>
+            </select>
+            <span class="search-label">:</span>
+            <input type="text" id="search-input" placeholder="Type to search..." class="search-input">
         </div>
         
         <!-- Sorting Controls - UPDATED WITH DROPDOWNS -->
@@ -248,10 +324,11 @@
           ]
         };
 
-        // State to track current sorting preferences
+        // State to track current sorting preferences and search type
         let currentSortState = {
             albumSort: 'a-z',
-            songSort: 'a-z'
+            songSort: 'a-z',
+            searchType: 'songs' // Default to searching songs
         };
 
         // Function to create album card HTML
@@ -359,39 +436,56 @@
             return sortedSongs;
         }
 
-        // Function to filter albums and songs based on search query
-        function filterAlbumsAndSongs(query) {
+        // Function to filter albums and songs based on search query and search type
+        function filterAlbumsAndSongs(query, searchType) {
             if (!query.trim()) {
                 return musicData.albums; // Return all albums if no search query
             }
             
             const searchTerm = query.toLowerCase().trim();
             
-            return musicData.albums.map(album => {
-                // Check if album title matches search
-                const albumMatches = album.title.toLowerCase().includes(searchTerm);
-                
-                // Filter songs that match search
-                const filteredSongs = album.songs.filter(song => 
-                    song.title.toLowerCase().includes(searchTerm)
-                );
-                
-                // If album matches or there are matching songs, return the album with filtered songs
-                if (albumMatches || filteredSongs.length > 0) {
-                    return {
-                        ...album,
-                        songs: filteredSongs
-                    };
-                }
-                
-                return null; // Album doesn't match search
-            }).filter(album => album !== null && album.songs.length > 0); // Remove null albums and albums with no songs
+            if (searchType === 'albums') {
+                // Search only by album titles
+                return musicData.albums.map(album => {
+                    const albumMatches = album.title.toLowerCase().includes(searchTerm);
+                    
+                    if (albumMatches) {
+                        return {
+                            ...album,
+                            songs: album.songs // Keep all songs for matching albums
+                        };
+                    }
+                    
+                    return null; // Album doesn't match search
+                }).filter(album => album !== null);
+            } else {
+                // Search by songs (default behavior)
+                return musicData.albums.map(album => {
+                    // Check if album title matches search
+                    const albumMatches = album.title.toLowerCase().includes(searchTerm);
+                    
+                    // Filter songs that match search
+                    const filteredSongs = album.songs.filter(song => 
+                        song.title.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    // If album matches or there are matching songs, return the album with filtered songs
+                    if (albumMatches || filteredSongs.length > 0) {
+                        return {
+                            ...album,
+                            songs: albumMatches ? album.songs : filteredSongs
+                        };
+                    }
+                    
+                    return null; // Album doesn't match search
+                }).filter(album => album !== null && album.songs.length > 0); // Remove null albums and albums with no songs
+            }
         }
 
         // Main function to apply both album and song sorting with optional search filter
-        function applySorting(searchQuery = '') {
-            // First filter albums based on search query
-            let filteredAlbums = searchQuery ? filterAlbumsAndSongs(searchQuery) : musicData.albums;
+        function applySorting(searchQuery = '', searchType = 'songs') {
+            // First filter albums based on search query and search type
+            let filteredAlbums = searchQuery ? filterAlbumsAndSongs(searchQuery, searchType) : musicData.albums;
             
             // Then sort albums
             let sortedAlbums = sortAlbums(filteredAlbums, currentSortState.albumSort);
@@ -418,7 +512,7 @@
                 albumsContainer.innerHTML = `
                     <div class="content-box" style="text-align: center; padding: 40px;">
                         <h3>No results found</h3>
-                        <p>Try searching for a different song or album name.</p>
+                        <p>Try searching for a different ${currentSortState.searchType === 'albums' ? 'album' : 'song'} name.</p>
                     </div>
                 `;
                 return;
@@ -462,10 +556,12 @@
                 const albumSortSelect = document.getElementById('album-sort');
                 const songSortSelect = document.getElementById('song-sort');
                 const searchInput = document.getElementById('search-input');
+                const searchTypeSelect = document.getElementById('search-type');
                 
                 // Load saved sorting preferences if available
                 const savedAlbumSort = localStorage.getItem('albumSort');
                 const savedSongSort = localStorage.getItem('songSort');
+                const savedSearchType = localStorage.getItem('searchType');
                 
                 if (savedAlbumSort) {
                     albumSortSelect.value = savedAlbumSort;
@@ -477,21 +573,34 @@
                     currentSortState.songSort = savedSongSort;
                 }
                 
+                if (savedSearchType) {
+                    searchTypeSelect.value = savedSearchType;
+                    currentSortState.searchType = savedSearchType;
+                }
+                
                 // Search functionality
-                searchInput.addEventListener('input', function() {
-                    applySorting(this.value);
+                function performSearch() {
+                    applySorting(searchInput.value, searchTypeSelect.value);
+                }
+                
+                searchInput.addEventListener('input', performSearch);
+                
+                searchTypeSelect.addEventListener('change', function() {
+                    currentSortState.searchType = this.value;
+                    localStorage.setItem('searchType', this.value);
+                    performSearch();
                 });
                 
                 albumSortSelect.addEventListener('change', function() {
                     currentSortState.albumSort = this.value;
                     localStorage.setItem('albumSort', this.value);
-                    applySorting(searchInput.value);
+                    performSearch();
                 });
                 
                 songSortSelect.addEventListener('change', function() {
                     currentSortState.songSort = this.value;
                     localStorage.setItem('songSort', this.value);
-                    applySorting(searchInput.value);
+                    performSearch();
                 });
                 
                 // Apply initial sorting
