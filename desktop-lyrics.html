@@ -141,7 +141,7 @@
         
         <!-- Search Bar -->
         <div class="search-container" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
-            <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
+            <input type="text" id="search-input" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
         </div>
         
         <!-- Sorting Controls - UPDATED WITH DROPDOWNS -->
@@ -359,10 +359,42 @@
             return sortedSongs;
         }
 
-        // Main function to apply both album and song sorting
-        function applySorting() {
-            // First sort albums
-            let sortedAlbums = sortAlbums(musicData.albums, currentSortState.albumSort);
+        // Function to filter albums and songs based on search query
+        function filterAlbumsAndSongs(query) {
+            if (!query.trim()) {
+                return musicData.albums; // Return all albums if no search query
+            }
+            
+            const searchTerm = query.toLowerCase().trim();
+            
+            return musicData.albums.map(album => {
+                // Check if album title matches search
+                const albumMatches = album.title.toLowerCase().includes(searchTerm);
+                
+                // Filter songs that match search
+                const filteredSongs = album.songs.filter(song => 
+                    song.title.toLowerCase().includes(searchTerm)
+                );
+                
+                // If album matches or there are matching songs, return the album with filtered songs
+                if (albumMatches || filteredSongs.length > 0) {
+                    return {
+                        ...album,
+                        songs: filteredSongs
+                    };
+                }
+                
+                return null; // Album doesn't match search
+            }).filter(album => album !== null && album.songs.length > 0); // Remove null albums and albums with no songs
+        }
+
+        // Main function to apply both album and song sorting with optional search filter
+        function applySorting(searchQuery = '') {
+            // First filter albums based on search query
+            let filteredAlbums = searchQuery ? filterAlbumsAndSongs(searchQuery) : musicData.albums;
+            
+            // Then sort albums
+            let sortedAlbums = sortAlbums(filteredAlbums, currentSortState.albumSort);
             
             // Then sort songs within each album
             sortedAlbums = sortedAlbums.map(album => {
@@ -372,7 +404,7 @@
                 };
             });
             
-            // Display the fully sorted data
+            // Display the fully sorted and filtered data
             displayAlbums(sortedAlbums);
         }
 
@@ -380,6 +412,17 @@
         function displayAlbums(albumsArray) {
             const albumsContainer = document.getElementById('albums-container');
             albumsContainer.innerHTML = '';
+            
+            if (albumsArray.length === 0) {
+                // Show message when no results found
+                albumsContainer.innerHTML = `
+                    <div class="content-box" style="text-align: center; padding: 40px;">
+                        <h3>No results found</h3>
+                        <p>Try searching for a different song or album name.</p>
+                    </div>
+                `;
+                return;
+            }
             
             // Display each album
             albumsArray.forEach(album => {
@@ -418,6 +461,7 @@
                 // Set up event listeners for dropdowns
                 const albumSortSelect = document.getElementById('album-sort');
                 const songSortSelect = document.getElementById('song-sort');
+                const searchInput = document.getElementById('search-input');
                 
                 // Load saved sorting preferences if available
                 const savedAlbumSort = localStorage.getItem('albumSort');
@@ -433,16 +477,21 @@
                     currentSortState.songSort = savedSongSort;
                 }
                 
+                // Search functionality
+                searchInput.addEventListener('input', function() {
+                    applySorting(this.value);
+                });
+                
                 albumSortSelect.addEventListener('change', function() {
                     currentSortState.albumSort = this.value;
                     localStorage.setItem('albumSort', this.value);
-                    applySorting();
+                    applySorting(searchInput.value);
                 });
                 
                 songSortSelect.addEventListener('change', function() {
                     currentSortState.songSort = this.value;
                     localStorage.setItem('songSort', this.value);
-                    applySorting();
+                    applySorting(searchInput.value);
                 });
                 
                 // Apply initial sorting
