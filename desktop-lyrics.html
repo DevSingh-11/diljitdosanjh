@@ -468,27 +468,23 @@
                     return null; // Album doesn't match search
                 }).filter(album => album !== null);
             } else {
-                // Search by songs (punctuation-insensitive)
+                // Search ONLY by songs (punctuation-insensitive) - don't include album title matches
                 return musicData.albums.map(album => {
-                    // Check if album title matches search (punctuation-insensitive)
-                    const normalizedAlbumTitle = normalizeSearchText(album.title);
-                    const albumMatches = normalizedAlbumTitle.includes(searchTerm);
-                    
                     // Filter songs that match search (punctuation-insensitive)
                     const filteredSongs = album.songs.filter(song => {
                         const normalizedSongTitle = normalizeSearchText(song.title);
                         return normalizedSongTitle.includes(searchTerm);
                     });
                     
-                    // If album matches or there are matching songs, return the album with filtered songs
-                    if (albumMatches || filteredSongs.length > 0) {
+                    // Only return albums that have matching songs (ignore album title matches)
+                    if (filteredSongs.length > 0) {
                         return {
                             ...album,
-                            songs: albumMatches ? album.songs : filteredSongs
+                            songs: filteredSongs // Only include matching songs
                         };
                     }
                     
-                    return null; // Album doesn't match search
+                    return null; // Album doesn't have any matching songs
                 }).filter(album => album !== null && album.songs.length > 0); // Remove null albums and albums with no songs
             }
         }
