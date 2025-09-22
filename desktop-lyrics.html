@@ -331,6 +331,14 @@
             searchType: 'songs' // Default to searching songs
         };
 
+        // Function to normalize text for searching (remove punctuation, convert to lowercase)
+        function normalizeSearchText(text) {
+            return text.toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"]/g, '') // Remove punctuation
+                .replace(/\s{2,}/g, ' ') // Replace multiple spaces with single space
+                .trim();
+        }
+
         // Function to create album card HTML
         function createAlbumCard(album) {
             return `
@@ -442,12 +450,13 @@
                 return musicData.albums; // Return all albums if no search query
             }
             
-            const searchTerm = query.toLowerCase().trim();
+            const searchTerm = normalizeSearchText(query);
             
             if (searchType === 'albums') {
-                // Search only by album titles
+                // Search only by album titles (punctuation-insensitive)
                 return musicData.albums.map(album => {
-                    const albumMatches = album.title.toLowerCase().includes(searchTerm);
+                    const normalizedAlbumTitle = normalizeSearchText(album.title);
+                    const albumMatches = normalizedAlbumTitle.includes(searchTerm);
                     
                     if (albumMatches) {
                         return {
@@ -459,15 +468,17 @@
                     return null; // Album doesn't match search
                 }).filter(album => album !== null);
             } else {
-                // Search by songs (default behavior)
+                // Search by songs (punctuation-insensitive)
                 return musicData.albums.map(album => {
-                    // Check if album title matches search
-                    const albumMatches = album.title.toLowerCase().includes(searchTerm);
+                    // Check if album title matches search (punctuation-insensitive)
+                    const normalizedAlbumTitle = normalizeSearchText(album.title);
+                    const albumMatches = normalizedAlbumTitle.includes(searchTerm);
                     
-                    // Filter songs that match search
-                    const filteredSongs = album.songs.filter(song => 
-                        song.title.toLowerCase().includes(searchTerm)
-                    );
+                    // Filter songs that match search (punctuation-insensitive)
+                    const filteredSongs = album.songs.filter(song => {
+                        const normalizedSongTitle = normalizeSearchText(song.title);
+                        return normalizedSongTitle.includes(searchTerm);
+                    });
                     
                     // If album matches or there are matching songs, return the album with filtered songs
                     if (albumMatches || filteredSongs.length > 0) {
