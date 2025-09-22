@@ -1,3 +1,4 @@
+/*desktop-lyrics.html*/
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,74 +66,6 @@
         body.dark .sort-select:hover,
         body.dark .sort-select:focus {
             border-color: #66ccff;
-        }
-        
-        /* Search container styles */
-        .search-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto 30px auto;
-            padding: 0 20px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 15px 50px 15px 15px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: #66ccff;
-            box-shadow: 0 0 0 2px rgba(102, 204, 255, 0.2);
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            background-color: #999;
-            -webkit-mask-image: url('images/search.png');
-            mask-image: url('images/search.png');
-            -webkit-mask-size: contain;
-            mask-size: contain;
-            -webkit-mask-position: center;
-            mask-position: center;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            pointer-events: none;
-        }
-        
-        body.dark .search-input {
-            background-color: #2a2a2a;
-            color: #ffffff;
-            border-color: #666;
-        }
-        
-        body.dark .search-input:focus {
-            border-color: #66ccff;
-        }
-        
-        body.dark .search-icon {
-            background-color: #ccc;
-        }
-        
-        /* No results message */
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        body.dark .no-results {
-            color: #999;
         }
         
         /* Responsive adjustments */
@@ -208,9 +141,8 @@
         </div>
         
         <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-input" placeholder="Search songs or albums...">
-            <div class="search-icon"></div>
+        <div class="search-container" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
+            <input type="text" placeholder="Search songs or albums..." style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
         </div>
         
         <!-- Sorting Controls - UPDATED WITH DROPDOWNS -->
@@ -238,12 +170,6 @@
         
         <!-- Albums Container -->
         <div id="albums-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;"></div>
-        
-        <!-- No Results Message (initially hidden) -->
-        <div id="no-results" class="no-results" style="display: none;">
-            <h3>No results found</h3>
-            <p>Try different keywords or check the spelling</p>
-        </div>
     </main>
 
     <script>
@@ -434,63 +360,20 @@
             return sortedSongs;
         }
 
-        // Function to filter albums and songs based on search query
-        function filterBySearch(query) {
-            if (!query) return musicData.albums;
-            
-            const searchTerm = query.toLowerCase().trim();
-            
-            return musicData.albums
-                .map(album => {
-                    // Check if album title matches
-                    const albumMatches = album.title.toLowerCase().includes(searchTerm);
-                    
-                    // Filter songs that match
-                    const filteredSongs = album.songs.filter(song => 
-                        song.title.toLowerCase().includes(searchTerm) || 
-                        (song.featured && song.featured.toLowerCase().includes(searchTerm))
-                    );
-                    
-                    // Return album only if it has matching songs or album title matches
-                    if (albumMatches || filteredSongs.length > 0) {
-                        return {
-                            ...album,
-                            songs: filteredSongs.length > 0 ? filteredSongs : album.songs
-                        };
-                    }
-                    
-                    return null;
-                })
-                .filter(album => album !== null); // Remove null entries
-        }
-
-        // Main function to apply search, album and song sorting
-        function applyFilters() {
-            const searchInput = document.getElementById('search-input');
-            const searchQuery = searchInput ? searchInput.value : '';
-            
-            // First filter by search
-            let filteredAlbums = filterBySearch(searchQuery);
-            
-            // Show/hide no results message
-            const noResults = document.getElementById('no-results');
-            if (noResults) {
-                noResults.style.display = filteredAlbums.length === 0 ? 'block' : 'none';
-            }
-            
-            // Then sort albums
-            let sortedAlbums = sortAlbums(filteredAlbums, currentSortState.albumSort);
+        // Main function to apply both album and song sorting
+        function applySorting() {
+            // First sort albums
+            let sortedAlbums = sortAlbums(musicData.albums, currentSortState.albumSort);
             
             // Then sort songs within each album
             sortedAlbums = sortedAlbums.map(album => {
-                const originalAlbum = musicData.albums.find(a => a.title === album.title);
                 return {
                     ...album,
-                    songs: sortSongs(album.songs, currentSortState.songSort, originalAlbum ? originalAlbum.songs : album.songs)
+                    songs: sortSongs(album.songs, currentSortState.songSort, musicData.albums.find(a => a.title === album.title).songs)
                 };
             });
             
-            // Display the fully filtered and sorted data
+            // Display the fully sorted data
             displayAlbums(sortedAlbums);
         }
 
@@ -536,7 +419,6 @@
                 // Set up event listeners for dropdowns
                 const albumSortSelect = document.getElementById('album-sort');
                 const songSortSelect = document.getElementById('song-sort');
-                const searchInput = document.getElementById('search-input');
                 
                 // Load saved sorting preferences if available
                 const savedAlbumSort = localStorage.getItem('albumSort');
@@ -552,33 +434,20 @@
                     currentSortState.songSort = savedSongSort;
                 }
                 
-                // Set up event listeners
                 albumSortSelect.addEventListener('change', function() {
                     currentSortState.albumSort = this.value;
                     localStorage.setItem('albumSort', this.value);
-                    applyFilters();
+                    applySorting();
                 });
                 
                 songSortSelect.addEventListener('change', function() {
                     currentSortState.songSort = this.value;
                     localStorage.setItem('songSort', this.value);
-                    applyFilters();
+                    applySorting();
                 });
                 
-                // Set up search input listener
-                if (searchInput) {
-                    let searchTimeout;
-                    searchInput.addEventListener('input', function() {
-                        // Debounce the search to avoid too many rapid requests
-                        clearTimeout(searchTimeout);
-                        searchTimeout = setTimeout(() => {
-                            applyFilters();
-                        }, 300);
-                    });
-                }
-                
-                // Apply initial filtering and sorting
-                applyFilters();
+                // Apply initial sorting
+                applySorting();
             }
                 
             // Add hover effect for entire song rows
@@ -635,7 +504,7 @@
             const overlay = document.getElementById('overlay');
 
             if (settingsToggle && settingsMenu && overlay) {
-                settingsToggle.addEventListener('click', (e) {
+                settingsToggle.addEventListener('click', (e) => {
                     e.stopPropagation();
                     settingsMenu.classList.toggle('active');
                     overlay.classList.toggle('active');
