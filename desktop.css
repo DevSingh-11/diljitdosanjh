@@ -133,17 +133,6 @@ body {
     text-align: center;
 }
 
-.toggle-label.left {
-    text-align: right;
-    color: #66ccff;
-    font-weight: 600;
-}
-
-.toggle-label.right {
-    text-align: left;
-    color: #999;
-}
-
 /* iPhone-style Toggle Switch */
 .toggle-switch {
     position: relative;
@@ -183,9 +172,6 @@ body {
     border-radius: 50%;
 }
 
-input:checked + .toggle-slider {
-    background-color: #66ccff;
-}
 
 input:checked + .toggle-slider:before {
     transform: translateX(20px);
@@ -543,4 +529,27 @@ body.dark .sorting-controls button.active:hover {
     background-color: #66ccff !important;
     color: #ffffff !important;
     border: 1px solid #66ccff !important;
+}
+
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* ADD THESE NEW STYLES RIGHT AFTER THE ABOVE .toggle-label */
+.toggle-label.active {
+    font-weight: 600;
+}
+
+.toggle-label.inactive {
+    font-weight: 500;
+    color: #666;
+}
+
+/* For dark mode */
+body.dark .toggle-label.active,
+body.dark .toggle-label.inactive {
+    color: #ccc;
 }
