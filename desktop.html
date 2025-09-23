@@ -269,33 +269,36 @@
             const themeLabels = document.querySelector('.settings-header:first-child .toggle-container');
             const difficultyLabels = document.querySelector('.settings-header:last-child .toggle-container');
             
+            // Get all label elements
+            const themeLeft = themeLabels.querySelector('.toggle-label.left');
+            const themeRight = themeLabels.querySelector('.toggle-label.right');
+            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            
+            // Reset all labels first
+            [themeLeft, themeRight, difficultyLeft, difficultyRight].forEach(label => {
+                label.classList.remove('active', 'inactive');
+                label.classList.add('inactive'); // Default to inactive
+            });
+            
             // Update theme labels
             if (themeToggle.checked) {
-                themeLabels.querySelector('.toggle-label.left').style.color = '#999';
-                themeLabels.querySelector('.toggle-label.left').style.fontWeight = '500';
-                themeLabels.querySelector('.toggle-label.right').style.color = '#66ccff';
-                themeLabels.querySelector('.toggle-label.right').style.fontWeight = '600';
+                themeRight.classList.add('active');
+                themeRight.classList.remove('inactive');
             } else {
-                themeLabels.querySelector('.toggle-label.left').style.color = '#66ccff';
-                themeLabels.querySelector('.toggle-label.left').style.fontWeight = '600';
-                themeLabels.querySelector('.toggle-label.right').style.color = '#999';
-                themeLabels.querySelector('.toggle-label.right').style.fontWeight = '500';
+                themeLeft.classList.add('active');
+                themeLeft.classList.remove('inactive');
             }
             
             // Update difficulty labels
             if (difficultyToggle.checked) {
-                difficultyLabels.querySelector('.toggle-label.left').style.color = '#999';
-                difficultyLabels.querySelector('.toggle-label.left').style.fontWeight = '500';
-                difficultyLabels.querySelector('.toggle-label.right').style.color = '#66ccff';
-                difficultyLabels.querySelector('.toggle-label.right').style.fontWeight = '600';
+                difficultyRight.classList.add('active');
+                difficultyRight.classList.remove('inactive');
             } else {
-                difficultyLabels.querySelector('.toggle-label.left').style.color = '#66ccff';
-                difficultyLabels.querySelector('.toggle-label.left').style.fontWeight = '600';
-                difficultyLabels.querySelector('.toggle-label.right').style.color = '#999';
-                difficultyLabels.querySelector('.toggle-label.right').style.fontWeight = '500';
+                difficultyLeft.classList.add('active');
+                difficultyLeft.classList.remove('inactive');
             }
         }
-
         // Match heights for all containers (images and videos)
         function matchHeights() {
             const textBoxes = document.querySelectorAll('.text-box');
