@@ -553,3 +553,15 @@ body.dark .toggle-label.active,
 body.dark .toggle-label.inactive {
     color: #ccc;
 }
+
+/* Service icon styling for Music Service toggle */
+.service-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.toggle-label.active .service-icon,
+.toggle-label.inactive .service-icon {
+    filter: none; /* Keep original colors */
+}
