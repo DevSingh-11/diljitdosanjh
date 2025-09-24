@@ -548,10 +548,14 @@ body.dark .sorting-controls button.active:hover {
     color: #666;
 }
 
-/* For dark mode */
-body.dark .toggle-label.active,
+/* Dark mode - Active text labels white */
+body.dark .toggle-label.active {
+    color: #ffffff !important;
+}
+
+/* Dark mode - Inactive text labels grey */
 body.dark .toggle-label.inactive {
-    color: #ccc;
+    color: #666666 !important;
 }
 
 /* Settings menu icon styles - STENCIL/CUT-OUT EFFECT */
