@@ -559,38 +559,28 @@ body.dark .toggle-label.inactive {
     width: 20px;
     height: 20px;
     vertical-align: middle;
-}
-
-.toggle-label.active .service-icon,
-.toggle-label.inactive .service-icon {
-    filter: none; /* Keep original colors */
-}
-
-/* Service icon styling for Music Service toggle */
-.service-icon {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
     transition: filter 0.3s ease;
 }
 
 /* Light mode - black icons */
-.service-icon {
-    filter: brightness(0); /* Black in light mode */
+body:not(.dark) .service-icon {
+    filter: brightness(0); /* Force black in light mode */
 }
 
 /* Dark mode - white icons */
 body.dark .service-icon {
-    filter: brightness(0) invert(1); /* White in dark mode */
+    filter: brightness(0) invert(1); /* Force white in dark mode */
 }
 
-/* Override the gray color for labels containing icons */
-.toggle-container .toggle-label:has(.service-icon) {
-    color: transparent !important; /* Hide the text color to show only the icon */
+/* Fix the label colors for icon-only labels */
+.settings-header:nth-child(3) .toggle-label {
+    color: transparent !important;
+    min-width: 30px; /* Smaller width for icons */
 }
 
-/* Ensure the icons are properly aligned */
-.toggle-label.left, .toggle-label.right {
+/* Ensure proper alignment */
+.settings-header:nth-child(3) .toggle-label.left,
+.settings-header:nth-child(3) .toggle-label.right {
     display: flex;
     align-items: center;
     justify-content: center;
