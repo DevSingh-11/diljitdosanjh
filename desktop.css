@@ -554,31 +554,56 @@ body.dark .toggle-label.inactive {
     color: #ccc;
 }
 
-/* Service icon styling for Music Service toggle */
+/* Service icon stencil styling */
+.icon-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #666; /* Gray for inactive state */
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
 .service-icon {
+    position: relative;
+    z-index: 2;
     width: 20px;
     height: 20px;
-    vertical-align: middle;
-    transition: filter 0.3s ease;
+    margin: 2px;
+    filter: brightness(0) invert(1); /* White stencil cutout */
 }
 
-/* Light mode - black icons */
-body:not(.dark) .service-icon {
-    filter: brightness(0); /* Force black in light mode */
+/* Active state - Light mode */
+body:not(.dark) .toggle-label.active .icon-bg {
+    background-color: #000000; /* Black when active in light mode */
 }
 
-/* Dark mode - white icons */
-body.dark .service-icon {
-    filter: brightness(0) invert(1); /* Force white in dark mode */
+/* Active state - Dark mode */
+body.dark .toggle-label.active .icon-bg {
+    background-color: #ffffff; /* White when active in dark mode */
 }
 
-/* Fix the label colors for icon-only labels */
+/* Inactive state - same for both modes */
+.toggle-label.inactive .icon-bg {
+    background-color: #666; /* Gray when inactive */
+}
+
+/* Remove text color from icon labels */
 .settings-header:nth-child(3) .toggle-label {
     color: transparent !important;
-    min-width: 30px; /* Smaller width for icons */
+    min-width: 30px;
 }
 
-/* Ensure proper alignment */
+/* Center the icons */
 .settings-header:nth-child(3) .toggle-label.left,
 .settings-header:nth-child(3) .toggle-label.right {
     display: flex;
