@@ -565,3 +565,27 @@ body.dark .toggle-label.inactive {
 .toggle-label.inactive .service-icon {
     filter: none; /* Keep original colors */
 }
+
+/* Service icon styling for Music Service toggle */
+.service-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+
+/* Light mode - black icons */
+.service-icon {
+    filter: brightness(0); /* Black in light mode */
+}
+
+/* Dark mode - white icons */
+body.dark .service-icon {
+    filter: brightness(0) invert(1); /* White in dark mode */
+}
+
+/* Keep active/inactive styling for icons */
+.toggle-label.active .service-icon,
+.toggle-label.inactive .service-icon {
+    /* No additional filters needed - base styles handle it */
+}
