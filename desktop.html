@@ -159,8 +159,26 @@
                 <span class="toggle-label right">Hard</span>
             </div>
         </div>
+
+        <div class="settings-header">
+            <h3>Music Service</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">
+                    <img src="images/spotify.png" alt="Spotify" class="service-icon">
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="service-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">
+                    <img src="images/youtube.png" alt="YouTube" class="service-icon">
+                </span>
+            </div>
+        </div>
     </div>
 
+
+    
     <!-- Overlay (for closing menu by clicking elsewhere) -->
     <div id="overlay" class="overlay"></div>
 
@@ -234,7 +252,8 @@
         const overlay = document.getElementById('overlay');
         const themeToggle = document.getElementById('theme-toggle');
         const difficultyToggle = document.getElementById('difficulty-toggle');
-
+        const serviceToggle = document.getElementById('service-toggle');
+        
         // Toggle settings menu
         settingsToggle.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -266,17 +285,20 @@
 
         // Update toggle labels
         function updateToggleLabels() {
-            const themeLabels = document.querySelector('.settings-header:first-child .toggle-container');
-            const difficultyLabels = document.querySelector('.settings-header:last-child .toggle-container');
+            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
             
             // Get all label elements
             const themeLeft = themeLabels.querySelector('.toggle-label.left');
             const themeRight = themeLabels.querySelector('.toggle-label.right');
             const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
             const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
             
             // Reset all labels first
-            [themeLeft, themeRight, difficultyLeft, difficultyRight].forEach(label => {
+            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
                 label.classList.remove('active', 'inactive');
                 label.classList.add('inactive'); // Default to inactive
             });
@@ -298,7 +320,18 @@
                 difficultyLeft.classList.add('active');
                 difficultyLeft.classList.remove('inactive');
             }
+            
+            // Update service labels
+            if (serviceToggle.checked) {
+                serviceRight.classList.add('active');
+                serviceRight.classList.remove('inactive');
+            } else {
+                serviceLeft.classList.add('active');
+                serviceLeft.classList.remove('inactive');
+            }
         }
+
+        
         // Match heights for all containers (images and videos)
         function matchHeights() {
             const textBoxes = document.querySelectorAll('.text-box');
@@ -328,6 +361,12 @@
             difficultyToggle.checked = true;
         }
 
+        // Load saved service preference
+        const savedService = localStorage.getItem('musicService');
+        if (savedService === 'youtube') {
+            serviceToggle.checked = true;
+        }
+        
         // Update labels on load
         updateToggleLabels();
 
@@ -344,7 +383,13 @@
             localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
             updateToggleLabels();
         });
-
+        
+        // Music service functionality
+        serviceToggle.addEventListener('change', () => {
+            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+            updateToggleLabels();
+        });
+        
         // Match heights on load and resize
         window.addEventListener('load', matchHeights);
         window.addEventListener('resize', matchHeights);
