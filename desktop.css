@@ -563,12 +563,7 @@ body.dark .toggle-label.inactive {
 }
 
 .icon-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
+    display: none; /* HIDE the background square entirely */
 }
 
 .service-icon-mask {
@@ -577,48 +572,33 @@ body.dark .toggle-label.inactive {
     left: 0;
     width: 100%;
     height: 100%;
-    -webkit-mask-size: cover; /* Changed from 'contain' to 'cover' */
-    mask-size: cover;
+    -webkit-mask-size: contain;
+    mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
+    border-radius: 3px;
 }
 
 /* Light mode - Active (black) */
-body:not(.dark) .toggle-label.active .icon-bg {
-    background-color: #000000; /* Black square beneath */
-}
-
 body:not(.dark) .toggle-label.active .service-icon-mask {
-    background-color: #000000; /* Black fills the PNG cut-out */
+    background-color: #000000; /* Black fills the PNG shape */
 }
 
 /* Light mode - Inactive (grey) */
-body:not(.dark) .toggle-label.inactive .icon-bg {
-    background-color: #cccccc; /* Grey square beneath */
-}
-
 body:not(.dark) .toggle-label.inactive .service-icon-mask {
-    background-color: #cccccc; /* Grey fills the PNG cut-out */
+    background-color: #cccccc; /* Grey fills the PNG shape */
 }
 
 /* Dark mode - Active (white) */
-body.dark .toggle-label.active .icon-bg {
-    background-color: #ffffff; /* White square beneath */
-}
-
 body.dark .toggle-label.active .service-icon-mask {
-    background-color: #ffffff; /* White fills the PNG cut-out */
+    background-color: #ffffff; /* White fills the PNG shape */
 }
 
 /* Dark mode - Inactive (grey) */
-body.dark .toggle-label.inactive .icon-bg {
-    background-color: #666666; /* Grey square beneath */
-}
-
 body.dark .toggle-label.inactive .service-icon-mask {
-    background-color: #666666; /* Grey fills the PNG cut-out */
+    background-color: #666666; /* Grey fills the PNG shape */
 }
 
 /* Remove text color from icon labels */
