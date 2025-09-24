@@ -554,7 +554,7 @@ body.dark .toggle-label.inactive {
     color: #ccc;
 }
 
-/* Service icon stencil styling */
+/* Settings menu icon styles - CUT OUT EFFECT */
 .icon-wrapper {
     position: relative;
     display: inline-block;
@@ -568,33 +568,57 @@ body.dark .toggle-label.inactive {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #666; /* Gray for inactive state */
+    background-color: #666; /* Default color */
     border-radius: 3px;
-    transition: background-color 0.3s ease;
 }
 
-.service-icon {
-    position: relative;
-    z-index: 2;
-    width: 20px;
-    height: 20px;
-    margin: 2px;
-    filter: brightness(0) invert(1); /* White stencil cutout */
+.service-icon-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Icon color */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
-/* Active state - Light mode */
-body:not(.dark) .toggle-label.active .icon-bg {
-    background-color: #000000; /* Black when active in light mode */
+/* Active state for icons */
+.toggle-label.active .icon-bg {
+    background-color: #4CAF50; /* Green for active state */
 }
 
-/* Active state - Dark mode */
-body.dark .toggle-label.active .icon-bg {
-    background-color: #ffffff; /* White when active in dark mode */
+.toggle-label.active .service-icon-mask {
+    background-color: #fff; /* White icon on colored background */
 }
 
-/* Inactive state - same for both modes */
 .toggle-label.inactive .icon-bg {
-    background-color: #666; /* Gray when inactive */
+    background-color: #ccc; /* Light gray for inactive */
+}
+
+.toggle-label.inactive .service-icon-mask {
+    background-color: #888; /* Dark gray icon */
+}
+
+/* Dark mode support for settings icons */
+body.dark .toggle-label.active .icon-bg {
+    background-color: #4CAF50; /* Same green in dark mode */
+}
+
+body.dark .toggle-label.active .service-icon-mask {
+    background-color: #fff;
+}
+
+body.dark .toggle-label.inactive .icon-bg {
+    background-color: #555; /* Darker gray in dark mode */
+}
+
+body.dark .toggle-label.inactive .service-icon-mask {
+    background-color: #ccc; /* Lighter gray icon in dark mode */
 }
 
 /* Remove text color from icon labels */
