@@ -584,8 +584,14 @@ body.dark .service-icon {
     filter: brightness(0) invert(1); /* White in dark mode */
 }
 
-/* Keep active/inactive styling for icons */
-.toggle-label.active .service-icon,
-.toggle-label.inactive .service-icon {
-    /* No additional filters needed - base styles handle it */
+/* Override the gray color for labels containing icons */
+.toggle-container .toggle-label:has(.service-icon) {
+    color: transparent !important; /* Hide the text color to show only the icon */
+}
+
+/* Ensure the icons are properly aligned */
+.toggle-label.left, .toggle-label.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
