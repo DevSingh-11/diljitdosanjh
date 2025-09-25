@@ -468,22 +468,12 @@ body.dark .title-box h1 {
 
 /* Light mode styles for search and sort elements */
 .search-container input {
-    border: 1px solid #000000 !important; 
-}
-
-.sorting-controls button {
-    border: 1px solid #000000 !important; 
+    border: 2px solid #ddd !important; /* Changed from 1px to 2px, color from #000 to #ddd */
 }
 
 /* Dark mode overrides - grey outline matching features/duration text */
 body.dark .search-container input {
-    border: 1px solid #666666 !important; 
-    background-color: #2a2a2a !important;
-    color: #ffffff !important;
-}
-
-body.dark .sorting-controls button {
-    border: 1px solid #666666 !important; 
+    border: 2px solid #666 !important; /* Changed from 1px to 2px */
     background-color: #2a2a2a !important;
     color: #ffffff !important;
 }
