@@ -92,8 +92,8 @@
         .search-input {
             flex: 1;
             padding: 15px;
-            border: 2px solid #ddd; /* Match the sort button grey outline */
-            border-radius: 25px;
+            border: 2px solid #ddd; /* Now matches the sort-select exactly */
+            border-radius: 8px; /* Changed from 25px to match sort-select */
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
@@ -115,7 +115,7 @@
         body.dark .search-input {
             background-color: #2a2a2a;
             color: #ffffff;
-            border-color: #666;
+            border-color: #666; /* Now matches sort-select in dark mode */
         }
         
         body.dark .sort-select:hover,
