@@ -555,9 +555,11 @@
             
             // Then sort songs within each album
             sortedAlbums = sortedAlbums.map(album => {
+                const originalSongs = searchQuery ? album.songs : musicData.albums.find(a => a.title === album.title).songs;
+                
                 return {
                     ...album,
-                    songs: sortSongs(album.songs, currentSortState.songSort, musicData.albums.find(a => a.title === album.title).songs)
+                    songs: sortSongs(album.songs, currentSortState.songSort, originalSongs)
                 };
             });
             
