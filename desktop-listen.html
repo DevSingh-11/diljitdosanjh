@@ -424,7 +424,7 @@
                                     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                                         <div style="display: flex; align-items: center; flex: 1;">
                                             <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
-                                            <span class="song-title" style="color: #000000; transition: color 0.3s ease;">${song.title}</span>
+                                            <span class="song-link" style="color: #000000; transition: color 0.3s ease;">${song.title}</span>
                                         </div>
                                         <div style="display: flex; justify-content: center; align-items: center; flex: 1;">
                                             <span style="color: #888; font-size: 14px; font-style: italic; text-align: center;">${song.featured}</span>
@@ -612,7 +612,7 @@
         // Update styles for dark mode
         function updateAlbumStyles() {
             const isDark = document.body.classList.contains('dark');
-            const songTitles = document.querySelectorAll('.song-title');
+            const songTitles = document.querySelectorAll('.song-link');
             const albumTitles = document.querySelectorAll('.album-title');
             
             songTitles.forEach(title => {
