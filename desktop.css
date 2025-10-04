@@ -455,6 +455,12 @@ body.dark .title-box h1 {
     width: 800px !important;
 }
 
+/* Force wider containers for listen page album cards - same as lyrics */
+.listen-page #albums-container .content-box {
+    max-width: 800px !important;
+    width: 800px !important;
+}
+
 /* Remove any padding/margin that might be affecting alignment */
 .nav-left, .nav-right {
     padding: 0; /* Ensure no padding affects alignment */
