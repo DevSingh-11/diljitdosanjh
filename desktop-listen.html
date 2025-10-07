@@ -823,11 +823,16 @@
                 updateToggleLabels();
             });
             
-            // Music service functionality - UPDATED TO REFRESH DURATIONS
+            // Music service functionality - UPDATED TO REFRESH DURATIONS AND RE-SORT
             serviceToggle.addEventListener('change', () => {
                 localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
                 updateToggleLabels();
                 updateSongDurations(); // This updates durations when service changes
+                
+                // If currently sorted by time, re-sort with new durations
+                if (currentSortState.songSort === 'time') {
+                    applySorting(document.getElementById('search-input').value, currentSortState.searchType);
+                }
             });
             
             // Also call updateToggleLabels when theme changes
