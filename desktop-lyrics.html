@@ -70,7 +70,7 @@
         
         .search-type-select {
             padding: 10px 15px;
-            border: 2px solid #ddd; /* Back to original */
+            border: 2px solid #ddd;
             border-radius: 8px;
             background-color: white;
             font-size: 14px;
@@ -92,8 +92,8 @@
         .search-input {
             flex: 1;
             padding: 15px;
-            border: 2px solid #ddd; /* Now matches the sort-select exactly */
-            border-radius: 8px; /* Changed from 25px to match sort-select */
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
@@ -115,7 +115,7 @@
         body.dark .search-input {
             background-color: #2a2a2a;
             color: #ffffff;
-            border-color: #666; /* Now matches sort-select in dark mode */
+            border-color: #666;
         }
         
         body.dark .sort-select:hover,
@@ -231,7 +231,7 @@
             <h1>Diljit Dosanjh - Lyrics</h1>
         </div>
         
-        <!-- Search Bar - UPDATED WITH DROPDOWN -->
+        <!-- Search Bar -->
         <div class="search-container">
             <span class="search-label">Search for</span>
             <select id="search-type" class="search-type-select">
@@ -242,7 +242,7 @@
             <input type="text" id="search-input" placeholder="Type to search..." class="search-input">
         </div>
         
-        <!-- Sorting Controls - UPDATED WITH DROPDOWNS -->
+        <!-- Sorting Controls -->
         <div class="sorting-controls">
             <div class="sorting-group">
                 <span class="sorting-label">Albums by:</span>
@@ -270,111 +270,111 @@
     </main>
 
     <script>
-        // Music Database Structure
+        // Music Database Structure with separate durations
         const musicData = {
           albums: [
             {
               title: "Advisory",
               sortTitle: "advisory",
-              releaseDate: "2025-02-06", // Internal format for sorting (YYYY-MM-DD)
-              displayDate: "06-02-2025", // Display format (DD-MM-YYYY)
+              releaseDate: "2025-02-06",
+              displayDate: "06-02-2025",
               coverArt: "images/albums/advisory.png",
               features: "6 songs",
               songs: [
-                { title: "Tension", page: "lyrics/tension.html", duration: "2:48", featured: "-" },
-                { title: "Heer", page: "lyrics/heer.html", duration: "2:44", featured: "-" },
-                { title: "Holster", page: "lyrics/holster.html", duration: "2:07", featured: "-" },
-                { title: "Pistol", page: "lyrics/pistol.html", duration: "2:30", featured: "ft. Amrit Maan" },
-                { title: "Baby Girl", page: "lyrics/baby-girl.html", duration: "2:37", featured: "-" },
-                { title: "Idgaf", page: "lyrics/idgaf.html", duration: "3:33", featured: "-" }
+                { title: "Tension", page: "lyrics/tension.html", spotifyDuration: "2:48", youtubeDuration: "3:18", featured: "-" },
+                { title: "Heer", page: "lyrics/heer.html", spotifyDuration: "2:44", youtubeDuration: "2:44", featured: "-" },
+                { title: "Holster", page: "lyrics/holster.html", spotifyDuration: "2:07", youtubeDuration: "2:07", featured: "-" },
+                { title: "Pistol", page: "lyrics/pistol.html", spotifyDuration: "2:30", youtubeDuration: "2:30", featured: "ft. Amrit Maan" },
+                { title: "Baby Girl", page: "lyrics/baby-girl.html", spotifyDuration: "2:37", youtubeDuration: "2:37", featured: "-" },
+                { title: "Idgaf", page: "lyrics/idgaf.html", spotifyDuration: "3:33", youtubeDuration: "3:33", featured: "-" }
               ]
             },
             {
               title: "Drive Thru",
               sortTitle: "drive thru",
-              releaseDate: "2022-07-15", // Internal format for sorting (YYYY-MM-DD)
-              displayDate: "15-07-2022", // Display format (DD-MM-YYYY)
+              releaseDate: "2022-07-15",
+              displayDate: "15-07-2022",
               coverArt: "images/albums/drive-thru.png",
               features: "5 songs",
               songs: [
-                { title: "Peaches", page: "lyrics/peaches.html", duration: "3:09", featured: "-" },
-                { title: "Lemonade", page: "lyrics/lemonade.html", duration: "2:46", featured: "-" },
-                { title: "Caviar", page: "lyrics/caviar.html", duration: "2:23", featured: "-" },
-                { title: "Red Chilli", page: "lyrics/red-chilli.html", duration: "2:32", featured: "-" },
-                { title: "Vanilla", page: "lyrics/vanilla.html", duration: "2:51", featured: "-" }
+                { title: "Peaches", page: "lyrics/peaches.html", spotifyDuration: "3:09", youtubeDuration: "3:11", featured: "-" },
+                { title: "Lemonade", page: "lyrics/lemonade.html", spotifyDuration: "2:46", youtubeDuration: "2:43", featured: "-" },
+                { title: "Caviar", page: "lyrics/caviar.html", spotifyDuration: "2:23", youtubeDuration: "2:32", featured: "-" },
+                { title: "Red Chilli", page: "lyrics/red-chilli.html", spotifyDuration: "2:32", youtubeDuration: "2:32", featured: "-" },
+                { title: "Vanilla", page: "lyrics/vanilla.html", spotifyDuration: "2:51", youtubeDuration: "2:51", featured: "-" }
               ]
             },
             {
               title: "Ghost", 
               sortTitle: "ghost",
-              releaseDate: "2023-09-29", // Internal format for sorting (YYYY-MM-DD)
-              displayDate: "29-09-2023", // Display format (DD-MM-YYYY)
+              releaseDate: "2023-09-29",
+              displayDate: "29-09-2023",
               coverArt: "images/albums/ghost.png",
               features: "19 songs",
               songs: [
-                { title: "Ghost", page: "lyrics/ghost.html", duration: "2:45", featured: "-" },
-                { title: "Drowning", page: "lyrics/drowning.html", duration: "2:39", featured: "-" },  
-                { title: "Amiri", page: "lyrics/amiri.html", duration: "1:57", featured: "-" },
-                { title: "Feel My Love", page: "lyrics/feel-my-love.html", duration: "3:32", featured: "-" },
-                { title: "Kinni Kinni", page: "lyrics/kinni-kinni.html", duration: "3:33", featured: "-" },
-                { title: "Kehkashan", page: "lyrics/kehkashan.html", duration: "3:00", featured: "-" },
-                { title: "Daytona", page: "lyrics/daytona.html", duration: "3:00", featured: "-" },  
-                { title: "Poppin'", page: "lyrics/poppin.html", duration: "2:34", featured: "-" },
-                { title: "Icon", page: "lyrics/icon.html", duration: "2:28", featured: "-" },
-                { title: "Stars", page: "lyrics/stars.html", duration: "3:04", featured: "-" },
-                { title: "Bad Habits", page: "lyrics/bad-habits.html", duration: "2:47", featured: "-" },
-                { title: "Lalkara", page: "lyrics/lalkara.html", duration: "2:40", featured: "ft. Sultaan" },
-                { title: "Jatt Vailly", page: "lyrics/jatt-vailly.html", duration: "2:31", featured: "-" },
-                { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html", duration: "2:17", featured: "-" },
-                { title: "Case", page: "lyrics/case.html", duration: "2:15", featured: "-" },
-                { title: "Cry Later", page: "lyrics/cry-later.html", duration: "2:28", featured: "-" },
-                { title: "Psychotic", page: "lyrics/psychotic.html", duration: "4:35", featured: "-" },                                               
-                { title: "Midnight Desires", page: "lyrics/midnight-desires.html", duration: "2:52", featured: "-" },      
-                { title: "Serenade", page: "lyrics/serenade.html", duration: "1:37", featured: "-" } 
+                { title: "Ghost", page: "lyrics/ghost.html", spotifyDuration: "2:45", youtubeDuration: "2:46", featured: "-" },
+                { title: "Drowning", page: "lyrics/drowning.html", spotifyDuration: "2:39", youtubeDuration: "2:39", featured: "-" },  
+                { title: "Amiri", page: "lyrics/amiri.html", spotifyDuration: "1:57", youtubeDuration: "1:57", featured: "-" },
+                { title: "Feel My Love", page: "lyrics/feel-my-love.html", spotifyDuration: "3:32", youtubeDuration: "3:39", featured: "-" },
+                { title: "Kinni Kinni", page: "lyrics/kinni-kinni.html", spotifyDuration: "3:33", youtubeDuration: "3:33", featured: "-" },
+                { title: "Kehkashan", page: "lyrics/kehkashan.html", spotifyDuration: "3:00", youtubeDuration: "-:--", featured: "-" },
+                { title: "Daytona", page: "lyrics/daytona.html", spotifyDuration: "3:00", youtubeDuration: "3:00", featured: "-" },  
+                { title: "Poppin'", page: "lyrics/poppin.html", spotifyDuration: "2:34", youtubeDuration: "2:34", featured: "-" },
+                { title: "Icon", page: "lyrics/icon.html", spotifyDuration: "2:28", youtubeDuration: "2:28", featured: "-" },
+                { title: "Stars", page: "lyrics/stars.html", spotifyDuration: "3:04", youtubeDuration: "3:05", featured: "-" },
+                { title: "Bad Habits", page: "lyrics/bad-habits.html", spotifyDuration: "2:47", youtubeDuration: "2:47", featured: "-" },
+                { title: "Lalkara", page: "lyrics/lalkara.html", spotifyDuration: "2:40", youtubeDuration: "2:40", featured: "ft. Sultaan" },
+                { title: "Jatt Vailly", page: "lyrics/jatt-vailly.html", spotifyDuration: "2:31", youtubeDuration: "2:49", featured: "-" },
+                { title: "Whatcha Doin'", page: "lyrics/whatcha-doin.html", spotifyDuration: "2:17", youtubeDuration: "2:38", featured: "-" },
+                { title: "Case", page: "lyrics/case.html", spotifyDuration: "2:15", youtubeDuration: "2:15", featured: "-" },
+                { title: "Cry Later", page: "lyrics/cry-later.html", spotifyDuration: "2:28", youtubeDuration: "-:--", featured: "-" },
+                { title: "Psychotic", page: "lyrics/psychotic.html", spotifyDuration: "4:35", youtubeDuration: "4:14", featured: "-" },                                               
+                { title: "Midnight Desires", page: "lyrics/midnight-desires.html", spotifyDuration: "2:52", youtubeDuration: "2:52", featured: "-" },      
+                { title: "Serenade", page: "lyrics/serenade.html", spotifyDuration: "1:37", youtubeDuration: "1:37", featured: "-" } 
               ]
             },
             {
               title: "G.O.A.T.", 
               sortTitle: "goat",
-              releaseDate: "2020-07-29", // Internal format for sorting (YYYY-MM-DD)
-              displayDate: "29-07-2020", // Display format (DD-MM-YYYY)
+              releaseDate: "2020-07-29",
+              displayDate: "29-07-2020",
               coverArt: "images/albums/goat.png",
               features: "15 songs",
               songs: [
-                { title: "G.O.A.T.", page: "lyrics/goat.html", duration: "3:43", featured: "-" },
-                { title: "Clash", page: "lyrics/clash.html", duration: "2:56", featured: "-" },
-                { title: "Navi Navi Yaari", page: "lyrics/navi-navi-yaari.html", duration: "3:35", featured: "-" },
-                { title: "Peed", page: "lyrics/peed.html", duration: "4:24", featured: "-" },
-                { title: "Taare", page: "lyrics/taare.html", duration: "3:23", featured: "-" },                
-                { title: "Track Suit", page: "lyrics/track-suit.html", duration: "3:18", featured: "ft. Nimrat Khaira" },                  
-                { title: "Faraar", page: "lyrics/faraar.html", duration: "3:13", featured: "-" },    
-                { title: "Jatti", page: "lyrics/jatti.html", duration: "2:59", featured: "-" },
-                { title: "Akh Laal Jatt Di", page: "lyrics/akh-laal-jatt-di.html", duration: "4:00", featured: "-" },
-                { title: "Pyaar", page: "lyrics/pyaar.html", duration: "3:56", featured: "-" },
-                { title: "Habit", page: "lyrics/habit.html", duration: "3:03", featured: "-" },
-                { title: "Range", page: "lyrics/range.html", duration: "2:52", featured: "-" },   
-                { title: "Patola", page: "lyrics/patola.html", duration: "3:34", featured: "ft. Kaur B" },
-                { title: "Whiskey", page: "lyrics/whiskey.html", duration: "3:25", featured: "-" },
-                { title: "Born To Shine", page: "lyrics/born-to-shine.html", duration: "3:33", featured: "-" }
+                { title: "G.O.A.T.", page: "lyrics/goat.html", spotifyDuration: "3:43", youtubeDuration: "3:43", featured: "-" },
+                { title: "Clash", page: "lyrics/clash.html", spotifyDuration: "2:56", youtubeDuration: "2:55", featured: "-" },
+                { title: "Navi Navi Yaari", page: "lyrics/navi-navi-yaari.html", spotifyDuration: "3:35", youtubeDuration: "2:45", featured: "-" },
+                { title: "Peed", page: "lyrics/peed.html", spotifyDuration: "4:24", youtubeDuration: "4:28", featured: "-" },
+                { title: "Taare", page: "lyrics/taare.html", spotifyDuration: "3:23", youtubeDuration: "3:23", featured: "-" },                
+                { title: "Track Suit", page: "lyrics/track-suit.html", spotifyDuration: "3:18", youtubeDuration: "3:18", featured: "ft. Nimrat Khaira" },                  
+                { title: "Faraar", page: "lyrics/faraar.html", spotifyDuration: "3:13", youtubeDuration: "3:13", featured: "-" },    
+                { title: "Jatti", page: "lyrics/jatti.html", spotifyDuration: "2:59", youtubeDuration: "2:59", featured: "-" },
+                { title: "Akh Laal Jatt Di", page: "lyrics/akh-laal-jatt-di.html", spotifyDuration: "4:00", youtubeDuration: "4:00", featured: "-" },
+                { title: "Pyaar", page: "lyrics/pyaar.html", spotifyDuration: "3:56", youtubeDuration: "3:56", featured: "-" },
+                { title: "Habit", page: "lyrics/habit.html", spotifyDuration: "3:03", youtubeDuration: "3:03", featured: "-" },
+                { title: "Range", page: "lyrics/range.html", spotifyDuration: "2:52", youtubeDuration: "2:52", featured: "-" },   
+                { title: "Patola", page: "lyrics/patola.html", spotifyDuration: "3:34", youtubeDuration: "3:34", featured: "ft. Kaur B" },
+                { title: "Whiskey", page: "lyrics/whiskey.html", spotifyDuration: "3:25", youtubeDuration: "3:25", featured: "-" },
+                { title: "Born To Shine", page: "lyrics/born-to-shine.html", spotifyDuration: "3:33", youtubeDuration: "3:37", featured: "-" }
               ]
             },
             {
               title: "MoonChild Era", 
               sortTitle: "moonchild era",
-              releaseDate: "2021-08-22", // Internal format for sorting (YYYY-MM-DD)
-              displayDate: "22-08-2021", // Display format (DD-MM-YYYY)
+              releaseDate: "2021-08-22",
+              displayDate: "22-08-2021",
               coverArt: "images/albums/moonchild-era.png",
               features: "9 songs",
               songs: [
-                { title: "Black & White", page: "lyrics/black-&-white.html", duration: "2:46", featured: "-" },
-                { title: "Luna", page: "lyrics/luna.html", duration: "3:06", featured: "-" },
-                { title: "Vibe", page: "lyrics/vibe.html", duration: "2:35", featured: "-" },
-                { title: "Champagne", page: "lyrics/champagne.html", duration: "3:02", featured: "-" },
-                { title: "Cali", page: "lyrics/cali.html", duration: "2:38", featured: "-" },                
-                { title: "Lover", page: "lyrics/lover.html", duration: "3:10", featured: "-" },                  
-                { title: "Void", page: "lyrics/void.html", duration: "3:32", featured: "-" },    
-                { title: "Hoops", page: "lyrics/hoops.html", duration: "3:10", featured: "-" },
-                { title: "Da Crew", page: "lyrics/da-crew.html", duration: "3:01", featured: "-" }
+                { title: "Black & White", page: "lyrics/black-&-white.html", spotifyDuration: "2:46", youtubeDuration: "2:53", featured: "-" },
+                { title: "Luna", page: "lyrics/luna.html", spotifyDuration: "3:06", youtubeDuration: "3:09", featured: "-" },
+                { title: "Vibe", page: "lyrics/vibe.html", spotifyDuration: "2:35", youtubeDuration: "3:04", featured: "-" },
+                { title: "Champagne", page: "lyrics/champagne.html", spotifyDuration: "3:02", youtubeDuration: "3:02", featured: "-" },
+                { title: "Cali", page: "lyrics/cali.html", spotifyDuration: "2:38", youtubeDuration: "2:38", featured: "-" },                
+                { title: "Lover", page: "lyrics/lover.html", spotifyDuration: "3:10", youtubeDuration: "3:07", featured: "-" },                  
+                { title: "Void", page: "lyrics/void.html", spotifyDuration: "3:32", youtubeDuration: "3:32", featured: "-" },    
+                { title: "Hoops", page: "lyrics/hoops.html", spotifyDuration: "3:10", youtubeDuration: "3:10", featured: "-" },
+                { title: "Da Crew", page: "lyrics/da-crew.html", spotifyDuration: "3:01", youtubeDuration: "3:01", featured: "-" }
               ]
             }
           ]
@@ -384,22 +384,30 @@
         let currentSortState = {
             albumSort: 'a-z',
             songSort: 'a-z',
-            searchType: 'songs' // Default to searching songs
+            searchType: 'songs'
         };
 
-        // Function to normalize text for searching (remove punctuation, convert to lowercase)
+        // Function to get preferred music service
+        function getPreferredService() {
+            const savedService = localStorage.getItem('musicService');
+            return savedService === 'youtube' ? 'youtube' : 'spotify';
+        }
+
+        // Function to normalize text for searching
         function normalizeSearchText(text) {
             return text.toLowerCase()
-                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"]/g, '') // Remove punctuation
-                .replace(/\s{2,}/g, ' ') // Replace multiple spaces with single space
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"]/g, '')
+                .replace(/\s{2,}/g, ' ')
                 .trim();
         }
 
-        // Function to create album card HTML
+        // Function to create album card HTML with dynamic durations
         function createAlbumCard(album) {
+            const preferredService = getPreferredService();
+            
             return `
                 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                    <!-- Album cover - NOW SHOWS ACTUAL IMAGE -->
+                    <!-- Album cover -->
                     <div style="width: 120px; height: 120px; border-radius: 8px; overflow: hidden; background: #f0f0f0;">
                         <img src="${album.coverArt}" alt="${album.title} Cover" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
@@ -412,27 +420,56 @@
                 <div>
                     <h3 style="margin-bottom: 15px;">Songs</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        ${album.songs.map((song, index) => `
-                            <li style="border-bottom: 1px solid #eee;">
-                                <a href="${song.page}" style="display: block; padding: 12px 0; text-decoration: none; color: inherit;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                        <div style="display: flex; align-items: center; flex: 1;">
-                                            <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
-                                            <span class="song-link" style="color: #000000; transition: color 0.3s ease;">${song.title}</span>
+                        ${album.songs.map((song, index) => {
+                            const duration = preferredService === 'spotify' ? song.spotifyDuration : song.youtubeDuration;
+                            return `
+                                <li style="border-bottom: 1px solid #eee;">
+                                    <a href="${song.page}" style="display: block; padding: 12px 0; text-decoration: none; color: inherit;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                            <div style="display: flex; align-items: center; flex: 1;">
+                                                <span style="color: #666; margin-right: 8px; font-weight: bold; display: inline-block; width: 30px; text-align: left;">${index + 1}.</span>
+                                                <span class="song-link" style="color: #000000; transition: color 0.3s ease;">${song.title}</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: center; align-items: center; flex: 1;">
+                                                <span style="color: #888; font-size: 14px; font-style: italic; text-align: center;">${song.featured}</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: flex-end; align-items: center; flex: 1;">
+                                                <span class="song-duration" style="color: #666; font-size: 14px;">${duration}</span>
+                                            </div>
                                         </div>
-                                        <div style="display: flex; justify-content: center; align-items: center; flex: 1;">
-                                            <span style="color: #888; font-size: 14px; font-style: italic; text-align: center;">${song.featured}</span>
-                                        </div>
-                                        <div style="display: flex; justify-content: flex-end; align-items: center; flex: 1;">
-                                            <span style="color: #666; font-size: 14px;">${song.duration}</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        `).join('')}
+                                    </a>
+                                </li>
+                            `;
+                        }).join('')}
                     </ul>
                 </div>
             `;
+        }
+
+        // Function to update all song durations when service changes
+        function updateSongDurations() {
+            const preferredService = getPreferredService();
+            const durationElements = document.querySelectorAll('.song-duration');
+            
+            durationElements.forEach((element, index) => {
+                // Get the song data from the parent row
+                const songRow = element.closest('a[href*="lyrics/"]');
+                if (songRow) {
+                    const songTitle = songRow.querySelector('.song-link').textContent;
+                    
+                    // Find the song in our music data
+                    let foundSong = null;
+                    for (const album of musicData.albums) {
+                        foundSong = album.songs.find(song => song.title === songTitle);
+                        if (foundSong) break;
+                    }
+                    
+                    if (foundSong) {
+                        const duration = preferredService === 'spotify' ? foundSong.spotifyDuration : foundSong.youtubeDuration;
+                        element.textContent = duration;
+                    }
+                }
+            });
         }
 
         // Function to sort albums based on selection
@@ -468,6 +505,7 @@
         // Function to sort songs based on selection
         function sortSongs(songs, sortType, originalOrder) {
             let sortedSongs = [...songs];
+            const preferredService = getPreferredService();
             
             switch(sortType) {
                 case 'a-z':
@@ -477,15 +515,14 @@
                     sortedSongs.sort((a, b) => b.title.localeCompare(a.title));
                     break;
                 case 'release':
-                    // Return to the original order
                     return [...originalOrder];
                 case 'time':
-                    // Sort by duration (shortest to longest), then alphabetically for same durations
                     sortedSongs.sort((a, b) => {
-                        const aTime = durationToSeconds(a.duration);
-                        const bTime = durationToSeconds(b.duration);
+                        const aDuration = preferredService === 'spotify' ? a.spotifyDuration : a.youtubeDuration;
+                        const bDuration = preferredService === 'spotify' ? b.spotifyDuration : b.youtubeDuration;
+                        const aTime = durationToSeconds(aDuration);
+                        const bTime = durationToSeconds(bDuration);
                         
-                        // If durations are equal, sort alphabetically
                         if (aTime === bTime) {
                             return a.title.localeCompare(b.title);
                         }
@@ -503,13 +540,12 @@
         // Function to filter albums and songs based on search query and search type
         function filterAlbumsAndSongs(query, searchType) {
             if (!query.trim()) {
-                return musicData.albums; // Return all albums if no search query
+                return musicData.albums;
             }
             
             const searchTerm = normalizeSearchText(query);
             
             if (searchType === 'albums') {
-                // Search only by album titles (punctuation-insensitive)
                 return musicData.albums.map(album => {
                     const normalizedAlbumTitle = normalizeSearchText(album.title);
                     const albumMatches = normalizedAlbumTitle.includes(searchTerm);
@@ -517,43 +553,37 @@
                     if (albumMatches) {
                         return {
                             ...album,
-                            songs: album.songs // Keep all songs for matching albums
+                            songs: album.songs
                         };
                     }
                     
-                    return null; // Album doesn't match search
+                    return null;
                 }).filter(album => album !== null);
             } else {
-                // Search ONLY by songs (punctuation-insensitive) - don't include album title matches
                 return musicData.albums.map(album => {
-                    // Filter songs that match search (punctuation-insensitive)
                     const filteredSongs = album.songs.filter(song => {
                         const normalizedSongTitle = normalizeSearchText(song.title);
                         return normalizedSongTitle.includes(searchTerm);
                     });
                     
-                    // Only return albums that have matching songs (ignore album title matches)
                     if (filteredSongs.length > 0) {
                         return {
                             ...album,
-                            songs: filteredSongs // Only include matching songs
+                            songs: filteredSongs
                         };
                     }
                     
-                    return null; // Album doesn't have any matching songs
-                }).filter(album => album !== null && album.songs.length > 0); // Remove null albums and albums with no songs
+                    return null;
+                }).filter(album => album !== null && album.songs.length > 0);
             }
         }
 
         // Main function to apply both album and song sorting with optional search filter
         function applySorting(searchQuery = '', searchType = 'songs') {
-            // First filter albums based on search query and search type
             let filteredAlbums = searchQuery ? filterAlbumsAndSongs(searchQuery, searchType) : musicData.albums;
             
-            // Then sort albums
             let sortedAlbums = sortAlbums(filteredAlbums, currentSortState.albumSort);
             
-            // Then sort songs within each album
             sortedAlbums = sortedAlbums.map(album => {
                 const originalSongs = searchQuery ? album.songs : musicData.albums.find(a => a.title === album.title).songs;
                 
@@ -563,7 +593,6 @@
                 };
             });
             
-            // Display the fully sorted and filtered data
             displayAlbums(sortedAlbums);
         }
 
@@ -573,7 +602,6 @@
             albumsContainer.innerHTML = '';
             
             if (albumsArray.length === 0) {
-                // Show message when no results found
                 albumsContainer.innerHTML = `
                     <div class="content-box" style="text-align: center; padding: 40px;">
                         <h3>No results found</h3>
@@ -583,7 +611,6 @@
                 return;
             }
             
-            // Display each album
             albumsArray.forEach(album => {
                 const albumCard = document.createElement('div');
                 albumCard.className = 'content-box';
@@ -592,7 +619,6 @@
                 albumsContainer.appendChild(albumCard);
             });
             
-            // Update styles immediately after displaying albums
             updateAlbumStyles();
         }
 
@@ -602,77 +628,72 @@
             const songLinks = document.querySelectorAll('.song-link');
             const albumTitles = document.querySelectorAll('.album-title');
             
-            // Update song link colors
             songLinks.forEach(link => {
                 link.style.color = isDark ? '#ffffff' : '#000000';
             });
             
-            // Update album title colors
             albumTitles.forEach(title => {
                 title.style.color = isDark ? '#ffffff' : '#222222';
             });
         }
 
-        // Initialize the album display when page loads
+        // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Only display albums if we're on the lyrics page
-            if (window.location.pathname.includes('lyrics')) {
-                // Set up event listeners for dropdowns
-                const albumSortSelect = document.getElementById('album-sort');
-                const songSortSelect = document.getElementById('song-sort');
-                const searchInput = document.getElementById('search-input');
-                const searchTypeSelect = document.getElementById('search-type');
-                
-                // Load saved sorting preferences if available
-                const savedAlbumSort = localStorage.getItem('albumSort');
-                const savedSongSort = localStorage.getItem('songSort');
-                const savedSearchType = localStorage.getItem('searchType');
-                
-                if (savedAlbumSort) {
-                    albumSortSelect.value = savedAlbumSort;
-                    currentSortState.albumSort = savedAlbumSort;
-                }
-                
-                if (savedSongSort) {
-                    songSortSelect.value = savedSongSort;
-                    currentSortState.songSort = savedSongSort;
-                }
-                
-                if (savedSearchType) {
-                    searchTypeSelect.value = savedSearchType;
-                    currentSortState.searchType = savedSearchType;
-                }
-                
-                // Search functionality
-                function performSearch() {
-                    applySorting(searchInput.value, searchTypeSelect.value);
-                }
-                
-                searchInput.addEventListener('input', performSearch);
-                
-                searchTypeSelect.addEventListener('change', function() {
-                    currentSortState.searchType = this.value;
-                    localStorage.setItem('searchType', this.value);
-                    performSearch();
-                });
-                
-                albumSortSelect.addEventListener('change', function() {
-                    currentSortState.albumSort = this.value;
-                    localStorage.setItem('albumSort', this.value);
-                    performSearch();
-                });
-                
-                songSortSelect.addEventListener('change', function() {
-                    currentSortState.songSort = this.value;
-                    localStorage.setItem('songSort', this.value);
-                    performSearch();
-                });
-                
-                // Apply initial sorting
-                applySorting();
+            // Set up event listeners for dropdowns
+            const albumSortSelect = document.getElementById('album-sort');
+            const songSortSelect = document.getElementById('song-sort');
+            const searchInput = document.getElementById('search-input');
+            const searchTypeSelect = document.getElementById('search-type');
+            
+            // Load saved sorting preferences if available
+            const savedAlbumSort = localStorage.getItem('albumSort');
+            const savedSongSort = localStorage.getItem('songSort');
+            const savedSearchType = localStorage.getItem('searchType');
+            
+            if (savedAlbumSort) {
+                albumSortSelect.value = savedAlbumSort;
+                currentSortState.albumSort = savedAlbumSort;
             }
-                
-            // Add hover effect for entire song rows
+            
+            if (savedSongSort) {
+                songSortSelect.value = savedSongSort;
+                currentSortState.songSort = savedSongSort;
+            }
+            
+            if (savedSearchType) {
+                searchTypeSelect.value = savedSearchType;
+                currentSortState.searchType = savedSearchType;
+            }
+            
+            // Search functionality
+            function performSearch() {
+                applySorting(searchInput.value, searchTypeSelect.value);
+            }
+            
+            searchInput.addEventListener('input', performSearch);
+            
+            searchTypeSelect.addEventListener('change', function() {
+                currentSortState.searchType = this.value;
+                localStorage.setItem('searchType', this.value);
+                performSearch();
+            });
+            
+            albumSortSelect.addEventListener('change', function() {
+                currentSortState.albumSort = this.value;
+                localStorage.setItem('albumSort', this.value);
+                performSearch();
+            });
+            
+            songSortSelect.addEventListener('change', function() {
+                currentSortState.songSort = this.value;
+                localStorage.setItem('songSort', this.value);
+                performSearch();
+            });
+            
+            // Apply initial sorting
+            applySorting();
+            
+            // Add hover effect for song links
             document.addEventListener('mouseover', function(e) {
                 const songRow = e.target.closest('a[href*="lyrics/"]');
                 if (songRow) {
@@ -719,7 +740,7 @@
                     updateAlbumStyles();
                 });
 
-            // Load and initialize the new settings
+            // Load and initialize the settings
             const difficultyToggle = document.getElementById('difficulty-toggle');
             const serviceToggle = document.getElementById('service-toggle');
             
@@ -791,15 +812,20 @@
                 updateToggleLabels();
             });
             
-            // Music service functionality
+            // Music service functionality - UPDATED TO REFRESH DURATIONS AND RE-SORT
             serviceToggle.addEventListener('change', () => {
                 localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
                 updateToggleLabels();
+                updateSongDurations(); // This updates durations when service changes
+                
+                // If currently sorted by time, re-sort with new durations
+                if (currentSortState.songSort === 'time') {
+                    applySorting(document.getElementById('search-input').value, currentSortState.searchType);
+                }
             });
             
             // Also call updateToggleLabels when theme changes
             themeToggle.addEventListener('change', () => {
-                // Your existing theme change code...
                 updateToggleLabels();
             });
             }
