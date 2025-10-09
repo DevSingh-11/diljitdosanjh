@@ -42,31 +42,17 @@
             display: block;
         }
         
-        /* Song info styling */
-        .song-info {
+        /* Translation toggle styling for left panel */
+        .left-translation-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-        }
-        
-        .info-item {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .info-item strong {
-            color: #222;
-        }
-        
-        /* Toggle switch styling */
-        .translation-toggle-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 30px auto;
-            gap: 15px;
         }
         
         .translation-label {
@@ -165,19 +151,11 @@
             color: #ffffff;
         }
         
-        body.dark .song-info,
+        body.dark .left-translation-toggle,
         body.dark .lyrics-container {
             background-color: rgba(30, 30, 30, 0.9);
             color: #ffffff;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        body.dark .info-item {
-            color: #cccccc;
-        }
-        
-        body.dark .info-item strong {
-            color: #ffffff;
         }
         
         body.dark .translation-line {
@@ -279,27 +257,21 @@
                 <div class="album-cover">
                     <img src="../images/albums/advisory.png" alt="Advisory Album Cover">
                 </div>
-                <div class="song-info">
-                    <!-- Removed "Song Information" title -->
-                    <div class="info-item"><strong>Album:</strong> Advisory</div>
-                    <div class="info-item"><strong>Release:</strong> February 6 2025</div>
-                </div>
-            </div>
-            
-            <!-- Right Panel (2/3) -->
-            <div class="right-panel">
-                <!-- Title moved to right panel -->
-                <div class="title-box">
-                    <h1>Tension</h1>
-                </div>
-                
-                <!-- Translation Toggle -->
-                <div class="translation-toggle-container">
+                <!-- Translation Toggle moved to left panel -->
+                <div class="left-translation-toggle">
                     <span class="translation-label">Show Translation</span>
                     <label class="toggle-switch">
                         <input type="checkbox" id="translation-toggle">
                         <span class="toggle-slider"></span>
                     </label>
+                </div>
+            </div>
+            
+            <!-- Right Panel (2/3) -->
+            <div class="right-panel">
+                <!-- Title -->
+                <div class="title-box">
+                    <h1>Tension</h1>
                 </div>
                 
                 <!-- Lyrics Container -->
