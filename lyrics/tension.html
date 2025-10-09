@@ -10,7 +10,7 @@
         .lyrics-page-container {
             display: flex;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 30px auto 0 auto; /* CHANGED: Added top margin */
             gap: 30px;
             padding: 0 20px;
             align-items: flex-start;
@@ -21,6 +21,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: sticky; /* CHANGED: Added sticky positioning */
+            top: 100px; /* CHANGED: Position below navbar */
+            align-self: flex-start; /* CHANGED: Align to top */
         }
         
         .right-panel {
@@ -204,6 +207,7 @@
             .left-panel,
             .right-panel {
                 width: 100%;
+                position: static; /* CHANGED: Remove sticky on mobile */
             }
         }
     </style>
