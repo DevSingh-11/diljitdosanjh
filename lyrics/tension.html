@@ -128,6 +128,8 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             white-space: pre-line;
             font-size: 18px;
+            /* Remove fixed height, will be set by JavaScript */
+            min-height: 200px; /* Minimum height */
         }
         
         .translation-line {
@@ -171,6 +173,10 @@
             .left-panel,
             .right-panel {
                 width: 100%;
+            }
+            
+            .lyrics-container {
+                height: auto !important; /* Remove fixed height on mobile */
             }
         }
     </style>
@@ -314,6 +320,29 @@ Line 4
             }
         }
 
+        // Function to match lyrics container height to left panel
+        function matchLyricsHeight() {
+            const leftPanel = document.querySelector('.left-panel');
+            const lyricsContainer = document.querySelector('.lyrics-container');
+            const titleBox = document.querySelector('.title-box');
+            
+            if (leftPanel && lyricsContainer && titleBox) {
+                const leftPanelHeight = leftPanel.offsetHeight;
+                const titleBoxHeight = titleBox.offsetHeight;
+                const gap = 30; // Same as the gap in the container
+                
+                // Calculate the height needed for lyrics container
+                const lyricsHeight = leftPanelHeight - titleBoxHeight - gap;
+                
+                // Set the lyrics container height
+                if (lyricsHeight > 200) { // Only set if it's taller than minimum
+                    lyricsContainer.style.height = lyricsHeight + 'px';
+                } else {
+                    lyricsContainer.style.height = 'auto';
+                }
+            }
+        }
+
         // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Load saved GLOBAL translation preference
@@ -327,10 +356,18 @@ Line 4
             // Initial lyrics display
             updateLyricsDisplay();
             
+            // Match heights after content is loaded
+            setTimeout(matchLyricsHeight, 100);
+            
+            // Also match heights when window resizes
+            window.addEventListener('resize', matchLyricsHeight);
+            
             // Translation toggle event - save GLOBALLY
             translationToggle.addEventListener('change', function() {
                 localStorage.setItem('showTranslation_global', this.checked);
                 updateLyricsDisplay();
+                // Re-match heights after content update
+                setTimeout(matchLyricsHeight, 100);
             });
 
             // Theme toggle functionality
