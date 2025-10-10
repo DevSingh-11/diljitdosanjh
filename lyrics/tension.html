@@ -119,13 +119,13 @@
         
         /* Title box styling */
         .title-box {
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Reduced margin */
         }
         
         /* Lyrics container styling - FIXED */
         .lyrics-container {
             width: 100%;
-            padding: 20px 40px; /* Reduced top/bottom padding */
+            padding: 15px 40px; /* Reduced top/bottom padding significantly */
             line-height: 1.7;
             text-align: left;
             background-color: rgba(255, 255, 255, 0.9);
@@ -148,25 +148,23 @@
             display: flex;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent container overflow */
+            gap: 40px; /* Space between columns */
         }
         
         .lyrics-half {
             flex: 1;
-            padding: 0;
             white-space: pre-line;
-            overflow-y: auto; /* Enable scrolling for each half */
-            padding-right: 20px; /* Add spacing between columns */
+            /* No padding or margin - lyrics go directly to edges */
         }
         
         .translation-half {
             flex: 1;
-            padding: 0 0 0 20px; /* Reduced left padding */
             white-space: pre-line;
             border-left: 1px solid #ddd;
-            overflow-y: auto; /* Enable scrolling for each half */
+            padding-left: 40px; /* Only left padding for border separation */
         }
         
+        /* When translation is off - single column layout */
         .lyrics-container.no-split .lyrics-split-container {
             display: block;
         }
@@ -176,38 +174,27 @@
         }
         
         .lyrics-container.no-split .lyrics-half {
-            border-right: none;
-            padding-right: 0;
-            margin-left: 0;
-            overflow-y: auto; /* Ensure scrolling works in single column mode */
+            width: 100%;
         }
         
         /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
-        .lyrics-container::-webkit-scrollbar,
-        .lyrics-half::-webkit-scrollbar,
-        .translation-half::-webkit-scrollbar {
+        .lyrics-container::-webkit-scrollbar {
             width: 8px; /* Width of the scrollbar */
         }
         
-        .lyrics-container::-webkit-scrollbar-track,
-        .lyrics-half::-webkit-scrollbar-track,
-        .translation-half::-webkit-scrollbar-track {
+        .lyrics-container::-webkit-scrollbar-track {
             background: transparent; /* Transparent track */
             margin: 5px 0; /* Add some spacing */
         }
         
-        .lyrics-container::-webkit-scrollbar-thumb,
-        .lyrics-half::-webkit-scrollbar-thumb,
-        .translation-half::-webkit-scrollbar-thumb {
+        .lyrics-container::-webkit-scrollbar-thumb {
             background-color: #ccc; /* Grey scrollbar thumb */
             border-radius: 4px; /* Rounded edges */
             border: 2px solid transparent; /* Creates padding effect */
             background-clip: content-box; /* Ensures border doesn't affect background */
         }
         
-        .lyrics-container::-webkit-scrollbar-thumb:hover,
-        .lyrics-half::-webkit-scrollbar-thumb:hover,
-        .translation-half::-webkit-scrollbar-thumb:hover {
+        .lyrics-container::-webkit-scrollbar-thumb:hover {
             background-color: #999; /* Darker grey on hover */
         }
         
@@ -245,29 +232,6 @@
         
         body.dark .translation-half {
             border-left-color: #555;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .lyrics-page-container {
-                flex-direction: column;
-            }
-            
-            .left-panel,
-            .right-panel {
-                width: 100%;
-            }
-            
-            .lyrics-container {
-                height: auto !important;
-                overflow-y: visible;
-                max-height: none; /* Remove max-height on mobile */
-            }
-            
-            .lyrics-half,
-            .translation-half {
-                overflow-y: visible; /* Disable scrolling on mobile */
-            }
         }
     </style>
 </head>
