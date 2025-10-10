@@ -316,81 +316,63 @@
     </main>
 
     <script>
-        // Lyrics data - Updated with more lyrics to demonstrate scrolling
-        const lyricsData = {
-            original: `Line 1
+        // Lyrics data - Write naturally!
+        const lyrics = `
+Line 1
 Line 2
 Line 3
 Line 4
+
 Line 5
 Line 6
 Line 7
 Line 8
-Line 9
-Line 10
-Line 11
-Line 12
-Line 13
-Line 14
-Line 15
-Line 16
-Line 17
-Line 18
-Line 19
-Line 20`,
-            
-            withTranslation: `Line 1
-<span class="translation-line">Translation 1</span>
-Line 2
-<span class="translation-line">Translation 2</span>
-Line 3
-<span class="translation-line">Translation 3</span>
-Line 4
-<span class="translation-line">Translation 4</span>
-Line 5
-<span class="translation-line">Translation 5</span>
-Line 6
-<span class="translation-line">Translation 6</span>
-Line 7
-<span class="translation-line">Translation 7</span>
-Line 8
-<span class="translation-line">Translation 8</span>
-Line 9
-<span class="translation-line">Translation 9</span>
-Line 10
-<span class="translation-line">Translation 10</span>
-Line 11
-<span class="translation-line">Translation 11</span>
-Line 12
-<span class="translation-line">Translation 12</span>
-Line 13
-<span class="translation-line">Translation 13</span>
-Line 14
-<span class="translation-line">Translation 14</span>
-Line 15
-<span class="translation-line">Translation 15</span>
-Line 16
-<span class="translation-line">Translation 16</span>
-Line 17
-<span class="translation-line">Translation 17</span>
-Line 18
-<span class="translation-line">Translation 18</span>
-Line 19
-<span class="translation-line">Translation 19</span>
-Line 20
-<span class="translation-line">Translation 20</span>`
-        };
+`;
+
+        const translation = `
+Translation 1
+Translation 2
+Translation 3
+Translation 4
+
+Translation 5
+Translation 6
+Translation 7
+Translation 8
+`;
 
         // Function to update lyrics display based on toggle state
         function updateLyricsDisplay() {
             const translationToggle = document.getElementById('translation-toggle');
             const lyricsContent = document.getElementById('lyrics-content');
             
-            if (translationToggle.checked) {
-                lyricsContent.innerHTML = lyricsData.withTranslation;
-            } else {
-                lyricsContent.innerHTML = lyricsData.original;
+            // Split into arrays of lines
+            const lyricsLines = lyrics.split('\n');
+            const translationLines = translation.split('\n');
+            
+            let lyricsHTML = '';
+            
+            // Process each line
+            for (let i = 0; i < lyricsLines.length; i++) {
+                const currentLyric = lyricsLines[i];
+                const currentTranslation = translationLines[i];
+                
+                if (currentLyric === '' && currentTranslation === '') {
+                    // Both are empty lines - just add a space
+                    lyricsHTML += '\n';
+                } else if (translationToggle.checked) {
+                    // Show lyric + translation
+                    lyricsHTML += currentLyric + '\n';
+                    if (currentTranslation && currentTranslation !== '') {
+                        lyricsHTML += `<span class="translation-line">${currentTranslation}</span>\n`;
+                    }
+                } else {
+                    // Show lyric only
+                    lyricsHTML += currentLyric + '\n';
+                }
             }
+            
+            lyricsContent.innerHTML = lyricsHTML;
         }
 
         // Function to match lyrics container height to left panel
