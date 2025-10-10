@@ -137,6 +137,42 @@
             scrollbar-color: #ccc transparent; /* For Firefox */
         }
         
+        /* Split layout for lyrics and translation */
+        .lyrics-split-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .lyrics-half {
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .translation-half {
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+            white-space: pre-line;
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+        
+        .lyrics-container.no-split .lyrics-split-container {
+            display: block;
+        }
+        
+        .lyrics-container.no-split .translation-half {
+            display: none;
+        }
+        
+        .lyrics-container.no-split .lyrics-half {
+            border-right: none;
+            padding-right: 0;
+        }
+        
         /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
         .lyrics-container::-webkit-scrollbar {
             width: 8px; /* Width of the scrollbar */
@@ -190,6 +226,10 @@
             color: #cccccc;
         }
         
+        body.dark .translation-half {
+            border-left-color: #555;
+        }
+        
         /* Responsive design */
         @media (max-width: 768px) {
             .lyrics-page-container {
@@ -204,6 +244,22 @@
             .lyrics-container {
                 height: auto !important; /* Remove fixed height on mobile */
                 overflow-y: visible; /* Remove scrolling on mobile */
+            }
+            
+            .lyrics-split-container {
+                flex-direction: column;
+            }
+            
+            .translation-half {
+                border-left: none;
+                border-top: 1px solid #ddd;
+                padding-left: 0;
+                padding-top: 20px;
+                margin-top: 20px;
+            }
+            
+            body.dark .translation-half {
+                border-top-color: #555;
             }
         }
     </style>
@@ -309,7 +365,10 @@
                 
                 <!-- Lyrics Container -->
                 <div class="lyrics-container" id="lyrics-content">
-                    <!-- Content will be populated by JavaScript -->
+                    <div class="lyrics-split-container">
+                        <div class="lyrics-half" id="lyrics-original"></div>
+                        <div class="translation-half" id="lyrics-translation"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -524,35 +583,20 @@ Aa gaya ni ohi billo time
         // Function to update lyrics display based on toggle state
         function updateLyricsDisplay() {
             const translationToggle = document.getElementById('translation-toggle');
-            const lyricsContent = document.getElementById('lyrics-content');
+            const lyricsContainer = document.getElementById('lyrics-content');
+            const lyricsOriginal = document.getElementById('lyrics-original');
+            const lyricsTranslation = document.getElementById('lyrics-translation');
             
-            // Split into arrays of lines
-            const lyricsLines = lyrics.split('\n');
-            const translationLines = translation.split('\n');
-            
-            let lyricsHTML = '';
-            
-            // Process each line
-            for (let i = 0; i < lyricsLines.length; i++) {
-                const currentLyric = lyricsLines[i];
-                const currentTranslation = translationLines[i];
-                
-                if (currentLyric === '' && currentTranslation === '') {
-                    // Both are empty lines - just add a space
-                    lyricsHTML += '\n';
-                } else if (translationToggle.checked) {
-                    // Show lyric + translation
-                    lyricsHTML += currentLyric + '\n';
-                    if (currentTranslation && currentTranslation !== '') {
-                        lyricsHTML += `<span class="translation-line">${currentTranslation}</span>\n`;
-                    }
-                } else {
-                    // Show lyric only
-                    lyricsHTML += currentLyric + '\n';
-                }
+            // Update the container class based on toggle state
+            if (translationToggle.checked) {
+                lyricsContainer.classList.remove('no-split');
+            } else {
+                lyricsContainer.classList.add('no-split');
             }
             
-            lyricsContent.innerHTML = lyricsHTML;
+            // Set the lyrics content
+            lyricsOriginal.textContent = lyrics;
+            lyricsTranslation.textContent = translation;
         }
 
         // Function to match lyrics container height to left panel
