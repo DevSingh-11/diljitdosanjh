@@ -616,27 +616,33 @@ Aa gaya ni ohi billo time
             lyricsTranslation.textContent = translation;
         }
 
-        // Function to match lyrics container height to left panel
+        // Function to match lyrics container height to left panel - FIXED
         function matchLyricsHeight() {
             const leftPanel = document.querySelector('.left-panel');
             const lyricsContainer = document.querySelector('.lyrics-container');
             const titleBox = document.querySelector('.title-box');
             
             if (leftPanel && lyricsContainer && titleBox) {
+                // Reset height first to get accurate measurements
+                lyricsContainer.style.height = 'auto';
+                
                 const leftTranslationToggle = document.querySelector('.left-translation-toggle');
                 
-                // Get the bottom position of the translation toggle relative to the document
-                const toggleRect = leftTranslationToggle.getBoundingClientRect();
-                const titleRect = titleBox.getBoundingClientRect();
+                // Get positions relative to the document (not viewport)
+                const toggleBottom = leftTranslationToggle.offsetTop + leftTranslationToggle.offsetHeight;
+                const titleTop = titleBox.offsetTop;
                 
-                // Calculate the available height for lyrics container
-                const availableHeight = toggleRect.bottom - titleRect.top;
+                // Calculate available height (from title top to toggle bottom)
+                const availableHeight = toggleBottom - titleTop;
                 
-                // Set the lyrics container height
+                // Apply the calculated height
                 if (availableHeight > 200) {
-                    lyricsContainer.style.height = availableHeight + 'px';
+                    lyricsContainer.style.height = (availableHeight - 5) + 'px'; // Small margin
+                    lyricsContainer.style.maxHeight = (availableHeight - 5) + 'px';
                 } else {
-                    lyricsContainer.style.height = '400px'; // Fallback height
+                    // Fallback to reasonable height
+                    lyricsContainer.style.height = '400px';
+                    lyricsContainer.style.maxHeight = '600px';
                 }
             }
         }
@@ -656,6 +662,7 @@ Aa gaya ni ohi billo time
             
             // Match heights after content is loaded
             setTimeout(matchLyricsHeight, 100);
+            setTimeout(matchLyricsHeight, 300);
             
             // Also match heights when window resizes
             window.addEventListener('resize', matchLyricsHeight);
