@@ -154,6 +154,7 @@
             width: 100%;
             height: 100%;
             gap: 40px; /* Space between columns */
+            padding-bottom: 15px; /* Bottom gap to match top */
         }
         
         .lyrics-half {
@@ -165,8 +166,21 @@
         .translation-half {
             flex: 1;
             white-space: pre-line;
-            border-left: 1px solid #ddd;
             padding-left: 40px; /* Only left padding for border separation */
+            position: relative; /* For the extended border */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Extended vertical line */
+        .translation-half::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -15px; /* Extend above to match top padding */
+            bottom: -15px; /* Extend below to match bottom padding */
+            width: 1px;
+            background-color: #ddd;
         }
         
         /* When translation is off - single column layout */
@@ -180,6 +194,7 @@
         
         .lyrics-container.no-split .lyrics-half {
             width: 100%;
+            padding-bottom: 15px; /* Add bottom padding to match when translation is on */
         }
         
         /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
@@ -235,8 +250,8 @@
             color: #cccccc;
         }
         
-        body.dark .translation-half {
-            border-left-color: #555;
+        body.dark .translation-half::before {
+            background-color: #555;
         }
     </style>
 </head>
@@ -455,105 +470,105 @@ Aa gaya ni ohi billo time
 `.trim();
 
         const translation = `
--
+Aa gaya ni ohi billo time
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
 
--
--
--
--
+Ni mehfila 'ch bottle'an
+Te chautha kude ged si
+Din chadhde nu
+Billo police di raid si
 
--
--
--
--
+Ajj kude showroom kole
+Vairi dha liya
+Athne je Dhaliwal
+Thaaniyan chura liya
 
--
--
+Hone charche, naale parche
+Bas chup karke hi se ni
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
 
--
--
--
--
+Ho loki kude darde aa
+Jatt vekh varde aa
+Khauf kude odhan hi
+Bathera saadi daang da
 
--
--
--
--
+Ni chahe agge aa gaye
+Ni duniyan te chha gaye
+Department paise takke
+Aala bhapu sambhda
 
--
--
--
--
+Ji jaan kude phirda
+Yaaran ton jatt vaarda
+Aithe hi Canada
+Saadi chaska nahi bahar da
 
--
--
--
--
+Jo pitt pichhe bolda eh
+Boli jaave sanu ki?
+Laaj kade hunda nahi
+Dimaag de bimaar da
 
--
--
+Taur bole, main na bola
+Tu aive dil te na lai ni
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
 
--
--
--
--
+Ni kehdi tu fragrance
+La ke gharo nikli
+Lagda eh baaga vichon
+Uddi koi titli
 
--
--
--
--
+Je tere kehnde gaalan vich
+Painde toi fabbde
+Rakaane gussa jatt de
+Matthe te paunda kikli
 
--
--
+Maan mera, maan mera
+Bas chup karke hi keh ni
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
 
--
--
--
--
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
 
--
--
--
--
+Yeah you know how we do it baby
+Either you with us, or you not
+Either way, we ain't stressin'
+(Hai nahi)
 
--
--
--
+Deep Jandu (Jandu)
+Dosanjhaala (Diljit)
+Aa gaya ni ohi billo time
 `.trim();
 
         // Function to update lyrics display based on toggle state
