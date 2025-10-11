@@ -3,70 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tension Lyrics - Diljit Dosanjh</title>
-    <link rel="stylesheet" href="../desktop.css">
+    <title>Tension - Diljit Dosanjh</title>
+    <link rel="stylesheet" href="desktop.css">
     <style>
         /* Main layout */
-        .lyrics-page-container {
+        .lyrics-container {
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
-            gap: 30px;
             padding: 0 20px;
+            gap: 30px;
             align-items: flex-start;
         }
-        
-        .right-panel {
-            width: 66.667%;
-            margin-top: 0px;
-        }
-        
-        .left-panel {
-            width: 33.333%;
+
+        /* Left column - Album art and controls */
+        .left-column {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 20px;
         }
-        
-        .right-panel {
-            width: 66.667%;
-        }
-        
-        /* Album cover styling */
-        .album-cover {
+
+        .album-art {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            background-color: #f0f0f0;
         }
-        
-        .album-cover img {
+
+        .album-art img {
             width: 100%;
             height: auto;
             display: block;
         }
-        
-        /* Translation toggle styling for left panel */
-        .left-translation-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+
+        .translation-control {
             background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        
-        .translation-label {
-            font-weight: 600;
+
+        .translation-control h3 {
+            margin-bottom: 15px;
             color: #222;
-            white-space: nowrap;
             font-size: 16px;
+            font-weight: 600;
         }
-        
+
+        /* Right column - Lyrics */
+        .right-column {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lyrics-title {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .lyrics-title h1 {
+            margin-bottom: 0;
+            color: #222222;
+            font-size: 2.5rem;
+        }
+
+        .lyrics-content {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 500px; /* Fixed height for scrolling */
+        }
+
+        .lyrics-side {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .lyrics-side.left {
+            border-right: 2px solid #eee;
+        }
+
+        .lyrics-text {
+            line-height: 1.8;
+            font-size: 16px;
+            white-space: pre-line;
+        }
+
+        /* Toggle switch styling */
+        .translation-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -74,13 +120,13 @@
             height: 31px;
             flex-shrink: 0;
         }
-        
+
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
+
         .toggle-slider {
             position: absolute;
             cursor: pointer;
@@ -92,7 +138,7 @@
             transition: .4s;
             border-radius: 34px;
         }
-        
+
         .toggle-slider:before {
             position: absolute;
             content: "";
@@ -104,180 +150,40 @@
             transition: .4s;
             border-radius: 50%;
         }
-        
+
         input:checked + .toggle-slider {
             background-color: #66ccff;
         }
-        
+
         input:checked + .toggle-slider:before {
             transform: translateX(20px);
         }
-        
-        /* Settings menu toggle switches - always grey */
-        .settings-menu .toggle-slider {
-            background-color: #ccc !important;
-        }
-        
-        .settings-menu input:checked + .toggle-slider {
-            background-color: #ccc !important;
-        }
-        
-        /* Title box styling */
-        .title-box {
-            margin-bottom: 15px; /* Reduced margin */
-        }
-        
-        /* Lyrics container styling - FIXED HEIGHT */
-        .lyrics-container {
-            width: 100%;
-            padding: 15px 40px; /* Reduced top/bottom padding significantly */
-            line-height: 1.7;
-            text-align: left;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            white-space: pre-line;
-            font-size: 18px;
-            /* Scrollable container with fixed height */
-            overflow-y: auto;
-            min-height: 200px;
-            max-height: 600px;
-            height: 400px; /* Default height that will be overridden by JS */
-            
-            /* Custom scrollbar */
-            scrollbar-width: thin; /* For Firefox */
-            scrollbar-color: #ccc transparent; /* For Firefox */
-        }
-        
-        /* Split layout for lyrics and translation - FIXED */
-        .lyrics-split-container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            gap: 40px; /* Space between columns */
-            /* Remove padding-bottom to make both states equal */
-        }
-        
-        .lyrics-half {
-            flex: 1;
-            white-space: pre-line;
-            /* Add consistent padding to match single column layout */
-            padding-bottom: 15px;
-        }
-        
-        .translation-half {
-            flex: 1;
-            white-space: pre-line;
-            padding-left: 40px; /* Only left padding for border separation */
-            position: relative; /* For the extended border */
-            display: flex;
-            flex-direction: column;
-            /* Add consistent padding to match single column layout */
-            padding-bottom: 15px;
-        }
-        
-        /* Extended vertical line */
-        .translation-half::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0; /* Don't extend above */
-            bottom: 0; /* Don't extend below */
-            width: 1px;
-            background-color: #ddd;
-        }
-        
-        /* When translation is off - single column layout */
-        .lyrics-container.no-split .lyrics-split-container {
-            display: block;
-        }
-        
-        .lyrics-container.no-split .translation-half {
-            display: none;
-        }
-        
-        .lyrics-container.no-split .lyrics-half {
-            width: 100%;
-            padding-bottom: 15px; /* This matches the padding when translation is on */
-        }
-        
-        /* Ensure both states have the same top spacing */
-        .lyrics-container.no-split .lyrics-half,
-        .lyrics-split-container .lyrics-half {
-            padding-top: 0;
-            margin-top: 0;
-        }
-        
-        /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
-        .lyrics-container::-webkit-scrollbar {
-            width: 8px; /* Width of the scrollbar */
-        }
-        
-        .lyrics-container::-webkit-scrollbar-track {
-            background: transparent; /* Transparent track */
-            margin: 5px 0; /* Add some spacing */
-        }
-        
-        .lyrics-container::-webkit-scrollbar-thumb {
-            background-color: #ccc; /* Grey scrollbar thumb */
-            border-radius: 4px; /* Rounded edges */
-            border: 2px solid transparent; /* Creates padding effect */
-            background-clip: content-box; /* Ensures border doesn't affect background */
-        }
-        
-        .lyrics-container::-webkit-scrollbar-thumb:hover {
-            background-color: #999; /* Darker grey on hover */
-        }
-        
-        .translation-line {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 15px;
-            padding-left: 20px;
-            font-size: 16px;
-        }
-        
-        .lyrics-line {
-            margin-bottom: 5px;
-        }
-        
-        .lyrics-section {
-            margin-bottom: 25px;
-        }
-        
-        /* Dark mode styles */
-        body.dark .translation-label {
-            color: #ffffff;
-        }
-        
-        body.dark .left-translation-toggle,
-        body.dark .lyrics-container {
+
+        /* Dark mode support */
+        body.dark .translation-control,
+        body.dark .lyrics-title,
+        body.dark .lyrics-content {
             background-color: rgba(30, 30, 30, 0.9);
-            color: #ffffff;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        body.dark .translation-line {
-            color: #cccccc;
-        }
-        
-        body.dark .translation-half::before {
-            background-color: #555;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Fix vertical alignment when translation is off */
-        .lyrics-container.no-split .lyrics-split-container {
-            display: flex; /* Keep it flex but with one column */
-            align-items: flex-start; /* Force content to start at top */
+        body.dark .translation-control h3,
+        body.dark .lyrics-title h1 {
+            color: #ffffff;
         }
-        
-        .lyrics-container.no-split .translation-half {
-            display: none;
+
+        body.dark .lyrics-side {
+            border-right-color: #444;
         }
-        
-        .lyrics-container.no-split .lyrics-half {
-            width: 100%;
-            flex: 1;
+
+        body.dark .lyrics-text {
+            color: #ffffff;
+        }
+
+        /* Sync scrolling */
+        .lyrics-side.left,
+        .lyrics-side.right {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -285,20 +191,20 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-left">
-            <a href="../desktop.html" class="nav-icon" title="Home">
-                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/home.png'); mask-image: url('../images/home.png');"></span>
+            <a href="desktop.html" class="nav-icon" title="Home">
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('images/home.png'); mask-image: url('images/home.png');"></span>
             </a>
         </div>
         
         <div class="nav-center">
-            <a href="../desktop-games.html" class="nav-link">GAMES</a>
-            <a href="../desktop-listen.html" class="nav-link">LISTEN</a>
-            <a href="../desktop-lyrics.html" class="nav-link active">LYRICS</a>
+            <a href="desktop-games.html" class="nav-link">GAMES</a>
+            <a href="desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="desktop-lyrics.html" class="nav-link active">LYRICS</a>
         </div>
         
         <div class="nav-right">
             <button class="settings-toggle" title="Settings">
-                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/settings.png'); mask-image: url('../images/settings.png');"></span>
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('images/settings.png'); mask-image: url('images/settings.png');"></span>
             </button>
         </div>
     </nav>
@@ -335,7 +241,7 @@
                 <span class="toggle-label left">
                     <span class="icon-wrapper">
                         <span class="icon-bg"></span>
-                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/spotify.png'); mask-image: url('../images/spotify.png');"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('images/spotify.png'); mask-image: url('images/spotify.png');"></span>
                     </span>
                 </span>
                 <label class="toggle-switch">
@@ -345,7 +251,7 @@
                 <span class="toggle-label right">
                     <span class="icon-wrapper">
                         <span class="icon-bg"></span>
-                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/youtube.png'); mask-image: url('../images/youtube.png');"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('images/youtube.png'); mask-image: url('images/youtube.png');"></span>
                     </span>
                 </span>
             </div>
@@ -357,34 +263,247 @@
 
     <!-- Page Content -->
     <main>
-        <div class="lyrics-page-container">
-            <!-- Left Panel (1/3) -->
-            <div class="left-panel">
-                <div class="album-cover">
-                    <img src="../images/albums/advisory.png" alt="Advisory Album Cover">
+        <div class="lyrics-container">
+            <!-- Left Column - Album Art & Controls -->
+            <div class="left-column">
+                <div class="album-art">
+                    <img src="images/albums/advisory.png" alt="Advisory Album Cover">
                 </div>
-                <!-- Translation Toggle moved to left panel -->
-                <div class="left-translation-toggle">
-                    <span class="translation-label">Show Translation</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="translation-toggle">
-                        <span class="toggle-slider"></span>
-                    </label>
+                <div class="translation-control">
+                    <h3>Show Translation</h3>
+                    <div class="translation-toggle">
+                        <span class="toggle-label">Off</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="translation-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">On</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Right Panel (2/3) -->
-            <div class="right-panel">
-                <!-- Title -->
-                <div class="title-box">
+
+            <!-- Right Column - Lyrics -->
+            <div class="right-column">
+                <div class="lyrics-title">
                     <h1>Tension</h1>
                 </div>
-                
-                <!-- Lyrics Container -->
-                <div class="lyrics-container" id="lyrics-content">
-                    <div class="lyrics-split-container">
-                        <div class="lyrics-half" id="lyrics-original"></div>
-                        <div class="translation-half" id="lyrics-translation"></div>
+                <div class="lyrics-content">
+                    <!-- Left Side - Transliteration (Always visible) -->
+                    <div class="lyrics-side left">
+                        <div class="lyrics-text" id="transliteration-text">
+Aa gaya ni ohi billo time
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
+
+Ni mehfila 'ch bottle'an
+Te chautha kude ged si
+Din chadhde nu
+Billo police di raid si
+
+Ajj kude showroom
+Kole vairi dha liya
+Athne je Dhaliwal
+Thaaniyan chura liya
+
+Hone charche, naale parche
+Bas chup karke hi se ni
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
+
+Ho loki kude darde aa
+Jatt vekh varde aa
+Khauf kude odhan hi
+Bathera saadi daang da
+
+Ni chahe agge aa gaye
+Ni duniyan te chha gaye
+Department paise takke
+Aala bhapu sambhda
+
+Ni jaan kude phirda
+Yaaran ton jatt vaarda
+Aithe hi Canada saadi
+Chaska nahi bahar da
+
+Jo pitt pichhe bolda eh
+Boli jaave sanu ki?
+Laaj kade hunda nahi
+Dimaag de bimaar da
+
+Taur bole, main na bola
+Tu aive dil te na lai ni
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
+
+Ni kehdi tu fragrance
+La ke gharo nikli
+Lagda eh baaga vichon
+Uddi koi titli
+
+Je tere kehnde gaalan vich
+Painde toi fabbde
+Rakaane gussa jatt de
+Matthe te paunda kikli
+
+Maan mera, maan mera
+Bas chup karke hi keh ni
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Jatt jhotta, peg motta
+Je dasde launa ta keh nahi
+
+Ni tension mitran nu hai nahi
+Ni tension mitran nu hai nahi
+Bahar ghar ton, bina darr ton
+Tu khabbi seat te aa beh ni
+
+Yeah you know how we do it baby
+Either you with us, or you not
+Either way, we ain't stressin'
+(Hai nahi)
+
+Deep Jandu (Jandu)
+Dosanjhaala (Diljit)
+Aa gaya ni ohi billo time
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Switches between Punjabi and Translation -->
+                    <div class="lyrics-side right">
+                        <!-- Punjabi Lyrics (Default) -->
+                        <div class="lyrics-text" id="punjabi-text">
+ਆ ਗਿਆ ਨੀ ਓਹੀ ਬਿੱਲੋ time
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਜੱਟ ਝੋਟ, peg ਮੋਟਾ
+ਜੇ ਦੱਸਦੇ ਲਾਉਣਾ ਤਾਂ ਕਹਿ ਨਹੀਂ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਬਾਹਰ ਘਰ ਤੋਂ, ਬਿਨਾ ਡਰ ਤੋਂ
+ਤੂੰ ਖੱਬੀ seat ਤੇ ਆ ਬਹਿ ਨੀ
+
+ਨੀ ਮਹਿਫ਼ਲਾਂ 'ਚ ਬੋਤਲਾਂ
+ਤੇ ਚੌਥਾ ਕੁੜੇ ਗੇਰ ਸੀ
+ਦਿਨ ਚੜ੍ਹਦੇ ਨੂੰ
+ਬਿੱਲੋ police ਦੀ raid ਸੀ
+
+ਅੱਜ ਕੁੜੇ showroom
+ਕੋਲੇ ਵੈਰੀ ਢਾਹ ਲਿਆ
+ਆਥਣੇ ਜਿਹੇ Dhaliwal
+ਥਾਣਿਆਂ ਚਊਰਾ ਲਿਆ
+
+ਹੋਣੇ ਚਰਚੇ, ਨਾਲੇ ਪਰਚੇ
+ਬਸ ਚੁੱਪ ਕਰਕੇ ਹੀ ਸਹਿ ਨੀ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਜੱਟ ਝੋਟ, peg ਮੋਟਾ
+ਜੇ ਦੱਸਦੇ ਲਾਉਣਾ ਤਾਂ ਕਹਿ ਨਹੀਂ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਬਾਹਰ ਘਰ ਤੋਂ, ਬਿਨਾ ਡਰ ਤੋਂ
+ਤੂੰ ਖੱਬੀ seat ਤੇ ਆ ਬਹਿ ਨੀ
+
+ਹੋ ਲੋਕੀ ਕੁੜੇ ਡਰਦੇ ਆ
+ਜੱਟ ਵੇਖ ਵਰਦੇ ਆ
+ਖੌਫ ਕੁੜੇ ਓਦਨ ਹੀ
+ਬਥੇਰਾ ਸਾਡੀ ਡਾਂਗ ਦਾ
+
+ਨੀ ਚਾਹੇ ਅੱਗੇ ਆ ਗਏ
+ਨੀ ਦੁਨੀਆ ਤੇ ਛਾ ਗਏ
+Department ਪੈਸੇ ਟੱਕੇ
+ਆਲਾ ਬਾਪੂ ਸਾਂਭਦਾ
+
+ਨੀ ਜਾਨ ਕੁੜੇ ਫਿਰਦਾ
+ਯਾਰਾਂ ਤੋਂ ਜੱਟ ਵਾਰਦਾ
+ਐਥੇ ਹੀ Canada ਸਾਡੀ
+ਚਸਕਾ ਨਹੀਂ ਬਾਹਰ ਦਾ
+
+ਜੋ ਪਿੱਠ ਪਿੱਛੇ ਬੋਲਦਾ ਏ
+ਬੋਲੀ ਜਾਵੇ ਸਾਨੂੰ ਕੀ?
+ਲਾਜ਼ ਕਦੇ ਹੁੰਦਾ ਨਹੀਂ
+ਦਿਮਾਗ਼ ਦੇ ਬੀਮਾਰ ਦਾ
+
+ਤੌਰ ਬੋਲੇ, ਮੈਂ ਨਾ ਬੋਲਾਂ
+ਤੂੰ ਐਵੇਂ ਦਿਲ ਤੇ ਨਾ ਲੈ ਨੀ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਜੱਟ ਝੋਟ, peg ਮੋਟਾ
+ਜੇ ਦੱਸਦੇ ਲਾਉਣਾ ਤਾਂ ਕਹਿ ਨਹੀਂ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਬਾਹਰ ਘਰ ਤੋਂ, ਬਿਨਾ ਡਰ ਤੋਂ
+ਤੂੰ ਖੱਬੀ seat ਤੇ ਆ ਬਹਿ ਨੀ
+
+ਨੀ ਕਿਹੜੀ ਤੂੰ fragrance
+ਲਾ ਕੇ ਘਰੋਂ ਨਿਕਲੀ
+ਲੱਗਦਾ ਏ ਬਾਗ਼ਾਂ ਵਿੱਚੋਂ
+ਉੱਡੀ ਕੋਈ ਤਿਤਲੀ
+
+ਜੇ ਤੇਰੇ ਕਹਿੰਦੇ ਗੱਲਾਂ ਵਿੱਚ
+ਪੈਂਦੇ ਟੋਏ ਫੱਬਦੇ
+ਰਕਾਣੇ ਗੁੱਸਾ ਜੱਟ ਦੇ
+ਮੱਥੇ ਤੇ ਪਾਉਂਦਾ ਕਿੱਕਲੀ
+
+Maan ਮੇਰਾ Maan ਮੇਰਾ
+ਬਸ ਚੁੱਪ ਕਰਕੇ ਹੀ ਕਹਿ ਨੀ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਜੱਟ ਝੋਟ, peg ਮੋਟਾ
+ਜੇ ਦੱਸਦੇ ਲਾਉਣਾ ਤਾਂ ਕਹਿ ਨਹੀਂ
+
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਨੀ tension ਮਿੱਤਰਾਂ ਨੂੰ ਹੈ ਨਹੀਂ
+ਬਾਹਰ ਘਰ ਤੋਂ, ਬਿਨਾ ਡਰ ਤੋਂ
+ਤੂੰ ਖੱਬੀ seat ਤੇ ਆ ਬਹਿ ਨੀ
+
+Yeah you know how we do it baby
+Either you with us, or you not
+Either way, we ain't stressin'
+(ਹੈ ਨਹੀਂ)
+
+ਦੀਪ ਜੰਡੂ (ਜੰਡੂ)
+ਦੋਸਾਂਝਾਲਾ (ਦਿਲਜੀਤ)
+ਆ ਗਿਆ ਨੀ ਓਹੀ ਬਿੱਲੋ time
+                        </div>
+
+                        <!-- Translation (Hidden by default) -->
+                        <div class="lyrics-text" id="translation-text" style="display: none;">
+[Translation would go here]
+
+[The translation text you provided was mostly empty with just dashes, so I've left this as a placeholder. You can add the actual English translation when you have it.]
+                        </div>
                     </div>
                 </div>
             </div>
@@ -392,415 +511,158 @@
     </main>
 
     <script>
-        // Lyrics data
-        const lyrics = `
-Aa gaya ni ohi billo time
+        // Translation toggle functionality
+        const translationToggle = document.getElementById('translation-toggle');
+        const punjabiText = document.getElementById('punjabi-text');
+        const translationText = document.getElementById('translation-text');
+        const leftLyrics = document.querySelector('.lyrics-side.left');
+        const rightLyrics = document.querySelector('.lyrics-side.right');
 
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
+        // Sync scrolling between left and right sides
+        leftLyrics.addEventListener('scroll', () => {
+            rightLyrics.scrollTop = leftLyrics.scrollTop;
+        });
 
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
+        rightLyrics.addEventListener('scroll', () => {
+            leftLyrics.scrollTop = rightLyrics.scrollTop;
+        });
 
-Ni mehfila 'ch bottle'an
-Te chautha kude ged si
-Din chadhde nu
-Billo police di raid si
-
-Ajj kude showroom kole
-Vairi dha liya
-Athne je Dhaliwal
-Thaaniyan chura liya
-
-Hone charche, naale parche
-Bas chup karke hi se ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Ho loki kude darde aa
-Jatt vekh varde aa
-Khauf kude odhan hi
-Bathera saadi daang da
-
-Ni chahe agge aa gaye
-Ni duniyan te chha gaye
-Department paise takke
-Aala bhapu sambhda
-
-Ji jaan kude phirda
-Yaaran ton jatt vaarda
-Aithe hi Canada
-Saadi chaska nahi bahar da
-
-Jo pitt pichhe bolda eh
-Boli jaave sanu ki?
-Laaj kade hunda nahi
-Dimaag de bimaar da
-
-Taur bole, main na bola
-Tu aive dil te na lai ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Ni kehdi tu fragrance
-La ke gharo nikli
-Lagda eh baaga vichon
-Uddi koi titli
-
-Je tere kehnde gaalan vich
-Painde toi fabbde
-Rakaane gussa jatt de
-Matthe te paunda kikli
-
-Maan mera, maan mera
-Bas chup karke hi keh ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Yeah you know how we do it baby
-Either you with us, or you not
-Either way, we ain't stressin'
-(Hai nahi)
-
-Deep Jandu (Jandu)
-Dosanjhaala (Diljit)
-Aa gaya ni ohi billo time
-`.trim();
-
-        const translation = `
-Aa gaya ni ohi billo time
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Ni mehfila 'ch bottle'an
-Te chautha kude ged si
-Din chadhde nu
-Billo police di raid si
-
-Ajj kude showroom kole
-Vairi dha liya
-Athne je Dhaliwal
-Thaaniyan chura liya
-
-Hone charche, naale parche
-Bas chup karke hi se ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Ho loki kude darde aa
-Jatt vekh varde aa
-Khauf kude odhan hi
-Bathera saadi daang da
-
-Ni chahe agge aa gaye
-Ni duniyan te chha gaye
-Department paise takke
-Aala bhapu sambhda
-
-Ji jaan kude phirda
-Yaaran ton jatt vaarda
-Aithe hi Canada
-Saadi chaska nahi bahar da
-
-Jo pitt pichhe bolda eh
-Boli jaave sanu ki?
-Laaj kade hunda nahi
-Dimaag de bimaar da
-
-Taur bole, main na bola
-Tu aive dil te na lai ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Ni kehdi tu fragrance
-La ke gharo nikli
-Lagda eh baaga vichon
-Uddi koi titli
-
-Je tere kehnde gaalan vich
-Painde toi fabbde
-Rakaane gussa jatt de
-Matthe te paunda kikli
-
-Maan mera, maan mera
-Bas chup karke hi keh ni
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Jatt jhotta, peg motta
-Je dasde launa ta keh nahi
-
-Ni tension mitran nu hai nahi
-Ni tension mitran nu hai nahi
-Bahar ghar ton, bina darr ton
-Tu khabbi seat te aa beh ni
-
-Yeah you know how we do it baby
-Either you with us, or you not
-Either way, we ain't stressin'
-(Hai nahi)
-
-Deep Jandu (Jandu)
-Dosanjhaala (Diljit)
-Aa gaya ni ohi billo time
-`.trim();
-
-        // Function to update lyrics display based on toggle state
-        function updateLyricsDisplay() {
-            const translationToggle = document.getElementById('translation-toggle');
-            const lyricsContainer = document.getElementById('lyrics-content');
-            const lyricsOriginal = document.getElementById('lyrics-original');
-            const lyricsTranslation = document.getElementById('lyrics-translation');
-            
-            // Update the container class based on toggle state
-            if (translationToggle.checked) {
-                lyricsContainer.classList.remove('no-split');
+        // Translation toggle event
+        translationToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Show translation, hide Punjabi
+                punjabiText.style.display = 'none';
+                translationText.style.display = 'block';
             } else {
-                lyricsContainer.classList.add('no-split');
+                // Show Punjabi, hide translation
+                punjabiText.style.display = 'block';
+                translationText.style.display = 'none';
             }
-            
-            // Set the lyrics content
-            lyricsOriginal.textContent = lyrics;
-            lyricsTranslation.textContent = translation;
+        });
+
+        // Settings menu functionality
+        const settingsToggle = document.querySelector('.settings-toggle');
+        const settingsMenu = document.getElementById('settings-menu');
+        const overlay = document.getElementById('overlay');
+        const themeToggle = document.getElementById('theme-toggle');
+        const difficultyToggle = document.getElementById('difficulty-toggle');
+        const serviceToggle = document.getElementById('service-toggle');
+
+        // Toggle settings menu
+        settingsToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        // Close menu when clicking elsewhere
+        overlay.addEventListener('click', () => {
+            settingsMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Prevent menu from closing when clicking inside it
+        settingsMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Theme functionality
+        function applyTheme(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
         }
 
-        // Function to match lyrics container height to left panel - FIXED
-        function matchLyricsHeight() {
-            const leftPanel = document.querySelector('.left-panel');
-            const lyricsContainer = document.querySelector('.lyrics-container');
-            const titleBox = document.querySelector('.title-box');
+        // Update toggle labels
+        function updateToggleLabels() {
+            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
             
-            if (leftPanel && lyricsContainer && titleBox) {
-                // Reset height first to get accurate measurements
-                lyricsContainer.style.height = 'auto';
-                
-                const leftTranslationToggle = document.querySelector('.left-translation-toggle');
-                
-                // Get positions relative to the document (not viewport)
-                const toggleBottom = leftTranslationToggle.offsetTop + leftTranslationToggle.offsetHeight;
-                const titleTop = titleBox.offsetTop;
-                
-                // Calculate available height (from title top to toggle bottom)
-                const availableHeight = toggleBottom - titleTop;
-                
-                // Apply the calculated height
-                if (availableHeight > 200) {
-                    lyricsContainer.style.height = (availableHeight - 5) + 'px'; // Small margin
-                    lyricsContainer.style.maxHeight = (availableHeight - 5) + 'px';
-                } else {
-                    // Fallback to reasonable height
-                    lyricsContainer.style.height = '400px';
-                    lyricsContainer.style.maxHeight = '600px';
-                }
-            }
-        }
-
-        // Initialize the page when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load saved GLOBAL translation preference
-            const savedTranslation = localStorage.getItem('showTranslation_global');
-            const translationToggle = document.getElementById('translation-toggle');
+            // Get all label elements
+            const themeLeft = themeLabels.querySelector('.toggle-label.left');
+            const themeRight = themeLabels.querySelector('.toggle-label.right');
+            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
             
-            if (savedTranslation === 'true') {
-                translationToggle.checked = true;
-            }
-            
-            // Initial lyrics display
-            updateLyricsDisplay();
-            
-            // Match heights after content is loaded
-            setTimeout(matchLyricsHeight, 100);
-            setTimeout(matchLyricsHeight, 300);
-            
-            // Also match heights when window resizes
-            window.addEventListener('resize', matchLyricsHeight);
-            
-            // Translation toggle event - save GLOBALLY
-            translationToggle.addEventListener('change', function() {
-                localStorage.setItem('showTranslation_global', this.checked);
-                updateLyricsDisplay();
-                // Re-match heights after content update
-                setTimeout(matchLyricsHeight, 100);
+            // Reset all labels first
+            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
+                label.classList.remove('active', 'inactive');
+                label.classList.add('inactive');
             });
+            
+            // Update theme labels
+            if (themeToggle.checked) {
+                themeRight.classList.add('active');
+                themeRight.classList.remove('inactive');
+            } else {
+                themeLeft.classList.add('active');
+                themeLeft.classList.remove('inactive');
+            }
+            
+            // Update difficulty labels
+            if (difficultyToggle.checked) {
+                difficultyRight.classList.add('active');
+                difficultyRight.classList.remove('inactive');
+            } else {
+                difficultyLeft.classList.add('active');
+                difficultyLeft.classList.remove('inactive');
+            }
+            
+            // Update service labels
+            if (serviceToggle.checked) {
+                serviceRight.classList.add('active');
+                serviceRight.classList.remove('inactive');
+            } else {
+                serviceLeft.classList.add('active');
+                serviceLeft.classList.remove('inactive');
+            }
+        }
 
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                // Load saved theme
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark') {
-                    themeToggle.checked = true;
-                    document.body.classList.add('dark');
-                }
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            themeToggle.checked = true;
+            applyTheme(true);
+        }
 
-                // Theme toggle event
-                themeToggle.addEventListener('change', function() {
-                    if (this.checked) {
-                        document.body.classList.add('dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        document.body.classList.remove('dark');
-                        localStorage.setItem('theme', 'light');
-                    }
-                });
-            }
+        // Load saved difficulty
+        const savedDifficulty = localStorage.getItem('difficulty');
+        if (savedDifficulty === 'hard') {
+            difficultyToggle.checked = true;
+        }
 
-            // Load and initialize the settings
-            const difficultyToggle = document.getElementById('difficulty-toggle');
-            const serviceToggle = document.getElementById('service-toggle');
-            
-            // Function to update toggle labels
-            function updateToggleLabels() {
-                const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
-                const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
-                const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
-                
-                // Get all label elements
-                const themeLeft = themeLabels.querySelector('.toggle-label.left');
-                const themeRight = themeLabels.querySelector('.toggle-label.right');
-                const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
-                const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
-                const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
-                const serviceRight = serviceLabels.querySelector('.toggle-label.right');
-                
-                // Reset all labels first
-                [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
-                    label.classList.remove('active', 'inactive');
-                    label.classList.add('inactive');
-                });
-                
-                // Update theme labels
-                if (themeToggle.checked) {
-                    themeRight.classList.add('active');
-                    themeRight.classList.remove('inactive');
-                } else {
-                    themeLeft.classList.add('active');
-                    themeLeft.classList.remove('inactive');
-                }
-                
-                // Update difficulty labels
-                if (difficultyToggle.checked) {
-                    difficultyRight.classList.add('active');
-                    difficultyRight.classList.remove('inactive');
-                } else {
-                    difficultyLeft.classList.add('active');
-                    difficultyLeft.classList.remove('inactive');
-                }
-                
-                // Update service labels
-                if (serviceToggle.checked) {
-                    serviceRight.classList.add('active');
-                    serviceRight.classList.remove('inactive');
-                } else {
-                    serviceLeft.classList.add('active');
-                    serviceLeft.classList.remove('inactive');
-                }
-            }
-            
-            // Load saved preferences
-            const savedDifficulty = localStorage.getItem('difficulty');
-            if (savedDifficulty === 'hard') {
-                difficultyToggle.checked = true;
-            }
-            
-            const savedService = localStorage.getItem('musicService');
-            if (savedService === 'youtube') {
-                serviceToggle.checked = true;
-            }
-            
-            // Update labels on load
+        // Load saved service preference
+        const savedService = localStorage.getItem('musicService');
+        if (savedService === 'youtube') {
+            serviceToggle.checked = true;
+        }
+        
+        // Update labels on load
+        updateToggleLabels();
+
+        // Theme toggle event
+        themeToggle.addEventListener('change', () => {
+            const isDark = themeToggle.checked;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            applyTheme(isDark);
             updateToggleLabels();
-            
-            // Difficulty toggle event
-            difficultyToggle.addEventListener('change', () => {
-                localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
-                updateToggleLabels();
-            });
-            
-            // Music service functionality
-            serviceToggle.addEventListener('change', () => {
-                localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
-                updateToggleLabels();
-            });
-            
-            // Also call updateToggleLabels when theme changes
-            themeToggle.addEventListener('change', () => {
-                updateToggleLabels();
-            });
+        });
 
-            // Settings menu functionality
-            const settingsToggle = document.querySelector('.settings-toggle');
-            const settingsMenu = document.getElementById('settings-menu');
-            const overlay = document.getElementById('overlay');
-
-            if (settingsToggle && settingsMenu && overlay) {
-                settingsToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    settingsMenu.classList.toggle('active');
-                    overlay.classList.toggle('active');
-                });
-
-                overlay.addEventListener('click', () => {
-                    settingsMenu.classList.remove('active');
-                    overlay.classList.remove('active');
-                });
-
-                settingsMenu.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
+        // Game difficulty functionality
+        difficultyToggle.addEventListener('change', () => {
+            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
+        });
+        
+        // Music service functionality
+        serviceToggle.addEventListener('change', () => {
+            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+            updateToggleLabels();
         });
     </script>
 </body>
