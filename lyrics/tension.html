@@ -219,6 +219,19 @@
             margin-bottom: 25px;
         }
         
+        /* Add bottom space to match top space when translation is on */
+        .lyrics-split-container::after {
+            content: '';
+            display: block;
+            height: 15px; /* Same as the top padding */
+        }
+
+        /* Make gaps consistent between ON/OFF states */
+        .lyrics-container.no-split .lyrics-half {
+            width: 100%;
+            padding-bottom: 15px; /* Add bottom padding to match when translation is on */
+        }
+        
         /* Dark mode styles */
         body.dark .translation-label {
             color: #ffffff;
