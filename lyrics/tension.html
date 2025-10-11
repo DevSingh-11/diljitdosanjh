@@ -263,6 +263,21 @@
         body.dark .translation-half::before {
             background-color: #555;
         }
+
+        /* Fix vertical alignment when translation is off */
+        .lyrics-container.no-split .lyrics-split-container {
+            display: flex; /* Keep it flex but with one column */
+            align-items: flex-start; /* Force content to start at top */
+        }
+        
+        .lyrics-container.no-split .translation-half {
+            display: none;
+        }
+        
+        .lyrics-container.no-split .lyrics-half {
+            width: 100%;
+            flex: 1;
+        }
     </style>
 </head>
 <body>
