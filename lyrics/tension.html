@@ -127,7 +127,7 @@
             margin-bottom: 15px; /* Reduced margin */
         }
         
-        /* Lyrics container styling - FIXED */
+        /* Lyrics container styling - FIXED HEIGHT */
         .lyrics-container {
             width: 100%;
             padding: 15px 40px; /* Reduced top/bottom padding significantly */
@@ -138,10 +138,11 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             white-space: pre-line;
             font-size: 18px;
-            /* Scrollable container */
-            overflow-y: auto; /* Enables vertical scrolling */
-            min-height: 200px; /* Minimum height */
-            max-height: 600px; /* Maximum height to prevent excessive stretching */
+            /* Scrollable container with fixed height */
+            overflow-y: auto;
+            min-height: 200px;
+            max-height: 600px;
+            height: 400px; /* Default height that will be overridden by JS */
             
             /* Custom scrollbar */
             scrollbar-width: thin; /* For Firefox */
@@ -622,20 +623,20 @@ Aa gaya ni ohi billo time
             const titleBox = document.querySelector('.title-box');
             
             if (leftPanel && lyricsContainer && titleBox) {
-                const leftPanelHeight = leftPanel.offsetHeight;
-                const titleBoxHeight = titleBox.offsetHeight;
-                const gap = 30; // Same as the gap in the container
-                                
-                // Calculate the height needed for lyrics container - match translation switch bottom
                 const leftTranslationToggle = document.querySelector('.left-translation-toggle');
-                const toggleBottom = leftTranslationToggle.offsetTop + leftTranslationToggle.offsetHeight;
-                const lyricsHeight = toggleBottom - titleBox.offsetTop;
+                
+                // Get the bottom position of the translation toggle relative to the document
+                const toggleRect = leftTranslationToggle.getBoundingClientRect();
+                const titleRect = titleBox.getBoundingClientRect();
+                
+                // Calculate the available height for lyrics container
+                const availableHeight = toggleRect.bottom - titleRect.top;
                 
                 // Set the lyrics container height
-                if (lyricsHeight > 200) { // Only set if it's taller than minimum
-                    lyricsContainer.style.height = lyricsHeight + 'px';
+                if (availableHeight > 200) {
+                    lyricsContainer.style.height = availableHeight + 'px';
                 } else {
-                    lyricsContainer.style.height = 'auto';
+                    lyricsContainer.style.height = '400px'; // Fallback height
                 }
             }
         }
