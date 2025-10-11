@@ -154,13 +154,14 @@
             width: 100%;
             height: 100%;
             gap: 40px; /* Space between columns */
-            padding-bottom: 15px; /* Bottom gap to match top */
+            /* Remove padding-bottom to make both states equal */
         }
         
         .lyrics-half {
             flex: 1;
             white-space: pre-line;
-            /* No padding or margin - lyrics go directly to edges */
+            /* Add consistent padding to match single column layout */
+            padding-bottom: 15px;
         }
         
         .translation-half {
@@ -170,6 +171,8 @@
             position: relative; /* For the extended border */
             display: flex;
             flex-direction: column;
+            /* Add consistent padding to match single column layout */
+            padding-bottom: 15px;
         }
         
         /* Extended vertical line */
@@ -177,8 +180,8 @@
             content: '';
             position: absolute;
             left: 0;
-            top: -15px; /* Extend above to match top padding */
-            bottom: -15px; /* Extend below to match bottom padding */
+            top: 0; /* Don't extend above */
+            bottom: 0; /* Don't extend below */
             width: 1px;
             background-color: #ddd;
         }
@@ -194,7 +197,14 @@
         
         .lyrics-container.no-split .lyrics-half {
             width: 100%;
-            padding-bottom: 15px; /* Add bottom padding to match when translation is on */
+            padding-bottom: 15px; /* This matches the padding when translation is on */
+        }
+        
+        /* Ensure both states have the same top spacing */
+        .lyrics-container.no-split .lyrics-half,
+        .lyrics-split-container .lyrics-half {
+            padding-top: 0;
+            margin-top: 0;
         }
         
         /* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
