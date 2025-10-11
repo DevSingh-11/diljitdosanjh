@@ -625,9 +625,11 @@ Aa gaya ni ohi billo time
                 const leftPanelHeight = leftPanel.offsetHeight;
                 const titleBoxHeight = titleBox.offsetHeight;
                 const gap = 30; // Same as the gap in the container
-                
-                // Calculate the height needed for lyrics container
-                const lyricsHeight = leftPanelHeight;
+                                
+                // Calculate the height needed for lyrics container - match translation switch bottom
+                const leftTranslationToggle = document.querySelector('.left-translation-toggle');
+                const toggleBottom = leftTranslationToggle.offsetTop + leftTranslationToggle.offsetHeight;
+                const lyricsHeight = toggleBottom - titleBox.offsetTop;
                 
                 // Set the lyrics container height
                 if (lyricsHeight > 200) { // Only set if it's taller than minimum
