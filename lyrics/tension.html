@@ -11,24 +11,24 @@
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            gap: 30px; /* This creates the gap between album cover & title container */
         }
         
         .lyrics-left {
             width: 27.5%;
             flex: 0 0 27.5%;
+            padding: 0 10px 0 20px; /* 10px from split, 20px from left */
         }
         
         .lyrics-right {
             width: 72.5%;
             flex: 0 0 72.5%;
+            padding: 0 20px 0 10px; /* 20px from right, 10px from split */
         }
         
-        /* Album cover styling - made larger to fill the gap */
+        /* Album cover styling */
         .album-cover {
-            width: calc(100% + 20px); /* Extend 20px to the left */
-            margin-left: -20px; /* Pull it 20px to the left */
-            border-radius: 12px 0 12px 12px; /* Remove top-left radius to match extension */
+            width: 100%;
+            border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
         }
@@ -40,7 +40,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             min-height: 200px;
             padding: 20px;
-            margin-top: -10px; /* Pull it up slightly to reduce gap */
         }
         
         /* Dark mode support */
@@ -58,12 +57,7 @@
         /* Remove the flex centering from main for this page */
         main {
             justify-content: flex-start !important;
-            padding: 40px 30px !important; /* This creates equal gaps on left and right */
-        }
-        
-        /* Ensure the layout container doesn't overflow */
-        .lyrics-layout {
-            width: calc(100% - 60px); /* Account for the 30px padding on both sides */
+            padding: 40px 0 !important; /* Remove side padding since columns handle it */
         }
     </style>
 </head>
