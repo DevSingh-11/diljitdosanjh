@@ -193,7 +193,7 @@
             text-align: center;
         }
 
-        /* iPhone-style Toggle Switch */
+        /* iPhone-style Toggle Switch - EXACT COPY from reference */
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -232,11 +232,11 @@
             border-radius: 50%;
         }
 
-        /* SETTINGS SWITCHES STAY GREY - NO BLUE */
+        /* SETTINGS SWITCHES STAY GREY - NO COLOR CHANGE */
         #theme-toggle:checked + .toggle-slider,
         #difficulty-toggle:checked + .toggle-slider,
         #service-toggle:checked + .toggle-slider {
-            background-color: #666; /* Grey when checked */
+            background-color: #ccc; /* Same grey color when checked */
         }
 
         #theme-toggle:checked + .toggle-slider:before,
@@ -361,7 +361,7 @@
         body.dark #theme-toggle:checked + .toggle-slider,
         body.dark #difficulty-toggle:checked + .toggle-slider,
         body.dark #service-toggle:checked + .toggle-slider {
-            background-color: #888; /* Slightly lighter grey in dark mode */
+            background-color: #666; /* Same grey color in dark mode */
         }
     </style>
 </head>
