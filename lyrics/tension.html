@@ -23,6 +23,14 @@
         .lyrics-right {
             width: 66.667%;
             flex: 0 0 66.667%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Remove the global title-box styles for this page */
+        .lyrics-layout + .title-box,
+        main > .title-box {
+            display: none;
         }
     </style>
 </head>
@@ -102,11 +110,6 @@
 
     <!-- Page Content -->
     <main>
-        <!-- Title in same position as other pages -->
-        <div class="title-box">
-            <h1>Tension - Lyrics</h1>
-        </div>
-        
         <div class="lyrics-layout">
             <!-- Left Side - 1/3 of page width -->
             <div class="lyrics-left">
@@ -115,6 +118,11 @@
 
             <!-- Right Side - 2/3 of page width -->
             <div class="lyrics-right">
+                <!-- Title centered in the right section -->
+                <div class="title-box" style="margin-bottom: 30px;">
+                    <h1>Tension - Lyrics</h1>
+                </div>
+                
                 <!-- Right content will go here in next steps -->
                 <div class="content-box">
                     <p>Lyrics content for "Tension" will be added in the next steps.</p>
