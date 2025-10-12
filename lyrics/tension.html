@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tension - Diljit Dosanjh</title>
     <link rel="stylesheet" href="desktop.css">
+    <style>
+        /* Additional styles for the lyrics page */
+        .lyrics-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .song-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .song-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #222222;
+        }
+        
+        .song-info {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .lyrics-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.8;
+        }
+        
+        .verse {
+            margin-bottom: 25px;
+        }
+        
+        .chorus {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid #66ccff;
+            font-weight: bold;
+        }
+        
+        /* Dark mode support */
+        body.dark .song-title {
+            color: #ffffff;
+        }
+        
+        body.dark .song-info {
+            color: #cccccc;
+        }
+        
+        body.dark .lyrics-content {
+            background-color: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark .chorus {
+            border-left-color: #66ccff;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -53,7 +115,7 @@
                 <span class="toggle-label right">Hard</span>
             </div>
         </div>
-    
+        
         <div class="settings-header">
             <h3>Music Service</h3>
             <div class="toggle-container">
@@ -82,8 +144,40 @@
 
     <!-- Page Content -->
     <main>
-        <!-- Content will go here in next steps -->
+        <div class="lyrics-container">
+            <div class="song-header">
+                <h1 class="song-title">Tension</h1>
+                <div class="song-info">From the album "G.O.A.T." • 2020</div>
+            </div>
+            
+            <div class="lyrics-content">
+                <!-- Lyrics will go here -->
+                <p>Lyrics content will be added here...</p>
+            </div>
+        </div>
     </main>
+
+    <!-- Social Media Footer -->
+    <footer class="social-footer">
+        <div class="social-links">
+            <a href="https://www.instagram.com/diljitdosanjh/?hl=en" class="social-link" target="_blank">
+                <span class="social-icon-mask" style="-webkit-mask-image: url('images/instagram.png'); mask-image: url('images/instagram.png');"></span>
+                <span class="social-username">@diljitdosanjh</span>
+            </a>
+            <a href="https://open.spotify.com/artist/2FKWNmZWDBZR4dE5KX4plR" class="social-link" target="_blank">
+                <span class="social-icon-mask" style="-webkit-mask-image: url('images/spotify.png'); mask-image: url('images/spotify.png');"></span>
+                <span class="social-username">Diljit Dosanjh</span>
+            </a>
+            <a href="https://x.com/diljitdosanjh" class="social-link" target="_blank">
+                <span class="social-icon-mask" style="-webkit-mask-image: url('images/x.png'); mask-image: url('images/x.png');"></span>
+                <span class="social-username">@diljitdosanjh</span>
+            </a>
+            <a href="https://www.youtube.com/channel/UCZRdNleCgW-BGUJf-bbjzQg" class="social-link" target="_blank">
+                <span class="social-icon-mask" style="-webkit-mask-image: url('images/youtube.png'); mask-image: url('images/youtube.png');"></span>
+                <span class="social-username">Diljit Dosanjh</span>
+            </a>
+        </div>
+    </footer>
 
     <script>
         // Settings menu functionality
@@ -93,7 +187,7 @@
         const themeToggle = document.getElementById('theme-toggle');
         const difficultyToggle = document.getElementById('difficulty-toggle');
         const serviceToggle = document.getElementById('service-toggle');
-
+        
         // Toggle settings menu
         settingsToggle.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -116,8 +210,10 @@
         function applyTheme(isDark) {
             if (isDark) {
                 document.body.classList.add('dark');
+                document.body.style.color = '#ffffff';
             } else {
                 document.body.classList.remove('dark');
+                document.body.style.color = '#000000';
             }
         }
 
@@ -138,7 +234,7 @@
             // Reset all labels first
             [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
                 label.classList.remove('active', 'inactive');
-                label.classList.add('inactive');
+                label.classList.add('inactive'); // Default to inactive
             });
             
             // Update theme labels
