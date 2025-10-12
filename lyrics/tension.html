@@ -13,6 +13,9 @@
             margin: 0 auto;
             gap: 30px;
             padding: 0 20px;
+            /* Override the main flex centering */
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
         }
         
         .lyrics-left {
@@ -25,31 +28,7 @@
             flex: 0 0 66.667%;
         }
         
-        /* Title positioned exactly like in lyrics page */
-        .lyrics-right .title-box {
-            max-width: 1000px;
-            margin: 0 auto 30px auto;
-            padding: 20px 30px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        
-        .lyrics-right .title-box h1 {
-            margin-bottom: 0;
-            color: #222222;
-        }
-        
-        /* Dark mode support */
-        body.dark .lyrics-right .title-box {
-            background-color: rgba(30, 30, 30, 0.9);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        body.dark .lyrics-right .title-box h1 {
-            color: #ffffff;
-        }
+        /* Remove the duplicate title-box styles since they're already in desktop.css */
     </style>
 </head>
 <body>
