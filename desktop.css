@@ -615,11 +615,11 @@ body.dark .toggle-label.inactive .service-icon-mask {
 
 /* COMPLETELY REMOVE SCROLLBAR BUT KEEP FULL SCROLLING FUNCTIONALITY */
 html {
-    overflow: auto;
+    overflow-y: scroll; /* Change this from 'auto' to 'scroll' */
 }
 
 body {
-    overflow: auto;
+    overflow-y: auto;
     margin: 0;
     padding: 0;
     /* Hide scrollbar for all browsers */
@@ -642,5 +642,21 @@ html::-webkit-scrollbar {
 
 /* Ensure all content can be scrolled to */
 main {
-    min-height: calc(100vh - 96px); /* Full viewport minus navbar & footer */
+    min-height: calc(100vh - 96px);
+}
+
+/* FIX FOR STICKY NAVBAR - MORE ROBUST */
+.navbar {
+    position: fixed; /* Change from sticky to fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+/* Add padding to main to account for fixed navbar */
+main {
+    padding-top: 48px; /* Height of navbar */
+    min-height: calc(100vh - 96px); /* 96px = navbar + footer */
 }
