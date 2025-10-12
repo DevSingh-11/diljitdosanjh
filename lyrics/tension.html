@@ -125,11 +125,12 @@
             border-radius: 50%;
         }
         
-        input:checked + .toggle-slider {
-            background-color: #66ccff; /* Your blue color when on */
+        /* Translation toggle turns blue when checked */
+        #translation-toggle:checked + .toggle-slider {
+            background-color: #66ccff;
         }
         
-        input:checked + .toggle-slider:before {
+        #translation-toggle:checked + .toggle-slider:before {
             transform: translateX(30px);
         }
         
@@ -231,7 +232,16 @@
             border-radius: 50%;
         }
 
-        input:checked + .toggle-slider:before {
+        /* SETTINGS SWITCHES STAY GREY - NO BLUE */
+        #theme-toggle:checked + .toggle-slider,
+        #difficulty-toggle:checked + .toggle-slider,
+        #service-toggle:checked + .toggle-slider {
+            background-color: #666; /* Grey when checked */
+        }
+
+        #theme-toggle:checked + .toggle-slider:before,
+        #difficulty-toggle:checked + .toggle-slider:before,
+        #service-toggle:checked + .toggle-slider:before {
             transform: translateX(20px);
         }
 
@@ -347,8 +357,11 @@
             background-color: #666;
         }
 
-        input:checked + .toggle-slider {
-            background-color: #66ccff !important;
+        /* Dark mode - settings switches stay grey when checked */
+        body.dark #theme-toggle:checked + .toggle-slider,
+        body.dark #difficulty-toggle:checked + .toggle-slider,
+        body.dark #service-toggle:checked + .toggle-slider {
+            background-color: #888; /* Slightly lighter grey in dark mode */
         }
     </style>
 </head>
