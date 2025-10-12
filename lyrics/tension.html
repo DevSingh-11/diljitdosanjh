@@ -24,10 +24,11 @@
             flex: 0 0 72.5%;
         }
         
-        /* Album cover styling */
+        /* Album cover styling - made larger to fill the gap */
         .album-cover {
-            width: 100%;
-            border-radius: 12px;
+            width: calc(100% + 20px); /* Extend 20px to the left */
+            margin-left: -20px; /* Pull it 20px to the left */
+            border-radius: 12px 0 12px 12px; /* Remove top-left radius to match extension */
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
         }
@@ -39,6 +40,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             min-height: 200px;
             padding: 20px;
+            margin-top: -10px; /* Pull it up slightly to reduce gap */
         }
         
         /* Dark mode support */
