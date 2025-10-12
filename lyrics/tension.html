@@ -32,7 +32,7 @@
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
+            margin-bottom: 40px; /* Changed from 30px to 40px */
         }
         
         /* Empty container for left side */
@@ -45,8 +45,7 @@
             flex: 1;
             margin-bottom: 40px; /* Bottom gap matching side padding */
             box-sizing: border-box;
-            /* Limit height to create bottom gap */
-            max-height: calc(100vh - 48px - 80px - 30px - 40px); /* viewport - navbar - main padding - album cover margin - bottom gap */
+            /* Remove max-height constraint and use flex to fill available space */
         }
         
         /* Dark mode support */
@@ -65,6 +64,13 @@
         main {
             justify-content: flex-start !important;
             padding: 40px 0 !important; /* Remove side padding since columns handle it */
+            height: calc(100vh - 48px); /* Full viewport minus navbar height */
+            overflow: hidden; /* Prevent scrolling */
+        }
+        
+        /* Prevent body scrolling */
+        body {
+            overflow: hidden;
         }
     </style>
 </head>
