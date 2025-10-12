@@ -24,6 +24,12 @@
             width: 66.667%;
             flex: 0 0 66.667%;
         }
+        
+        /* Remove all padding/margin above title to see exact position */
+        .lyrics-right .title-box {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -102,12 +108,6 @@
 
     <!-- Page Content -->
     <main>
-        <!-- Title at the top (same position as before) -->
-        <div class="title-box">
-            <h1>Tension - Lyrics</h1>
-        </div>
-        
-        <!-- Split layout below the title -->
         <div class="lyrics-layout">
             <!-- Left Side - 1/3 of page width -->
             <div class="lyrics-left">
@@ -116,6 +116,11 @@
 
             <!-- Right Side - 2/3 of page width -->
             <div class="lyrics-right">
+                <!-- Title in right column with no padding above -->
+                <div class="title-box">
+                    <h1>Tension - Lyrics</h1>
+                </div>
+                
                 <!-- Right content will go here in next steps -->
                 <div class="content-box">
                     <p>Lyrics content for "Tension" will be added in the next steps.</p>
