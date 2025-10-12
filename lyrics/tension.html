@@ -72,18 +72,23 @@
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
         }
         
-        /* Translation switch styling */
+        /* Translation toggle styling - matching settings menu */
         .translation-toggle {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            width: 100%;
+            gap: 15px;
         }
         
-        .translation-label {
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toggle-label {
             font-weight: 500;
             color: #333;
             font-size: 16px;
@@ -92,8 +97,8 @@
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            width: 60px;
+            height: 30px;
         }
         
         .toggle-switch input {
@@ -117,8 +122,8 @@
         .toggle-slider:before {
             position: absolute;
             content: "";
-            height: 16px;
-            width: 16px;
+            height: 22px;
+            width: 22px;
             left: 4px;
             bottom: 4px;
             background-color: white;
@@ -131,7 +136,7 @@
         }
         
         input:checked + .toggle-slider:before {
-            transform: translateX(26px);
+            transform: translateX(30px);
         }
         
         /* Dark mode support */
@@ -139,7 +144,7 @@
             background-color: rgba(30, 30, 30, 0.9);
         }
         
-        body.dark .translation-label {
+        body.dark .toggle-label {
             color: #f0f0f0;
         }
     </style>
@@ -228,8 +233,8 @@
                 
                 <!-- New container with translation toggle -->
                 <div class="info-container">
-                    <div class="translation-toggle">
-                        <span class="translation-label">Show translation</span>
+                    <div class="toggle-container">
+                        <span class="toggle-label">Show translation</span>
                         <label class="toggle-switch">
                             <input type="checkbox" id="translation-toggle">
                             <span class="toggle-slider"></span>
