@@ -24,6 +24,17 @@
             width: 66.667%;
             flex: 0 0 66.667%;
         }
+        
+        /* Override the main flex centering for this specific layout */
+        .lyrics-layout + .title-box,
+        .lyrics-layout .title-box {
+            margin-top: 0;
+        }
+        
+        /* Remove the flex centering from main for this page */
+        main {
+            justify-content: flex-start !important;
+        }
     </style>
 </head>
 <body>
@@ -110,7 +121,7 @@
 
             <!-- Right Side - 2/3 of page width -->
             <div class="lyrics-right">
-                <!-- Title in same position as other pages -->
+                <!-- Title in right column -->
                 <div class="title-box">
                     <h1>Tension</h1>
                 </div>
