@@ -6,17 +6,26 @@
     <title>Tension - Lyrics - Diljit Dosanjh</title>
     <link rel="stylesheet" href="../desktop.css">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
         .lyrics-layout {
             display: flex;
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
+            height: calc(100% - 80px); /* Account for main padding */
         }
         
         .lyrics-left {
             width: 27.5%;
             flex: 0 0 27.5%;
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
+            display: flex;
+            flex-direction: column;
         }
         
         .lyrics-right {
@@ -40,7 +49,10 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             min-height: 200px;
             padding: 20px;
-            margin-bottom: 40px; /* Added bottom gap matching the side padding */
+            flex: 1;
+            height: calc(100% - 40px); /* Subtract bottom gap from total height */
+            margin-bottom: 40px; /* Bottom gap matching side padding */
+            box-sizing: border-box;
         }
         
         /* Dark mode support */
@@ -59,6 +71,14 @@
         main {
             justify-content: flex-start !important;
             padding: 40px 0 !important; /* Remove side padding since columns handle it */
+            height: calc(100% - 80px); /* Adjust height to account for navbar */
+            box-sizing: border-box;
+        }
+        
+        /* Ensure body takes full height */
+        body {
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
