@@ -17,9 +17,6 @@
             width: 27.5%;
             flex: 0 0 27.5%;
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* This pushes content to top and bottom */
         }
         
         .lyrics-right {
@@ -33,24 +30,6 @@
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px; /* 40px gap between album cover and container */
-        }
-        
-        /* Empty container for left side */
-        .left-content-container {
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-height: 200px;
-            padding: 20px;
-            flex: 1;
-            box-sizing: border-box;
-        }
-        
-        /* Dark mode support */
-        body.dark .left-content-container {
-            background-color: rgba(30, 30, 30, 0.85);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         /* Override the main flex centering for this specific layout */
@@ -154,11 +133,6 @@
             <div class="lyrics-left">
                 <!-- Album cover at same height as title -->
                 <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
-                
-                <!-- Empty container for future content -->
-                <div class="left-content-container">
-                    <!-- Content will be added here later -->
-                </div>
             </div>
 
             <!-- Right Side - 72.5% of page width -->
