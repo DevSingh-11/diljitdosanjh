@@ -17,6 +17,7 @@
             width: 33.33%;
             flex: 0 0 33.33%;
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
+            position: relative;
         }
         
         .lyrics-right {
@@ -58,6 +59,45 @@
         /* Prevent body scrolling */
         body {
             overflow: hidden;
+        }
+        
+        /* New container styling */
+        .info-container {
+            position: absolute;
+            left: 40px; /* 40px from left of page */
+            right: 20px; /* 20px from column split */
+            bottom: 40px; /* 40px from bottom of page */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px; /* 40px from png */
+        }
+        
+        .info-container h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .info-container p {
+            margin: 0;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* Dark mode support */
+        body.dark .info-container {
+            background-color: rgba(30, 30, 30, 0.9);
+            color: #f0f0f0;
+        }
+        
+        body.dark .info-container h3 {
+            color: #f0f0f0;
+        }
+        
+        body.dark .info-container p {
+            color: #ccc;
         }
     </style>
 </head>
@@ -142,6 +182,12 @@
             <div class="lyrics-left">
                 <!-- Album cover at same height as title -->
                 <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
+                
+                <!-- New container added here -->
+                <div class="info-container">
+                    <h3>About This Album</h3>
+                    <p>"Tension" is a popular track from Diljit Dosanjh's album "Advisory". The song showcases his signature style blending Punjabi folk with contemporary beats.</p>
+                </div>
             </div>
 
             <!-- Right Side - 66.67% of page width -->
