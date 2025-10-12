@@ -18,6 +18,8 @@
             flex: 0 0 33.33%;
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .lyrics-right {
@@ -61,17 +63,14 @@
             overflow: hidden;
         }
         
-        /* New container styling */
+        /* New container styling - FIXED */
         .info-container {
-            position: absolute;
-            left: 40px; /* 40px from left of page */
-            right: 20px; /* 20px from column split */
-            bottom: 40px; /* 40px from bottom of page */
+            margin-top: 40px; /* 40px gap from the png */
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 40px; /* 40px from png */
+            /* Remove absolute positioning - use normal flow with flex */
         }
         
         .info-container h3 {
@@ -183,7 +182,7 @@
                 <!-- Album cover at same height as title -->
                 <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
                 
-                <!-- New container added here -->
+                <!-- New container added here - FIXED POSITIONING -->
                 <div class="info-container">
                     <h3>About This Album</h3>
                     <p>"Tension" is a popular track from Diljit Dosanjh's album "Advisory". The song showcases his signature style blending Punjabi folk with contemporary beats.</p>
