@@ -615,7 +615,7 @@ body.dark .toggle-label.inactive .service-icon-mask {
 
 /* COMPLETELY REMOVE SCROLLBAR BUT KEEP FULL SCROLLING FUNCTIONALITY */
 html {
-    overflow-y: scroll; /* Change this from 'auto' to 'scroll' */
+    overflow-y: scroll;
 }
 
 body {
@@ -623,31 +623,20 @@ body {
     margin: 0;
     padding: 0;
     /* Hide scrollbar for all browsers */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Webkit browsers (Chrome, Safari, Opera) */
-body::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-}
-
+body::-webkit-scrollbar,
 html::-webkit-scrollbar {
     display: none;
     width: 0;
     height: 0;
 }
 
-/* Ensure all content can be scrolled to */
-main {
-    min-height: calc(100vh - 96px);
-}
-
-/* FIX FOR STICKY NAVBAR - MORE ROBUST */
+/* FIXED NAVBAR SOLUTION */
 .navbar {
-    position: fixed; /* Change from sticky to fixed */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -655,8 +644,18 @@ main {
     width: 100%;
 }
 
-/* Add padding to main to account for fixed navbar */
-main {
+/* Add padding to body to account for fixed navbar */
+body {
     padding-top: 48px; /* Height of navbar */
-    min-height: calc(100vh - 96px); /* 96px = navbar + footer */
+}
+
+/* Adjust main content to account for navbar AND footer */
+main {
+    min-height: calc(100vh - 96px); /* 96px = navbar(48px) + footer(48px) */
+    padding: 20px 0; /* Your existing vertical padding */
+}
+
+/* If you have a title-box, make sure it's not being covered */
+.title-box {
+    margin-top: 0; /* Remove any top margin that might push it down too far */
 }
