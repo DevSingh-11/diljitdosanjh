@@ -19,6 +19,7 @@
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
             display: flex;
             flex-direction: column;
+            justify-content: space-between; /* This pushes content to top and bottom */
         }
         
         .lyrics-right {
@@ -32,7 +33,12 @@
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px; /* Changed from 30px to 40px */
+            /* Remove margin-bottom since we're using flexbox spacing */
+        }
+        
+        /* Container for album cover to control its spacing */
+        .album-cover-container {
+            margin-bottom: 40px; /* 40px gap between album cover and container */
         }
         
         /* Empty container for left side */
@@ -43,9 +49,8 @@
             min-height: 200px;
             padding: 20px;
             flex: 1;
-            margin-bottom: 40px; /* Bottom gap matching side padding */
+            margin-bottom: 40px; /* 40px gap from bottom of screen */
             box-sizing: border-box;
-            /* Remove max-height constraint and use flex to fill available space */
         }
         
         /* Dark mode support */
@@ -153,8 +158,10 @@
         <div class="lyrics-layout">
             <!-- Left Side - 27.5% of page width -->
             <div class="lyrics-left">
-                <!-- Album cover at same height as title -->
-                <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
+                <!-- Album cover container for spacing control -->
+                <div class="album-cover-container">
+                    <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
+                </div>
                 
                 <!-- Empty container for future content -->
                 <div class="left-content-container">
