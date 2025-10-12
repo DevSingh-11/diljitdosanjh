@@ -17,16 +17,12 @@
             width: 33.33%;
             flex: 0 0 33.33%;
             padding: 0 20px 0 40px; /* 20px from split (half of 40px), 40px from left */
-            display: flex;
-            flex-direction: column;
         }
         
         .lyrics-right {
             width: 66.67%;
             flex: 0 0 66.67%;
             padding: 0 40px 0 20px; /* 40px from right, 20px from split (half of 40px) */
-            display: flex;
-            flex-direction: column;
         }
         
         /* Album cover styling */
@@ -34,42 +30,15 @@
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px; /* Gap between album and left container */
         }
         
         /* Title box styling - centered text only */
         .title-box {
             text-align: center;
-            margin-bottom: 40px; /* Gap between title and right container */
         }
         
         .title-box h1 {
             margin-bottom: 0;
-        }
-        
-        /* Left container styling */
-        .left-container {
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            margin: 0 20px 40px 0; /* top, right, bottom, left - 40px bottom, 20px right */
-        }
-        
-        /* Right container styling */
-        .right-container {
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            margin: 0 0 40px 20px; /* top, right, bottom, left - 40px bottom, 20px left */
-        }
-        
-        /* Dark mode support */
-        body.dark .left-container,
-        body.dark .right-container {
-            background-color: rgba(30, 30, 30, 0.85);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         /* Override the main flex centering for this specific layout */
@@ -173,11 +142,6 @@
             <div class="lyrics-left">
                 <!-- Album cover at same height as title -->
                 <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
-                
-                <!-- Empty container for left side -->
-                <div class="left-container">
-                    <!-- Content will be added here later -->
-                </div>
             </div>
 
             <!-- Right Side - 66.67% of page width -->
@@ -187,10 +151,7 @@
                     <h1>Tension</h1>
                 </div>
                 
-                <!-- Empty container for right side -->
-                <div class="right-container">
-                    <!-- Content will be added here later -->
-                </div>
+                <!-- Right content will go here in next steps -->
             </div>
         </div>
     </main>
