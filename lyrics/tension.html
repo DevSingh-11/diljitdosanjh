@@ -9,22 +9,20 @@
         .lyrics-layout {
             display: flex;
             width: 100%;
-            max-width: 100vw;
+            max-width: 1400px;
             margin: 0 auto;
+            gap: 30px;
+            padding: 0 20px;
         }
         
         .lyrics-left {
-            width: calc(100vw / 3);
-            flex: 0 0 calc(100vw / 3);
+            width: 33.333%;
+            flex: 0 0 33.333%;
         }
         
         .lyrics-right {
-            width: calc(100vw * 2 / 3);
-            flex: 0 0 calc(100vw * 2 / 3);
-        }
-        
-        .title-box {
-            width: 100%;
+            width: 66.667%;
+            flex: 0 0 66.667%;
         }
     </style>
 </head>
@@ -104,6 +102,11 @@
 
     <!-- Page Content -->
     <main>
+        <!-- Title in same position as other pages -->
+        <div class="title-box">
+            <h1>Tension - Lyrics</h1>
+        </div>
+        
         <div class="lyrics-layout">
             <!-- Left Side - 1/3 of page width -->
             <div class="lyrics-left">
@@ -112,11 +115,6 @@
 
             <!-- Right Side - 2/3 of page width -->
             <div class="lyrics-right">
-                <!-- Title across entire right side -->
-                <div class="title-box">
-                    <h1>Tension - Lyrics</h1>
-                </div>
-                
                 <!-- Right content will go here in next steps -->
                 <div class="content-box">
                     <p>Lyrics content for "Tension" will be added in the next steps.</p>
