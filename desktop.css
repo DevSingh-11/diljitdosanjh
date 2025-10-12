@@ -612,3 +612,25 @@ body.dark .toggle-label.inactive .service-icon-mask {
     align-items: center;
     justify-content: center;
 }
+
+/* Hide Scrollbar but Keep Scrolling Functionality */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Optional: If you want to limit height and prevent overflow */
+body {
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Allow scrolling but hide scrollbar */
+}
+
+main {
+    max-height: calc(100vh - 96px); /* Account for navbar and footer */
+    overflow-y: auto;
+}
