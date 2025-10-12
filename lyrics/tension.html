@@ -70,33 +70,77 @@
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-            /* Remove absolute positioning - use normal flow with flex */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
-        .info-container h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
+        /* Translation switch styling */
+        .translation-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .translation-label {
+            font-weight: 500;
             color: #333;
+            font-size: 16px;
         }
         
-        .info-container p {
-            margin: 0;
-            color: #666;
-            line-height: 1.4;
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #1a2a6c;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
         }
         
         /* Dark mode support */
         body.dark .info-container {
             background-color: rgba(30, 30, 30, 0.9);
-            color: #f0f0f0;
         }
         
-        body.dark .info-container h3 {
+        body.dark .translation-label {
             color: #f0f0f0;
-        }
-        
-        body.dark .info-container p {
-            color: #ccc;
         }
     </style>
 </head>
@@ -182,10 +226,15 @@
                 <!-- Album cover at same height as title -->
                 <img src="../images/albums/advisory.png" alt="Advisory Album Cover" class="album-cover">
                 
-                <!-- New container added here - FIXED POSITIONING -->
+                <!-- New container with translation toggle -->
                 <div class="info-container">
-                    <h3>About This Album</h3>
-                    <p>"Tension" is a popular track from Diljit Dosanjh's album "Advisory". The song showcases his signature style blending Punjabi folk with contemporary beats.</p>
+                    <div class="translation-toggle">
+                        <span class="translation-label">Show translation</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="translation-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -221,6 +270,23 @@
                     document.body.classList.remove('dark');
                     localStorage.setItem('theme', 'light');
                 }
+            });
+        }
+
+        // Translation toggle functionality
+        const translationToggle = document.getElementById('translation-toggle');
+        if (translationToggle) {
+            // Load saved translation preference
+            const savedTranslation = localStorage.getItem('showTranslation');
+            if (savedTranslation === 'true') {
+                translationToggle.checked = true;
+            }
+
+            // Translation toggle event
+            translationToggle.addEventListener('change', function() {
+                localStorage.setItem('showTranslation', this.checked);
+                // You can add functionality here to show/hide translations
+                console.log('Translation toggle:', this.checked);
             });
         }
 
