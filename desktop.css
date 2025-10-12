@@ -4,31 +4,72 @@
     box-sizing: border-box;
 }
 
+/* Hide scrollbars but keep scrolling */
+html {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #fff;
     color: #000;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* NEW: Background image that starts after navbar */
+    /* Remove old background properties */
+    /* Fixed background using pseudo-element */
+    position: relative;
+    overflow-x: hidden;
+    /* Shift content down for fixed navbar */
+    margin-top: 48px;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: none;
+}
+
+/* Fixed background using pseudo-element */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url('images/lightback.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     background-repeat: no-repeat;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 /* Navigation Bar */
 .navbar {
-    position: sticky;
+    position: fixed; /* Changed from sticky to fixed */
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     height: 48px;
-    background-color: #222222 !important; /* Force solid background */
+    background-color: #222222 !important;
     z-index: 1000;
+    width: 100%; /* Added */
 }
 
 .nav-left, .nav-right {
@@ -170,7 +211,6 @@ body {
     border-radius: 50%;
 }
 
-
 input:checked + .toggle-slider:before {
     transform: translateX(20px);
 }
@@ -201,7 +241,9 @@ input:checked + .toggle-slider:before {
 body.dark {
     background-color: #121212;
     color: #ffffff;
-    /* NEW: Dark mode background */
+}
+
+body.dark::before {
     background-image: url('images/darkback.png');
 }
 
@@ -223,10 +265,12 @@ body.dark .toggle-label {
 main {
     padding: 40px 20px;
     text-align: center;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 96px); /* Changed from 100px to 96px */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
@@ -249,6 +293,8 @@ body.dark h1 {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .content-box p {
@@ -269,13 +315,15 @@ body.dark .content-box {
     max-width: 1000px;
     margin: 0 auto;
     gap: 30px;
-    align-items: flex-start; /* Don't stretch - let text determine height */
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
 }
 
 .image-box {
-    flex: 0 0 300px; /* Fixed width */
+    flex: 0 0 300px;
     border-radius: 8px;
-    overflow: hidden; /* Crop anything outside the box */
+    overflow: hidden;
     position: relative;
     background-color: #f0f0f0;
 }
@@ -283,7 +331,7 @@ body.dark .content-box {
 .image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crop image to fill container */
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
@@ -295,7 +343,6 @@ body.dark .content-box {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* Height is determined solely by content */
 }
 
 /* JavaScript will handle height matching */
@@ -322,6 +369,8 @@ body.dark .content-box {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .title-box h1 {
@@ -348,6 +397,8 @@ body.dark .title-box h1 {
     align-items: center;
     padding: 0 20px;
     margin-top: 60px;
+    position: relative;
+    z-index: 1;
 }
 
 .social-links {
@@ -367,8 +418,8 @@ body.dark .title-box h1 {
 }
 
 .social-link:hover {
-    opacity: 1; /* Keeps the icon fully visible */
-    color: #66ccff !important; /* Forces the text color to your blue */
+    opacity: 1;
+    color: #66ccff !important;
 }
 
 .social-link:hover .social-icon {
@@ -395,23 +446,23 @@ body.dark .title-box h1 {
 
 /* Remove the old circle placeholder styles */
 .icon-placeholder {
-    display: none; /* Hide the circle placeholders */
+    display: none;
 }
 
 .nav-icon, .settings-toggle {
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
-    justify-content: center; /* Add this */
-    height: 100%; /* Add this */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-/* NEW CODE: Mask technique for footer icons - exact blue color (#66ccff) */
+/* Mask technique for footer icons */
 .social-icon-mask {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
     display: block;
-    background-color: #ffffff; /* Default white color */
+    background-color: #ffffff;
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-position: center;
@@ -422,16 +473,16 @@ body.dark .title-box h1 {
 }
 
 .social-link:hover .social-icon-mask {
-    background-color: #66ccff; /* Your EXACT blue color on hover */
+    background-color: #66ccff;
     transform: scale(1.1);
 }
 
-/* NEW CODE: Mask technique for exact blue color (#66ccff) */
+/* Mask technique for nav icons */
 .nav-icon-mask {
     width: 30px;
     height: 30px;
     display: block;
-    background-color: #ffffff; /* Default white color */
+    background-color: #ffffff;
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-position: center;
@@ -443,8 +494,8 @@ body.dark .title-box h1 {
 
 .nav-icon:hover .nav-icon-mask,
 .settings-toggle:hover .nav-icon-mask {
-    background-color: #66ccff; /* Your EXACT blue color on hover */
-    transform: scale(1.1); /* This makes it bigger on hover */
+    background-color: #66ccff;
+    transform: scale(1.1);
 }
 
 /* Force wider containers for lyrics page album cards */
@@ -461,32 +512,31 @@ body.dark .title-box h1 {
 
 /* Remove any padding/margin that might be affecting alignment */
 .nav-left, .nav-right {
-    padding: 0; /* Ensure no padding affects alignment */
+    padding: 0;
     margin: 0;
 }
 
 /* Ensure content boxes have background with transparency */
 .content-box, .title-box {
-    background-color: rgba(255, 255, 255, 0.85) !important; /* Light background with transparency */
+    background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Light mode styles for search and sort elements */
 .search-container input {
-    border: 2px solid #ddd !important; /* Changed from 1px to 2px, color from #000 to #ddd */
+    border: 2px solid #ddd !important;
 }
 
 /* Dark mode overrides - grey outline matching features/duration text */
 body.dark .search-container input {
-    border: 2px solid #666 !important; /* Changed from 1px to 2px */
+    border: 2px solid #666 !important;
     background-color: #2a2a2a !important;
     color: #ffffff !important;
 }
 
 body.dark .content-box,
 body.dark .title-box {
-    background-color: rgba(30, 30, 30, 0.85) !important; /* Dark background with transparency */
+    background-color: rgba(30, 30, 30, 0.85) !important;
 }
-
 
 /* Even more specific for dark mode */
 body.dark .sorting-controls button.active {
@@ -532,7 +582,7 @@ body.dark .sorting-controls button.active:hover {
     text-align: center;
 }
 
-/* ADD THESE NEW STYLES RIGHT AFTER THE ABOVE .toggle-label */
+/* Toggle label states */
 .toggle-label.active {
     font-weight: 600;
 }
@@ -561,7 +611,7 @@ body.dark .toggle-label.inactive {
 }
 
 .icon-bg {
-    display: none; /* HIDE the background square entirely */
+    display: none;
 }
 
 .service-icon-mask {
@@ -581,22 +631,22 @@ body.dark .toggle-label.inactive {
 
 /* Light mode - Active (black) */
 body:not(.dark) .toggle-label.active .service-icon-mask {
-    background-color: #000000; /* Black fills the PNG shape */
+    background-color: #000000;
 }
 
 /* Light mode - Inactive (grey) */
 body:not(.dark) .toggle-label.inactive .service-icon-mask {
-    background-color: #cccccc; /* Grey fills the PNG shape */
+    background-color: #cccccc;
 }
 
 /* Dark mode - Active (white) */
 body.dark .toggle-label.active .service-icon-mask {
-    background-color: #ffffff; /* White fills the PNG shape */
+    background-color: #ffffff;
 }
 
 /* Dark mode - Inactive (grey) */
 body.dark .toggle-label.inactive .service-icon-mask {
-    background-color: #666666; /* Grey fills the PNG shape */
+    background-color: #666666;
 }
 
 /* Remove text color from icon labels */
@@ -611,42 +661,4 @@ body.dark .toggle-label.inactive .service-icon-mask {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* COMPLETELY REMOVE SCROLLBAR BUT KEEP FULL SCROLLING FUNCTIONALITY */
-html {
-    overflow-y: scroll;
-}
-
-body {
-    overflow-y: auto;
-    margin: 0;
-    padding: 0;
-    margin-top: 48px; /* This only affects body content, not fixed navbar */
-    /* Hide scrollbar for all browsers */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-body::-webkit-scrollbar,
-html::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-}
-
-/* FIXED NAVBAR SOLUTION */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 48px;
-}
-
-/* Adjust main content height */
-main {
-    min-height: calc(100vh - 96px);
 }
