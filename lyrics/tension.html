@@ -87,7 +87,7 @@
             background-color: transparent;
             box-shadow: none;
             padding: 0;
-            border-radius: 12px;
+            border-radius: 12px; /* Rounded corners to match other containers */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -99,7 +99,7 @@
             height: 100%;
             max-width: 100%;
             object-fit: contain; /* This will maintain aspect ratio */
-            border-radius: 12px;
+            border-radius: 12px; /* Rounded corners for the image */
         }
         
         .bottom-left {
@@ -107,7 +107,7 @@
             bottom: 40px;
             left: 40px;
             right: 20px; /* 20px from page split */
-            top: calc(40px + (100% - 40px - 40px - 40px)); /* 40px gap under top-left */
+            top: calc(40px + 100% + 40px); /* 40px gap under top-left image */
             max-width: none;
             max-height: none;
         }
