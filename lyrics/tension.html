@@ -73,13 +73,14 @@
             color: #ffffff;
         }
         
-        /* Container positioning */
         .top-left {
             position: absolute;
             top: 40px;
             left: 40px;
-            width: calc(33.33% - 60px); /* This is the key change */
-            aspect-ratio: 1 / 1;
+            right: 20px; /* Keep this for spacing from page split */
+            width: auto; /* Let right/left control the width */
+            height: auto; /* Remove fixed height */
+            aspect-ratio: 1 / 1; /* This makes it square */
             background-color: transparent;
             box-shadow: none;
             padding: 0;
