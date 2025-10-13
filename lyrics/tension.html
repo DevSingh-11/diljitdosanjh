@@ -83,19 +83,23 @@
             height: calc(100% - 40px - 20px);
             max-width: none;
             max-height: none;
-            aspect-ratio: 1 / 1; /* Makes it square */
-            background-color: transparent; /* Remove background for image */
-            box-shadow: none; /* Remove shadow for image */
-            padding: 0; /* Remove padding for image */
-            border-radius: 12px; /* Keep same border radius */
-            overflow: hidden; /* Ensure image stays within bounds */
+            aspect-ratio: 1 / 1; /* Makes container square */
+            background-color: transparent;
+            box-shadow: none;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .top-left img {
-            width: 100%;
+            width: auto;
             height: 100%;
-            object-fit: cover; /* Ensure image fills container properly */
-            border-radius: 12px; /* Match container border radius */
+            max-width: 100%;
+            object-fit: contain; /* This will maintain aspect ratio */
+            border-radius: 12px;
         }
         
         .bottom-left {
