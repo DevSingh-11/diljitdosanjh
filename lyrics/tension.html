@@ -84,6 +84,18 @@
             max-width: none;
             max-height: none;
             aspect-ratio: 1 / 1; /* Makes it square */
+            background-color: transparent; /* Remove background for image */
+            box-shadow: none; /* Remove shadow for image */
+            padding: 0; /* Remove padding for image */
+            border-radius: 12px; /* Keep same border radius */
+            overflow: hidden; /* Ensure image stays within bounds */
+        }
+        
+        .top-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image fills container properly */
+            border-radius: 12px; /* Match container border radius */
         }
         
         .bottom-left {
@@ -204,9 +216,9 @@
     <div class="page-container">
         <!-- Left Panel (1/3 of page) -->
         <div class="left-panel">
-            <!-- Top Left Container (Square) -->
-            <div class="content-box top-left">
-                <!-- Empty container -->
+            <!-- Top Left Container (Square) - Now an image -->
+            <div class="top-left">
+                <img src="../images/advisory.png" alt="Advisory Album Cover">
             </div>
             
             <!-- Bottom Left Container -->
