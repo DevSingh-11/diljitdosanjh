@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tension - Diljit Dosanjh</title>
+    <link rel="stylesheet" href="../desktop.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="../desktop.html" class="nav-icon" title="Home">
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/home.png'); mask-image: url('../images/home.png');"></span>
+            </a>
+        </div>
+        
+        <div class="nav-center">
+            <a href="../desktop-games.html" class="nav-link">GAMES</a>
+            <a href="../desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="../desktop-lyrics.html" class="nav-link active">LYRICS</a>
+        </div>
+        
+        <div class="nav-right">
+            <button class="settings-toggle" title="Settings">
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/settings.png'); mask-image: url('../images/settings.png');"></span>
+            </button>
+        </div>
+    </nav>
 
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-header">
+            <h3>Theme</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Light</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Dark</span>
+            </div>
+        </div>
+        
+        <div class="settings-header">
+            <h3>Game Difficulty</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Easy</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="difficulty-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Hard</span>
+            </div>
+        </div>
+    
+        <div class="settings-header">
+            <h3>Music Service</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">
+                    <span class="icon-wrapper">
+                        <span class="icon-bg"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/spotify.png'); mask-image: url('../images/spotify.png');"></span>
+                    </span>
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="service-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">
+                    <span class="icon-wrapper">
+                        <span class="icon-bg"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/youtube.png'); mask-image: url('../images/youtube.png');"></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                themeToggle.checked = true;
+                document.body.classList.add('dark');
+            }
+
+            // Theme toggle event
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
+        // Load and initialize the settings
+        const difficultyToggle = document.getElementById('difficulty-toggle');
+        const serviceToggle = document.getElementById('service-toggle');
+        
+        // Function to update toggle labels
+        function updateToggleLabels() {
+            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+            
+            // Get all label elements
+            const themeLeft = themeLabels.querySelector('.toggle-label.left');
+            const themeRight = themeLabels.querySelector('.toggle-label.right');
+            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
+            
+            // Reset all labels first
+            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
+                label.classList.remove('active', 'inactive');
+                label.classList.add('inactive');
+            });
+            
+            // Update theme labels
+            if (themeToggle.checked) {
+                themeRight.classList.add('active');
+                themeRight.classList.remove('inactive');
+            } else {
+                themeLeft.classList.add('active');
+                themeLeft.classList.remove('inactive');
+            }
+            
+            // Update difficulty labels
+            if (difficultyToggle.checked) {
+                difficultyRight.classList.add('active');
+                difficultyRight.classList.remove('inactive');
+            } else {
+                difficultyLeft.classList.add('active');
+                difficultyLeft.classList.remove('inactive');
+            }
+            
+            // Update service labels
+            if (serviceToggle.checked) {
+                serviceRight.classList.add('active');
+                serviceRight.classList.remove('inactive');
+            } else {
+                serviceLeft.classList.add('active');
+                serviceLeft.classList.remove('inactive');
+            }
+        }
+        
+        // Load saved preferences
+        const savedDifficulty = localStorage.getItem('difficulty');
+        if (savedDifficulty === 'hard') {
+            difficultyToggle.checked = true;
+        }
+        
+        const savedService = localStorage.getItem('musicService');
+        if (savedService === 'youtube') {
+            serviceToggle.checked = true;
+        }
+        
+        // Update labels on load
+        updateToggleLabels();
+        
+        // Difficulty toggle event
+        difficultyToggle.addEventListener('change', () => {
+            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
+        });
+        
+        // Music service functionality
+        serviceToggle.addEventListener('change', () => {
+            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+            updateToggleLabels();
+        });
+        
+        // Also call updateToggleLabels when theme changes
+        themeToggle.addEventListener('change', () => {
+            updateToggleLabels();
+        });
+
+        // Settings menu functionality
+        const settingsToggle = document.querySelector('.settings-toggle');
+        const settingsMenu = document.getElementById('settings-menu');
+        const overlay = document.getElementById('overlay');
+
+        if (settingsToggle && settingsMenu && overlay) {
+            settingsToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                settingsMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+
+            overlay.addEventListener('click', () => {
+                settingsMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            settingsMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+    </script>
+</body>
+</html>
