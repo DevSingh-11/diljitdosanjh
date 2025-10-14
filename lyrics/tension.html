@@ -98,11 +98,10 @@
         
         .bottom-left {
             position: absolute;
-            bottom: 40px;
+            top: calc(40px + (33.33vw - 60px) + 40px); /* This creates the 40px gap */
             left: 40px;
-            right: 20px; /* 20px from page split */
-            top: auto;
-            height: auto; /* Let content determine height */
+            right: 20px;
+            bottom: 40px;
             max-width: none;
             max-height: none;
         }
