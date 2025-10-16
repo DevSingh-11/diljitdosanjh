@@ -297,16 +297,16 @@
             // Right side calculations
             const rightContentWidth = rightSideWidth - margin - gap;
             
-            // Top Right - Title (80px height)
+            // Top Right - Title (88px height)
             const topRight = document.getElementById('top-right');
             topRight.style.top = margin + 'px';
             topRight.style.left = gap + 'px';
             topRight.style.width = rightContentWidth + 'px';
-            topRight.style.height = '80px';
+            topRight.style.height = '88px';
             
             // Bottom Right - Main content (40px from bottom, 40px from right, 40px under top right, 20px from page split)
             const bottomRight = document.getElementById('bottom-right');
-            const bottomRightTop = margin + 80 + margin; // 40px under top right
+            const bottomRightTop = margin + 88 + margin; // 40px under top right
             bottomRight.style.top = bottomRightTop + 'px';
             bottomRight.style.left = gap + 'px'; // 20px from page split
             bottomRight.style.width = rightContentWidth + 'px';
