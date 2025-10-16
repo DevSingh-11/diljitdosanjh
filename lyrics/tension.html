@@ -6,7 +6,7 @@
     <title>Tension - Diljit Dosanjh</title>
     <link rel="stylesheet" href="../desktop.css">
     <style>
-        /* Prevent scrolling and set up the layout */
+        /* Prevent scrolling */
         body {
             overflow: hidden;
             position: fixed;
@@ -17,7 +17,7 @@
         /* Main containers layout */
         .page-split {
             position: fixed;
-            top: 48px; /* Start below navbar */
+            top: 48px;
             left: 0;
             width: 100%;
             height: calc(100vh - 48px);
@@ -52,35 +52,14 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Top Left Container - Square */
-        .top-left {
-            top: 40px;
-            left: 40px;
-            right: 20px;
-            /* Make it square using padding-bottom trick */
-            width: calc(100% - 60px); /* 40px left + 20px right */
-            height: 0;
-            padding-bottom: calc(100% - 60px); /* Same as width */
-        }
-
-        /* Bottom Left Container - FIXED */
-        .bottom-left {
-            bottom: 40px;
-            left: 40px;
-            right: 20px;
-            top: calc(40px + (100% - 60px) + 40px); /* 40px from top + top-left height + 40px gap */
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
         /* Translation toggle styles */
         .translation-toggle {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            height: 100%;
+            padding: 0 20px;
         }
 
         .translation-label {
@@ -93,41 +72,23 @@
             color: #fff;
         }
 
-        /* Top Right Container - Match lyrics title height */
-        .top-right {
-            top: 40px;
-            left: 20px;
-            right: 40px;
-            height: 80px; /* Match the title box height from lyrics page */
+        /* Title styles */
+        .title-container {
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
-        .top-right h1 {
+        .title-container h1 {
             margin: 0;
             color: #222222;
             font-size: 2.5rem;
         }
 
-        body.dark .top-right h1 {
+        body.dark .title-container h1 {
             color: #ffffff;
-        }
-
-        /* Bottom Right Container */
-        .bottom-right {
-            bottom: 40px;
-            left: 20px;
-            right: 40px;
-            top: calc(40px + 80px + 40px); /* 40px from top-right + top-right height + 40px gap */
-        }
-
-        /* New Container */
-        .new-container {
-            bottom: 40px;
-            left: 40px;
-            right: 20px;
-            top: calc(40px + 80px + 40px + 40px); /* 40px from top-right + top-right height + 40px gap + 40px gap */
         }
     </style>
 </head>
@@ -209,10 +170,11 @@
     <div class="page-split">
         <!-- Left Side (33%) -->
         <div class="left-side">
-            <div class="container top-left">
+            <div id="top-left" class="container">
                 <!-- Top Left Square Container -->
+                Top Left Square
             </div>
-            <div class="container bottom-left">
+            <div id="bottom-left" class="container">
                 <!-- Bottom Left Container with Translation Toggle -->
                 <div class="translation-toggle">
                     <span class="translation-label">Show translation</span>
@@ -226,161 +188,227 @@
         
         <!-- Right Side (67%) -->
         <div class="right-side">
-            <div class="container top-right">
-                <h1>Tension</h1>
+            <div id="top-right" class="container">
+                <div class="title-container">
+                    <h1>Tension</h1>
+                </div>
             </div>
-            <div class="container bottom-right">
+            <div id="bottom-right" class="container">
                 <!-- Bottom Right Container -->
+                Bottom Right
             </div>
-            <div class="container new-container">
+            <div id="new-container" class="container">
                 <!-- New Container -->
+                New Container
             </div>
         </div>
     </div>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                themeToggle.checked = true;
-                document.body.classList.add('dark');
-            }
+        // Calculate and position all containers
+        function positionContainers() {
+            const availableHeight = window.innerHeight - 48; // Subtract navbar height
+            const leftSideWidth = window.innerWidth * 0.33;
+            const rightSideWidth = window.innerWidth * 0.67;
+            
+            const margin = 40;
+            const gap = 20;
+            
+            // Left side calculations
+            const leftContentWidth = leftSideWidth - margin - gap;
+            
+            // Top Left - Square
+            const topLeft = document.getElementById('top-left');
+            topLeft.style.top = margin + 'px';
+            topLeft.style.left = margin + 'px';
+            topLeft.style.width = leftContentWidth + 'px';
+            topLeft.style.height = leftContentWidth + 'px'; // Make it square
+            
+            // Bottom Left - Translation toggle
+            const bottomLeft = document.getElementById('bottom-left');
+            const bottomLeftTop = margin + leftContentWidth + margin;
+            bottomLeft.style.top = bottomLeftTop + 'px';
+            bottomLeft.style.left = margin + 'px';
+            bottomLeft.style.width = leftContentWidth + 'px';
+            bottomLeft.style.height = (availableHeight - bottomLeftTop - margin) + 'px';
+            
+            // Right side calculations
+            const rightContentWidth = rightSideWidth - margin - gap;
+            
+            // Top Right - Title (80px height)
+            const topRight = document.getElementById('top-right');
+            topRight.style.top = margin + 'px';
+            topRight.style.left = gap + 'px';
+            topRight.style.width = rightContentWidth + 'px';
+            topRight.style.height = '80px';
+            
+            // Bottom Right - Main content
+            const bottomRight = document.getElementById('bottom-right');
+            const bottomRightTop = margin + 80 + margin;
+            bottomRight.style.top = bottomRightTop + 'px';
+            bottomRight.style.left = gap + 'px';
+            bottomRight.style.width = rightContentWidth + 'px';
+            bottomRight.style.height = (availableHeight - bottomRightTop - margin - 80 - margin) + 'px';
+            
+            // New Container - Below Bottom Right
+            const newContainer = document.getElementById('new-container');
+            const newContainerTop = bottomRightTop + (availableHeight - bottomRightTop - margin - 80 - margin) + margin;
+            newContainer.style.top = newContainerTop + 'px';
+            newContainer.style.left = gap + 'px';
+            newContainer.style.width = rightContentWidth + 'px';
+            newContainer.style.height = '80px';
+        }
 
-            // Theme toggle event
-            themeToggle.addEventListener('change', function() {
-                if (this.checked) {
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            positionContainers();
+            
+            // Recalculate on window resize
+            window.addEventListener('resize', positionContainers);
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                // Load saved theme
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    themeToggle.checked = true;
                     document.body.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.body.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
                 }
-            });
-        }
 
-        // Translation toggle functionality
-        const translationToggle = document.getElementById('translation-toggle');
-        if (translationToggle) {
-            // Load saved translation preference
-            const savedTranslation = localStorage.getItem('showTranslation');
-            if (savedTranslation === 'true') {
-                translationToggle.checked = true;
+                // Theme toggle event
+                themeToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        document.body.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.body.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
             }
 
-            // Translation toggle event
-            translationToggle.addEventListener('change', function() {
-                localStorage.setItem('showTranslation', this.checked);
-                // Add your translation logic here
-            });
-        }
+            // Translation toggle functionality
+            const translationToggle = document.getElementById('translation-toggle');
+            if (translationToggle) {
+                // Load saved translation preference
+                const savedTranslation = localStorage.getItem('showTranslation');
+                if (savedTranslation === 'true') {
+                    translationToggle.checked = true;
+                }
 
-        // Load and initialize the settings
-        const difficultyToggle = document.getElementById('difficulty-toggle');
-        const serviceToggle = document.getElementById('service-toggle');
-        
-        // Function to update toggle labels
-        function updateToggleLabels() {
-            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
-            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
-            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+                // Translation toggle event
+                translationToggle.addEventListener('change', function() {
+                    localStorage.setItem('showTranslation', this.checked);
+                    // Add your translation logic here
+                });
+            }
+
+            // Load and initialize the settings
+            const difficultyToggle = document.getElementById('difficulty-toggle');
+            const serviceToggle = document.getElementById('service-toggle');
             
-            // Get all label elements
-            const themeLeft = themeLabels.querySelector('.toggle-label.left');
-            const themeRight = themeLabels.querySelector('.toggle-label.right');
-            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
-            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
-            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
-            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
-            
-            // Reset all labels first
-            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
-                label.classList.remove('active', 'inactive');
-                label.classList.add('inactive');
-            });
-            
-            // Update theme labels
-            if (themeToggle.checked) {
-                themeRight.classList.add('active');
-                themeRight.classList.remove('inactive');
-            } else {
-                themeLeft.classList.add('active');
-                themeLeft.classList.remove('inactive');
+            // Function to update toggle labels
+            function updateToggleLabels() {
+                const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+                const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+                const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+                
+                // Get all label elements
+                const themeLeft = themeLabels.querySelector('.toggle-label.left');
+                const themeRight = themeLabels.querySelector('.toggle-label.right');
+                const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+                const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+                const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+                const serviceRight = serviceLabels.querySelector('.toggle-label.right');
+                
+                // Reset all labels first
+                [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
+                    label.classList.remove('active', 'inactive');
+                    label.classList.add('inactive');
+                });
+                
+                // Update theme labels
+                if (themeToggle.checked) {
+                    themeRight.classList.add('active');
+                    themeRight.classList.remove('inactive');
+                } else {
+                    themeLeft.classList.add('active');
+                    themeLeft.classList.remove('inactive');
+                }
+                
+                // Update difficulty labels
+                if (difficultyToggle.checked) {
+                    difficultyRight.classList.add('active');
+                    difficultyRight.classList.remove('inactive');
+                } else {
+                    difficultyLeft.classList.add('active');
+                    difficultyLeft.classList.remove('inactive');
+                }
+                
+                // Update service labels
+                if (serviceToggle.checked) {
+                    serviceRight.classList.add('active');
+                    serviceRight.classList.remove('inactive');
+                } else {
+                    serviceLeft.classList.add('active');
+                    serviceLeft.classList.remove('inactive');
+                }
             }
             
-            // Update difficulty labels
-            if (difficultyToggle.checked) {
-                difficultyRight.classList.add('active');
-                difficultyRight.classList.remove('inactive');
-            } else {
-                difficultyLeft.classList.add('active');
-                difficultyLeft.classList.remove('inactive');
+            // Load saved preferences
+            const savedDifficulty = localStorage.getItem('difficulty');
+            if (savedDifficulty === 'hard') {
+                difficultyToggle.checked = true;
             }
             
-            // Update service labels
-            if (serviceToggle.checked) {
-                serviceRight.classList.add('active');
-                serviceRight.classList.remove('inactive');
-            } else {
-                serviceLeft.classList.add('active');
-                serviceLeft.classList.remove('inactive');
+            const savedService = localStorage.getItem('musicService');
+            if (savedService === 'youtube') {
+                serviceToggle.checked = true;
             }
-        }
-        
-        // Load saved preferences
-        const savedDifficulty = localStorage.getItem('difficulty');
-        if (savedDifficulty === 'hard') {
-            difficultyToggle.checked = true;
-        }
-        
-        const savedService = localStorage.getItem('musicService');
-        if (savedService === 'youtube') {
-            serviceToggle.checked = true;
-        }
-        
-        // Update labels on load
-        updateToggleLabels();
-        
-        // Difficulty toggle event
-        difficultyToggle.addEventListener('change', () => {
-            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            
+            // Update labels on load
             updateToggleLabels();
-        });
-        
-        // Music service functionality
-        serviceToggle.addEventListener('change', () => {
-            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
-            updateToggleLabels();
-        });
-        
-        // Also call updateToggleLabels when theme changes
-        themeToggle.addEventListener('change', () => {
-            updateToggleLabels();
-        });
-
-        // Settings menu functionality
-        const settingsToggle = document.querySelector('.settings-toggle');
-        const settingsMenu = document.getElementById('settings-menu');
-        const overlay = document.getElementById('overlay');
-
-        if (settingsToggle && settingsMenu && overlay) {
-            settingsToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                settingsMenu.classList.toggle('active');
-                overlay.classList.toggle('active');
+            
+            // Difficulty toggle event
+            difficultyToggle.addEventListener('change', () => {
+                localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+                updateToggleLabels();
+            });
+            
+            // Music service functionality
+            serviceToggle.addEventListener('change', () => {
+                localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+                updateToggleLabels();
+            });
+            
+            // Also call updateToggleLabels when theme changes
+            themeToggle.addEventListener('change', () => {
+                updateToggleLabels();
             });
 
-            overlay.addEventListener('click', () => {
-                settingsMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
+            // Settings menu functionality
+            const settingsToggle = document.querySelector('.settings-toggle');
+            const settingsMenu = document.getElementById('settings-menu');
+            const overlay = document.getElementById('overlay');
 
-            settingsMenu.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
+            if (settingsToggle && settingsMenu && overlay) {
+                settingsToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    settingsMenu.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+
+                overlay.addEventListener('click', () => {
+                    settingsMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+
+                settingsMenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
     </script>
 </body>
 </html>
