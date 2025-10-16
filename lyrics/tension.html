@@ -62,14 +62,66 @@
             padding: 0 20px;
         }
 
-        .translation-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #222;
+        .translation-toggle .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 30px;
+            text-align: center;
         }
 
-        body.dark .translation-label {
-            color: #fff;
+        .translation-toggle .toggle-label.left {
+            color: #666;
+        }
+
+        .translation-toggle .toggle-label.right {
+            color: #666;
+        }
+
+        body.dark .translation-toggle .toggle-label {
+            color: #ccc;
+        }
+
+        /* iPhone-style Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 51px;
+            height: 31px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 27px;
+            width: 27px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(20px);
         }
 
         /* Title styles */
@@ -166,7 +218,7 @@
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
 
-    <!-- Four Containers Layout -->
+    <!-- Three Containers Layout -->
     <div class="page-split">
         <!-- Left Side (33%) -->
         <div class="left-side">
@@ -177,11 +229,12 @@
             <div id="bottom-left" class="container">
                 <!-- Bottom Left Container with Translation Toggle -->
                 <div class="translation-toggle">
-                    <span class="translation-label">Show translation</span>
+                    <span class="toggle-label left">off</span>
                     <label class="toggle-switch">
                         <input type="checkbox" id="translation-toggle">
                         <span class="toggle-slider"></span>
                     </label>
+                    <span class="toggle-label right">on</span>
                 </div>
             </div>
         </div>
@@ -196,10 +249,6 @@
             <div id="bottom-right" class="container">
                 <!-- Bottom Right Container -->
                 Bottom Right
-            </div>
-            <div id="new-container" class="container">
-                <!-- New Container -->
-                New Container
             </div>
         </div>
     </div>
@@ -242,21 +291,13 @@
             topRight.style.width = rightContentWidth + 'px';
             topRight.style.height = '80px';
             
-            // Bottom Right - Main content
+            // Bottom Right - Main content (40px from bottom, 40px from right, 40px under top right, 20px from page split)
             const bottomRight = document.getElementById('bottom-right');
-            const bottomRightTop = margin + 80 + margin;
+            const bottomRightTop = margin + 80 + margin; // 40px under top right
             bottomRight.style.top = bottomRightTop + 'px';
-            bottomRight.style.left = gap + 'px';
+            bottomRight.style.left = gap + 'px'; // 20px from page split
             bottomRight.style.width = rightContentWidth + 'px';
-            bottomRight.style.height = (availableHeight - bottomRightTop - margin - 80 - margin) + 'px';
-            
-            // New Container - Below Bottom Right
-            const newContainer = document.getElementById('new-container');
-            const newContainerTop = bottomRightTop + (availableHeight - bottomRightTop - margin - 80 - margin) + margin;
-            newContainer.style.top = newContainerTop + 'px';
-            newContainer.style.left = gap + 'px';
-            newContainer.style.width = rightContentWidth + 'px';
-            newContainer.style.height = '80px';
+            bottomRight.style.height = (availableHeight - bottomRightTop - margin) + 'px'; // 40px from bottom
         }
 
         // Initialize when page loads
