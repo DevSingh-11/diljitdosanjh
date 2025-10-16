@@ -63,12 +63,20 @@
             padding-bottom: calc(100% - 60px); /* Same as width */
         }
 
-        /* Bottom Left Container */
+        /* Bottom Left Container - FIXED */
         .bottom-left {
             bottom: 40px;
             left: 40px;
             right: 20px;
-            top: calc(40px + (100% - 60px) + 40px); /* 40px from top-left + top-left height + 40px gap */
+            top: calc(40px + (100% - 60px) + 40px); /* 40px from top + top-left height + 40px gap */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure bottom-left is visible in dark mode */
+        body.dark .bottom-left {
+            background-color: rgba(30, 30, 30, 0.9);
         }
 
         /* Top Right Container - Match lyrics title height */
@@ -98,6 +106,33 @@
             left: 20px;
             right: 40px;
             top: calc(40px + 80px + 40px); /* 40px from top-right + top-right height + 40px gap */
+        }
+
+        /* Add placeholder content to make containers visible */
+        .container::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 20px;
+        }
+
+        .top-left::before {
+            content: "Top Left (Square)";
+            padding: 20px;
+            color: #666;
+        }
+
+        .bottom-left::before {
+            content: "Bottom Left";
+            padding: 20px;
+            color: #666;
+        }
+
+        .bottom-right::before {
+            content: "Bottom Right";
+            padding: 20px;
+            color: #666;
         }
     </style>
 </head>
