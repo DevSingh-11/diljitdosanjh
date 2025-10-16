@@ -5,6 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tension - Diljit Dosanjh</title>
     <link rel="stylesheet" href="../desktop.css">
+    <style>
+        /* Prevent scrolling and set up the layout */
+        body {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Main containers layout */
+        .page-split {
+            position: fixed;
+            top: 48px; /* Start below navbar */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 48px);
+            display: flex;
+        }
+
+        /* Left side - 33% */
+        .left-side {
+            width: 33%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Right side - 67% */
+        .right-side {
+            width: 67%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Container base styles */
+        .container {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark mode support for containers */
+        body.dark .container {
+            background-color: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Top Left Container - Square */
+        .top-left {
+            top: 40px;
+            left: 40px;
+            right: 20px;
+            /* Make it square using padding-bottom trick */
+            width: calc(100% - 60px); /* 40px left + 20px right */
+            height: 0;
+            padding-bottom: calc(100% - 60px); /* Same as width */
+        }
+
+        /* Bottom Left Container */
+        .bottom-left {
+            bottom: 40px;
+            left: 40px;
+            right: 20px;
+            top: calc(40px + (100% - 60px) + 40px); /* 40px from top-left + top-left height + 40px gap */
+        }
+
+        /* Top Right Container - Match lyrics title height */
+        .top-right {
+            top: 40px;
+            left: 20px;
+            right: 40px;
+            height: 80px; /* Match the title box height from lyrics page */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-right h1 {
+            margin: 0;
+            color: #222222;
+            font-size: 2.5rem;
+        }
+
+        body.dark .top-right h1 {
+            color: #ffffff;
+        }
+
+        /* Bottom Right Container */
+        .bottom-right {
+            bottom: 40px;
+            left: 20px;
+            right: 40px;
+            top: calc(40px + 80px + 40px); /* 40px from top-right + top-right height + 40px gap */
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -79,6 +174,29 @@
 
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
+
+    <!-- Four Containers Layout -->
+    <div class="page-split">
+        <!-- Left Side (33%) -->
+        <div class="left-side">
+            <div class="container top-left">
+                <!-- Top Left Square Container -->
+            </div>
+            <div class="container bottom-left">
+                <!-- Bottom Left Container -->
+            </div>
+        </div>
+        
+        <!-- Right Side (67%) -->
+        <div class="right-side">
+            <div class="container top-right">
+                <h1>Tension</h1>
+            </div>
+            <div class="container bottom-right">
+                <!-- Bottom Right Container -->
+            </div>
+        </div>
+    </div>
 
     <script>
         // Theme toggle functionality
