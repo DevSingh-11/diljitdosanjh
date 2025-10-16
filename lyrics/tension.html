@@ -62,22 +62,32 @@
             padding: 0 20px;
         }
 
-        .translation-toggle .toggle-label {
-            font-size: 14px;
+        .translation-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #222;
+            white-space: nowrap;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-group .toggle-label.small {
+            font-size: 12px;
             font-weight: 500;
-            min-width: 30px;
+            min-width: 20px;
             text-align: center;
-        }
-
-        .translation-toggle .toggle-label.left {
             color: #666;
         }
 
-        .translation-toggle .toggle-label.right {
-            color: #666;
+        body.dark .translation-label {
+            color: #fff;
         }
 
-        body.dark .translation-toggle .toggle-label {
+        body.dark .toggle-group .toggle-label.small {
             color: #ccc;
         }
 
@@ -229,12 +239,15 @@
             <div id="bottom-left" class="container">
                 <!-- Bottom Left Container with Translation Toggle -->
                 <div class="translation-toggle">
-                    <span class="toggle-label left">off</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="translation-toggle">
-                        <span class="toggle-slider"></span>
-                    </label>
-                    <span class="toggle-label right">on</span>
+                    <span class="translation-label">Show translation</span>
+                    <div class="toggle-group">
+                        <span class="toggle-label small">off</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="translation-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label small">on</span>
+                    </div>
                 </div>
             </div>
         </div>
