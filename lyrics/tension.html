@@ -297,18 +297,13 @@
             // Right side calculations
             const rightContentWidth = rightSideWidth - margin - gap;
             
-            // Top Right - Title (88px height) - FORCE HEIGHT
+            // Top Right - Title (88px height)
             const topRight = document.getElementById('top-right');
             topRight.style.top = margin + 'px';
             topRight.style.left = gap + 'px';
             topRight.style.width = rightContentWidth + 'px';
             topRight.style.height = '88px';
             topRight.style.minHeight = '88px';
-            topRight.style.maxHeight = '88px';
-            
-            // Debug: Check if height is being applied
-            console.log('Top right height set to:', topRight.style.height);
-            console.log('Top right actual height:', topRight.offsetHeight);
             
             // Bottom Right - Main content (40px from bottom, 40px from right, 40px under top right, 20px from page split)
             const bottomRight = document.getElementById('bottom-right');
@@ -317,20 +312,14 @@
             bottomRight.style.left = gap + 'px'; // 20px from page split
             bottomRight.style.width = rightContentWidth + 'px';
             bottomRight.style.height = (availableHeight - bottomRightTop - margin) + 'px'; // 40px from bottom
-            
-            console.log('All containers positioned');
         }
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded - positioning containers');
             positionContainers();
             
             // Recalculate on window resize
-            window.addEventListener('resize', function() {
-                console.log('Window resized - repositioning containers');
-                positionContainers();
-            });
+            window.addEventListener('resize', positionContainers);
 
             // Theme toggle functionality
             const themeToggle = document.getElementById('theme-toggle');
