@@ -5,154 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tension - Diljit Dosanjh</title>
     <link rel="stylesheet" href="../desktop.css">
-    <style>
-        /* Prevent scrolling */
-        body {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Main containers layout */
-        .page-split {
-            position: fixed;
-            top: 48px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 48px);
-            display: flex;
-        }
-
-        /* Left side - 33% */
-        .left-side {
-            width: 33%;
-            height: 100%;
-            position: relative;
-        }
-
-        /* Right side - 67% */
-        .right-side {
-            width: 67%;
-            height: 100%;
-            position: relative;
-        }
-
-        /* Container base styles */
-        .container {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Dark mode support for containers */
-        body.dark .container {
-            background-color: rgba(30, 30, 30, 0.9);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Translation toggle styles */
-        .translation-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 100%;
-            padding: 0 20px;
-        }
-
-        .translation-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #222;
-            white-space: nowrap;
-        }
-
-        .toggle-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toggle-group .toggle-label.small {
-            font-size: 12px;
-            font-weight: 500;
-            min-width: 20px;
-            text-align: center;
-            color: #666;
-        }
-
-        body.dark .translation-label {
-            color: #fff;
-        }
-
-        body.dark .toggle-group .toggle-label.small {
-            color: #ccc;
-        }
-
-        /* iPhone-style Toggle Switch */
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 51px;
-            height: 31px;
-            flex-shrink: 0;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 27px;
-            width: 27px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(20px);
-        }
-
-        /* Title styles */
-        .title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .title-container h1 {
-            margin: 0;
-            color: #222222;
-            font-size: 2.5rem;
-        }
-
-        body.dark .title-container h1 {
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -228,99 +80,23 @@
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
 
-    <!-- Three Containers Layout -->
-    <div class="page-split">
-        <!-- Left Side (33%) -->
-        <div class="left-side">
-            <div id="top-left" class="container">
-                <!-- Top Left Square Container -->
-                Top Left Square
-            </div>
-            <div id="bottom-left" class="container">
-                <!-- Bottom Left Container with Translation Toggle -->
-                <div class="translation-toggle">
-                    <span class="translation-label">Show translation</span>
-                    <div class="toggle-group">
-                        <span class="toggle-label small">off</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="translation-toggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span class="toggle-label small">on</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Page Content -->
+    <main class="lyrics-page">
+        <div class="title-box">
+            <h1>Tension</h1>
         </div>
         
-        <!-- Right Side (67%) -->
-        <div class="right-side">
-            <div id="top-right" class="container">
-                <div class="title-container">
-                    <h1>Tension</h1>
-                </div>
-            </div>
-            <div id="bottom-right" class="container">
-                <!-- Bottom Right Container -->
-                Bottom Right
+        <!-- Lyrics Container -->
+        <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+            <div class="content-box">
+                lyrics
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
-        // Calculate and position all containers
-        function positionContainers() {
-            const availableHeight = window.innerHeight - 48; // Subtract navbar height
-            const leftSideWidth = window.innerWidth * 0.33;
-            const rightSideWidth = window.innerWidth * 0.67;
-            
-            const margin = 40;
-            const gap = 20;
-            
-            // Left side calculations
-            const leftContentWidth = leftSideWidth - margin - gap;
-            
-            // Top Left - Square
-            const topLeft = document.getElementById('top-left');
-            topLeft.style.top = margin + 'px';
-            topLeft.style.left = margin + 'px';
-            topLeft.style.width = leftContentWidth + 'px';
-            topLeft.style.height = leftContentWidth + 'px'; // Make it square
-            
-            // Bottom Left - Translation toggle
-            const bottomLeft = document.getElementById('bottom-left');
-            const bottomLeftTop = margin + leftContentWidth + margin;
-            bottomLeft.style.top = bottomLeftTop + 'px';
-            bottomLeft.style.left = margin + 'px';
-            bottomLeft.style.width = leftContentWidth + 'px';
-            bottomLeft.style.height = (availableHeight - bottomLeftTop - margin) + 'px';
-            
-            // Right side calculations
-            const rightContentWidth = rightSideWidth - margin - gap;
-            
-            // Top Right - Title (88px height)
-            const topRight = document.getElementById('top-right');
-            topRight.style.top = margin + 'px';
-            topRight.style.left = gap + 'px';
-            topRight.style.width = rightContentWidth + 'px';
-            topRight.style.height = '88px';
-            topRight.style.minHeight = '88px';
-            
-            // Bottom Right - Main content (40px from bottom, 40px from right, 40px under top right, 20px from page split)
-            const bottomRight = document.getElementById('bottom-right');
-            const bottomRightTop = margin + 88 + margin; // 40px under top right
-            bottomRight.style.top = bottomRightTop + 'px';
-            bottomRight.style.left = gap + 'px'; // 20px from page split
-            bottomRight.style.width = rightContentWidth + 'px';
-            bottomRight.style.height = (availableHeight - bottomRightTop - margin) + 'px'; // 40px from bottom
-        }
-
-        // Initialize when page loads
+        // Initialize the page when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            positionContainers();
-            
-            // Recalculate on window resize
-            window.addEventListener('resize', positionContainers);
-
             // Theme toggle functionality
             const themeToggle = document.getElementById('theme-toggle');
             if (themeToggle) {
@@ -340,22 +116,6 @@
                         document.body.classList.remove('dark');
                         localStorage.setItem('theme', 'light');
                     }
-                });
-            }
-
-            // Translation toggle functionality
-            const translationToggle = document.getElementById('translation-toggle');
-            if (translationToggle) {
-                // Load saved translation preference
-                const savedTranslation = localStorage.getItem('showTranslation');
-                if (savedTranslation === 'true') {
-                    translationToggle.checked = true;
-                }
-
-                // Translation toggle event
-                translationToggle.addEventListener('change', function() {
-                    localStorage.setItem('showTranslation', this.checked);
-                    // Add your translation logic here
                 });
             }
 
@@ -438,9 +198,11 @@
             });
             
             // Also call updateToggleLabels when theme changes
-            themeToggle.addEventListener('change', () => {
-                updateToggleLabels();
-            });
+            if (themeToggle) {
+                themeToggle.addEventListener('change', () => {
+                    updateToggleLabels();
+                });
+            }
 
             // Settings menu functionality
             const settingsToggle = document.querySelector('.settings-toggle');
