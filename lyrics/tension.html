@@ -5,6 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tension - Diljit Dosanjh</title>
     <link rel="stylesheet" href="../desktop.css">
+    <style>
+        /* Custom styles for the lyrics page */
+        .lyrics-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .lyrics-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            line-height: 1.7;
+            text-align: left;
+        }
+        
+        .song-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .song-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .song-album {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .song-details {
+            font-size: 1rem;
+            color: #888;
+        }
+        
+        .lyrics-text {
+            font-size: 18px;
+            white-space: pre-line;
+            font-family: Arial, sans-serif;
+        }
+        
+        .lyrics-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #66ccff;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        /* Dark mode support */
+        body.dark .lyrics-content {
+            background-color: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark .song-title {
+            color: #ffffff;
+        }
+        
+        body.dark .song-album {
+            color: #cccccc;
+        }
+        
+        body.dark .song-details {
+            color: #aaaaaa;
+        }
+        
+        body.dark .lyrics-text {
+            color: #ffffff;
+        }
+        
+        body.dark .song-info {
+            border-bottom-color: #444;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -81,150 +165,200 @@
     <div id="overlay" class="overlay"></div>
 
     <!-- Page Content -->
-    <main class="lyrics-page">
-        <div class="title-box" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
+    <main>
+        <!-- Title Box (same as your other pages) -->
+        <div class="title-box">
             <h1>Tension</h1>
         </div>
         
         <!-- Lyrics Container -->
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div class="content-box" style="max-width: 800px; margin: 0 auto;">
-                lyrics
+        <div class="lyrics-container">
+            <div class="lyrics-content">
+                <div class="song-info">
+                    <h2 class="song-title">Tension</h2>
+                    <p class="song-album">From the album: Advisory</p>
+                    <p class="song-details">Released: 2025 • Duration: 2:48</p>
+                </div>
+                
+                <div class="lyrics-text">
+                    <!-- Lyrics will go here -->
+                    <div class="lyrics-section">
+                        <div class="section-title">[Intro]</div>
+                        Yeah, yeah
+                        Diljit Dosanjh!
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Verse 1]</div>
+                        Tension na le yaara, mainu pata teri gal da
+                        Tu akh maardi, mainu lagda ae dhal da
+                        Teri walk 'ch swag, teri baat 'ch charm
+                        Tenu dekh ke dil mera hoya calm
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Chorus]</div>
+                        Tension na le yaara, ho jayega clear
+                        Teri meri kahani, yeh hogi hit sure
+                        Tension na le yaara, main hoon na tere pass
+                        Har problem ka solution, tu bas kar de trust
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Verse 2]</div>
+                        Life hai short, enjoy karna seekh
+                        Duniya ki tension ko, tu ignore hi dekh
+                        Main rahoon saath, tera har fear door
+                        Tere liye ready, main hoon super sure
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Chorus]</div>
+                        Tension na le yaara, ho jayega clear
+                        Teri meri kahani, yeh hogi hit sure
+                        Tension na le yaara, main hoon na tere pass
+                        Har problem ka solution, tu bas kar de trust
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Bridge]</div>
+                        Jo bhi hai problem, main kar dunga solve
+                        Tere liye ready, main hoon always involved
+                        Tu muskura de bas, ho jayega bright
+                        Tere saath hoon main, day and night
+                    </div>
+                    
+                    <div class="lyrics-section">
+                        <div class="section-title">[Outro]</div>
+                        Tension na le yaara...
+                        Diljit Dosanjh!
+                        Advisory!
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <script>
-        // Initialize the page when DOM is loaded
+        // Settings functionality
+        const settingsToggle = document.querySelector('.settings-toggle');
+        const settingsMenu = document.getElementById('settings-menu');
+        const overlay = document.getElementById('overlay');
+        const themeToggle = document.getElementById('theme-toggle');
+        const difficultyToggle = document.getElementById('difficulty-toggle');
+        const serviceToggle = document.getElementById('service-toggle');
+
+        // Function to update toggle labels
+        function updateToggleLabels() {
+            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+            
+            // Get all label elements
+            const themeLeft = themeLabels.querySelector('.toggle-label.left');
+            const themeRight = themeLabels.querySelector('.toggle-label.right');
+            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
+            
+            // Reset all labels first
+            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
+                label.classList.remove('active', 'inactive');
+                label.classList.add('inactive');
+            });
+            
+            // Update theme labels
+            if (themeToggle.checked) {
+                themeRight.classList.add('active');
+                themeRight.classList.remove('inactive');
+            } else {
+                themeLeft.classList.add('active');
+                themeLeft.classList.remove('inactive');
+            }
+            
+            // Update difficulty labels
+            if (difficultyToggle.checked) {
+                difficultyRight.classList.add('active');
+                difficultyRight.classList.remove('inactive');
+            } else {
+                difficultyLeft.classList.add('active');
+                difficultyLeft.classList.remove('inactive');
+            }
+            
+            // Update service labels
+            if (serviceToggle.checked) {
+                serviceRight.classList.add('active');
+                serviceRight.classList.remove('inactive');
+            } else {
+                serviceLeft.classList.add('active');
+                serviceLeft.classList.remove('inactive');
+            }
+        }
+
+        // Load saved preferences
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                // Load saved theme
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark') {
-                    themeToggle.checked = true;
-                    document.body.classList.add('dark');
-                }
-
-                // Theme toggle event
-                themeToggle.addEventListener('change', function() {
-                    if (this.checked) {
-                        document.body.classList.add('dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        document.body.classList.remove('dark');
-                        localStorage.setItem('theme', 'light');
-                    }
-                });
+            // Theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                themeToggle.checked = true;
+                document.body.classList.add('dark');
             }
 
-            // Load and initialize the settings
-            const difficultyToggle = document.getElementById('difficulty-toggle');
-            const serviceToggle = document.getElementById('service-toggle');
-            
-            // Function to update toggle labels
-            function updateToggleLabels() {
-                const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
-                const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
-                const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
-                
-                // Get all label elements
-                const themeLeft = themeLabels.querySelector('.toggle-label.left');
-                const themeRight = themeLabels.querySelector('.toggle-label.right');
-                const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
-                const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
-                const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
-                const serviceRight = serviceLabels.querySelector('.toggle-label.right');
-                
-                // Reset all labels first
-                [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
-                    label.classList.remove('active', 'inactive');
-                    label.classList.add('inactive');
-                });
-                
-                // Update theme labels
-                if (themeToggle.checked) {
-                    themeRight.classList.add('active');
-                    themeRight.classList.remove('inactive');
-                } else {
-                    themeLeft.classList.add('active');
-                    themeLeft.classList.remove('inactive');
-                }
-                
-                // Update difficulty labels
-                if (difficultyToggle.checked) {
-                    difficultyRight.classList.add('active');
-                    difficultyRight.classList.remove('inactive');
-                } else {
-                    difficultyLeft.classList.add('active');
-                    difficultyLeft.classList.remove('inactive');
-                }
-                
-                // Update service labels
-                if (serviceToggle.checked) {
-                    serviceRight.classList.add('active');
-                    serviceRight.classList.remove('inactive');
-                } else {
-                    serviceLeft.classList.add('active');
-                    serviceLeft.classList.remove('inactive');
-                }
-            }
-            
-            // Load saved preferences
+            // Difficulty
             const savedDifficulty = localStorage.getItem('difficulty');
             if (savedDifficulty === 'hard') {
                 difficultyToggle.checked = true;
             }
-            
+
+            // Music Service
             const savedService = localStorage.getItem('musicService');
             if (savedService === 'youtube') {
                 serviceToggle.checked = true;
             }
-            
+
             // Update labels on load
             updateToggleLabels();
-            
-            // Difficulty toggle event
-            difficultyToggle.addEventListener('change', () => {
-                localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
-                updateToggleLabels();
-            });
-            
-            // Music service functionality
-            serviceToggle.addEventListener('change', () => {
-                localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
-                updateToggleLabels();
-            });
-            
-            // Also call updateToggleLabels when theme changes
-            if (themeToggle) {
-                themeToggle.addEventListener('change', () => {
-                    updateToggleLabels();
-                });
+        });
+
+        // Settings menu functionality
+        settingsToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            settingsMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        settingsMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             }
+            updateToggleLabels();
+        });
 
-            // Settings menu functionality
-            const settingsToggle = document.querySelector('.settings-toggle');
-            const settingsMenu = document.getElementById('settings-menu');
-            const overlay = document.getElementById('overlay');
+        // Difficulty toggle
+        difficultyToggle.addEventListener('change', () => {
+            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
+        });
 
-            if (settingsToggle && settingsMenu && overlay) {
-                settingsToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    settingsMenu.classList.toggle('active');
-                    overlay.classList.toggle('active');
-                });
-
-                overlay.addEventListener('click', () => {
-                    settingsMenu.classList.remove('active');
-                    overlay.classList.remove('active');
-                });
-
-                settingsMenu.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
+        // Service toggle
+        serviceToggle.addEventListener('change', () => {
+            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+            updateToggleLabels();
         });
     </script>
 </body>
