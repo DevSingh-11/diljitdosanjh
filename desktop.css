@@ -662,3 +662,13 @@ body.dark .toggle-label.inactive .service-icon-mask {
     align-items: center;
     justify-content: center;
 }
+
+/* Nav link hover effect - enlarge like icons */
+.nav-link {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+    color: #66ccff !important;
+}
