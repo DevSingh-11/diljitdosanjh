@@ -118,7 +118,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-left">
-            <a href="../desktop-lyrics.html" class="nav-icon" title="Back to Lyrics">
+            <a href="#" id="back-button" class="nav-icon" title="Back to Lyrics">
                 <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/back.png'); mask-image: url('../images/back.png');"></span>
             </a>
         </div>
@@ -363,8 +363,23 @@
             }
         });
 
-        // Load saved preferences
+        // Back button functionality - only works when there's history to go back to
         document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.getElementById('back-button');
+            
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Check if there's history to go back to
+                if (window.history.length > 1) {
+                    // Use browser's back navigation to return to exact previous state
+                    window.history.back();
+                } else {
+                    // Fallback: go to lyrics page normally (fresh load)
+                    window.location.href = '../desktop-lyrics.html';
+                }
+            });
+
             // Theme
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
