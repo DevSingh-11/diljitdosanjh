@@ -51,24 +51,75 @@
             color: #888;
         }
         
-        .lyrics-text {
-            font-size: 18px;
-            white-space: pre-line;
-            font-family: Arial, sans-serif;
+        /* Translation Toggle Styles */
+        .translation-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 0 20px;
         }
         
-        .lyrics-section {
-            margin-bottom: 30px;
+        .translation-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #222;
         }
         
-        .section-title {
-            font-weight: bold;
-            color: #66ccff;
-            margin-bottom: 15px;
-            font-size: 1.1em;
+        .toggle-labels {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #666;
         }
         
-        /* Dark mode support - match exactly from desktop.css */
+        /* Two Column Lyrics Layout */
+        .lyrics-two-column {
+            display: flex;
+            gap: 0;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .lyrics-column {
+            flex: 1;
+            padding: 20px;
+            min-height: 200px;
+        }
+        
+        .transliteration-column {
+            border-right: 1px solid #eee;
+        }
+        
+        .punjabi-column, .translation-column {
+            font-family: 'GurbaniAkhar', 'Noto Sans Gurmukhi', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .lyrics-line {
+            margin-bottom: 8px;
+            min-height: 1.8em;
+        }
+        
+        .translation-column {
+            display: none;
+        }
+        
+        /* Show translation when active */
+        .lyrics-content-box.show-translation .punjabi-column {
+            display: none;
+        }
+        
+        .lyrics-content-box.show-translation .translation-column {
+            display: block;
+        }
+        
+        /* Dark mode support */
         body.dark .lyrics-content-box {
             background-color: rgba(30, 30, 30, 0.9) !important;
             color: #ffffff;
@@ -87,8 +138,20 @@
             color: #aaaaaa;
         }
         
-        body.dark .lyrics-text {
+        body.dark .translation-label {
             color: #ffffff;
+        }
+        
+        body.dark .toggle-labels {
+            color: #cccccc;
+        }
+        
+        body.dark .lyrics-two-column {
+            border-color: #444;
+        }
+        
+        body.dark .transliteration-column {
+            border-right-color: #444;
         }
         
         body.dark .song-info {
@@ -172,73 +235,108 @@
 
     <!-- Page Content -->
     <main>
-        <!-- Title Box (same as your other pages) -->
+        <!-- Title Box -->
         <div class="title-box">
             <h1>Tension</h1>
         </div>
         
-        <!-- Lyrics Container - Using exact same styling as album cards -->
+        <!-- Translation Toggle -->
+        <div class="translation-toggle-container">
+            <span class="translation-label">Show translation:</span>
+            <div class="toggle-labels">
+                <span class="toggle-label-text">off</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="translation-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label-text">on</span>
+            </div>
+        </div>
+        
+        <!-- Lyrics Container -->
         <div class="lyrics-container">
-            <div class="content-box lyrics-content-box">
+            <div class="content-box lyrics-content-box" id="lyrics-box">
                 <div class="song-info">
                     <h2 class="song-title">Tension</h2>
                     <p class="song-album">From the album: Advisory</p>
                     <p class="song-details">Released: 2025 • Duration: 2:48</p>
                 </div>
                 
-                <div class="lyrics-text">
-                    <!-- Lyrics will go here -->
-                    <div class="lyrics-section">
-                        <div class="section-title">[Intro]</div>
-                        Yeah, yeah
-                        Diljit Dosanjh!
+                <!-- Two Column Lyrics -->
+                <div class="lyrics-two-column">
+                    <!-- Left Column - Transliteration (Never changes) -->
+                    <div class="lyrics-column transliteration-column">
+                        <div class="lyrics-line">Yeah, yeah</div>
+                        <div class="lyrics-line">Diljit Dosanjh!</div>
+                        <div class="lyrics-line">Tension na le yaara, mainu pata teri gal da</div>
+                        <div class="lyrics-line">Tu akh maardi, mainu lagda ae dhal da</div>
+                        <div class="lyrics-line">Teri walk 'ch swag, teri baat 'ch charm</div>
+                        <div class="lyrics-line">Tenu dekh ke dil mera hoya calm</div>
+                        <div class="lyrics-line">Tension na le yaara, ho jayega clear</div>
+                        <div class="lyrics-line">Teri meri kahani, yeh hogi hit sure</div>
+                        <div class="lyrics-line">Tension na le yaara, main hoon na tere pass</div>
+                        <div class="lyrics-line">Har problem ka solution, tu bas kar de trust</div>
+                        <div class="lyrics-line">Life hai short, enjoy karna seekh</div>
+                        <div class="lyrics-line">Duniya ki tension ko, tu ignore hi dekh</div>
+                        <div class="lyrics-line">Main rahoon saath, tera har fear door</div>
+                        <div class="lyrics-line">Tere liye ready, main hoon super sure</div>
+                        <div class="lyrics-line">Jo bhi hai problem, main kar dunga solve</div>
+                        <div class="lyrics-line">Tere liye ready, main hoon always involved</div>
+                        <div class="lyrics-line">Tu muskura de bas, ho jayega bright</div>
+                        <div class="lyrics-line">Tere saath hoon main, day and night</div>
+                        <div class="lyrics-line">Tension na le yaara...</div>
+                        <div class="lyrics-line">Diljit Dosanjh!</div>
+                        <div class="lyrics-line">Advisory!</div>
                     </div>
                     
-                    <div class="lyrics-section">
-                        <div class="section-title">[Verse 1]</div>
-                        Tension na le yaara, mainu pata teri gal da
-                        Tu akh maardi, mainu lagda ae dhal da
-                        Teri walk 'ch swag, teri baat 'ch charm
-                        Tenu dekh ke dil mera hoya calm
+                    <!-- Right Column - Punjabi (Default view) -->
+                    <div class="lyrics-column punjabi-column">
+                        <div class="lyrics-line">ਯੇਃ, ਯੇਃ</div>
+                        <div class="lyrics-line">ਦਿਲਜੀਤ ਦੋਸਾਂਝ!</div>
+                        <div class="lyrics-line">ਟੈਨਸ਼ਨ ਨਾ ਲੈ ਯਾਰਾ, ਮੈਨੂੰ ਪਤਾ ਤੇਰੀ ਗਲ ਦਾ</div>
+                        <div class="lyrics-line">ਤੂੰ ਅੱਖ ਮਾਰਦੀ, ਮੈਨੂੰ ਲੱਗਦਾ ਏ ਢਲ ਦਾ</div>
+                        <div class="lyrics-line">ਤੇਰੀ ਵਾਕ 'ਚ ਸਵੈਗ, ਤੇਰੀ ਬਾਤ 'ਚ ਚਾਰਮ</div>
+                        <div class="lyrics-line">ਤੈਨੂੰ ਦੇਖ ਕੇ ਦਿਲ ਮੇਰਾ ਹੋਇਆ ਕਾਲਮ</div>
+                        <div class="lyrics-line">ਟੈਨਸ਼ਨ ਨਾ ਲੈ ਯਾਰਾ, ਹੋ ਜਾਏਗਾ ਕਲੀਅਰ</div>
+                        <div class="lyrics-line">ਤੇਰੀ ਮੇਰੀ ਕਹਾਣੀ, ਇਹ ਹੋਗੀ ਹਿੱਟ ਸ਼ੁਰ</div>
+                        <div class="lyrics-line">ਟੈਨਸ਼ਨ ਨਾ ਲੈ ਯਾਰਾ, ਮੈਂ ਹੂੰ ਨਾ ਤੇਰੇ ਪਾਸ</div>
+                        <div class="lyrics-line">ਹਰ ਪ੍ਰੋਬਲਮ ਕਾ ਸੋਲੂਸ਼ਨ, ਤੂੰ ਬਸ ਕਰ ਦੇ ਟ੍ਰਸਟ</div>
+                        <div class="lyrics-line">ਲਾਈਫ ਹੈ ਸ਼ੋਰਟ, ਐਨਜੌਏ ਕਰਨਾ ਸਿੱਖ</div>
+                        <div class="lyrics-line">ਦੁਨੀਆ ਦੀ ਟੈਨਸ਼ਨ ਕੋ, ਤੂੰ ਇਗਨੋਰ ਹੀ ਦੇਖ</div>
+                        <div class="lyrics-line">ਮੈਂ ਰਹੂੰ ਸਾਥ, ਤੇਰਾ ਹਰ ਫੀਅਰ ਦੂਰ</div>
+                        <div class="lyrics-line">ਤੇਰੇ ਲਈ ਰੈਡੀ, ਮੈਂ ਹੂੰ ਸੁਪਰ ਸ਼ੁਰ</div>
+                        <div class="lyrics-line">ਜੋ ਭੀ ਹੈ ਪ੍ਰੋਬਲਮ, ਮੈਂ ਕਰ ਦੂੰਗਾ ਸੋਲਵ</div>
+                        <div class="lyrics-line">ਤੇਰੇ ਲਈ ਰੈਡੀ, ਮੈਂ ਹੂੰ ਆਲਵੇਜ਼ ਇਨਵੌਲਵਡ</div>
+                        <div class="lyrics-line">ਤੂੰ ਮੁਸਕੁਰਾ ਦੇ ਬਸ, ਹੋ ਜਾਏਗਾ ਬ੍ਰਾਈਟ</div>
+                        <div class="lyrics-line">ਤੇਰੇ ਸਾਥ ਹੂੰ ਮੈਂ, ਡੇ ਐਂਡ ਨਾਈਟ</div>
+                        <div class="lyrics-line">ਟੈਨਸ਼ਨ ਨਾ ਲੈ ਯਾਰਾ...</div>
+                        <div class="lyrics-line">ਦਿਲਜੀਤ ਦੋਸਾਂਝ!</div>
+                        <div class="lyrics-line">ਐਡਵਾਈਜ਼ਰੀ!</div>
                     </div>
                     
-                    <div class="lyrics-section">
-                        <div class="section-title">[Chorus]</div>
-                        Tension na le yaara, ho jayega clear
-                        Teri meri kahani, yeh hogi hit sure
-                        Tension na le yaara, main hoon na tere pass
-                        Har problem ka solution, tu bas kar de trust
-                    </div>
-                    
-                    <div class="lyrics-section">
-                        <div class="section-title">[Verse 2]</div>
-                        Life hai short, enjoy karna seekh
-                        Duniya ki tension ko, tu ignore hi dekh
-                        Main rahoon saath, tera har fear door
-                        Tere liye ready, main hoon super sure
-                    </div>
-                    
-                    <div class="lyrics-section">
-                        <div class="section-title">[Chorus]</div>
-                        Tension na le yaara, ho jayega clear
-                        Teri meri kahani, yeh hogi hit sure
-                        Tension na le yaara, main hoon na tere pass
-                        Har problem ka solution, tu bas kar de trust
-                    </div>
-                    
-                    <div class="lyrics-section">
-                        <div class="section-title">[Bridge]</div>
-                        Jo bhi hai problem, main kar dunga solve
-                        Tere liye ready, main hoon always involved
-                        Tu muskura de bas, ho jayega bright
-                        Tere saath hoon main, day and night
-                    </div>
-                    
-                    <div class="lyrics-section">
-                        <div class="section-title">[Outro]</div>
-                        Tension na le yaara...
-                        Diljit Dosanjh!
-                        Advisory!
+                    <!-- Right Column - Translation (Shows when toggle is on) -->
+                    <div class="lyrics-column translation-column">
+                        <div class="lyrics-line">Yeah, yeah</div>
+                        <div class="lyrics-line">Diljit Dosanjh!</div>
+                        <div class="lyrics-line">Don't take tension, my friend, I know your situation</div>
+                        <div class="lyrics-line">When you wink, I feel like I'm melting</div>
+                        <div class="lyrics-line">Your walk has swag, your talk has charm</div>
+                        <div class="lyrics-line">Seeing you makes my heart calm</div>
+                        <div class="lyrics-line">Don't take tension, my friend, it will become clear</div>
+                        <div class="lyrics-line">Our story will definitely be a hit</div>
+                        <div class="lyrics-line">Don't take tension, my friend, I am with you</div>
+                        <div class="lyrics-line">For every problem there's a solution, you just trust me</div>
+                        <div class="lyrics-line">Life is short, learn to enjoy</div>
+                        <div class="lyrics-line">Just ignore the world's tension</div>
+                        <div class="lyrics-line">I'll be with you, removing all your fears</div>
+                        <div class="lyrics-line">I'm ready for you, I'm super sure</div>
+                        <div class="lyrics-line">Whatever problem there is, I will solve it</div>
+                        <div class="lyrics-line">I'm ready for you, I'm always involved</div>
+                        <div class="lyrics-line">You just smile, everything will become bright</div>
+                        <div class="lyrics-line">I am with you, day and night</div>
+                        <div class="lyrics-line">Don't take tension, my friend...</div>
+                        <div class="lyrics-line">Diljit Dosanjh!</div>
+                        <div class="lyrics-line">Advisory!</div>
                     </div>
                 </div>
             </div>
@@ -253,6 +351,8 @@
         const themeToggle = document.getElementById('theme-toggle');
         const difficultyToggle = document.getElementById('difficulty-toggle');
         const serviceToggle = document.getElementById('service-toggle');
+        const translationToggle = document.getElementById('translation-toggle');
+        const lyricsBox = document.getElementById('lyrics-box');
 
         // Function to update toggle labels
         function updateToggleLabels() {
@@ -302,6 +402,15 @@
             }
         }
 
+        // Translation toggle functionality
+        translationToggle.addEventListener('change', function() {
+            if (this.checked) {
+                lyricsBox.classList.add('show-translation');
+            } else {
+                lyricsBox.classList.remove('show-translation');
+            }
+        });
+
         // Load saved preferences
         document.addEventListener('DOMContentLoaded', function() {
             // Theme
@@ -321,6 +430,13 @@
             const savedService = localStorage.getItem('musicService');
             if (savedService === 'youtube') {
                 serviceToggle.checked = true;
+            }
+
+            // Translation
+            const savedTranslation = localStorage.getItem('showTranslation');
+            if (savedTranslation === 'true') {
+                translationToggle.checked = true;
+                lyricsBox.classList.add('show-translation');
             }
 
             // Update labels on load
@@ -365,6 +481,11 @@
         serviceToggle.addEventListener('change', () => {
             localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
             updateToggleLabels();
+        });
+
+        // Save translation preference
+        translationToggle.addEventListener('change', function() {
+            localStorage.setItem('showTranslation', this.checked);
         });
     </script>
 </body>
