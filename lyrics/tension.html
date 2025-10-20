@@ -8,19 +8,23 @@
     <style>
         /* Custom styles for the lyrics page */
         .lyrics-container {
-            max-width: 800px !important;
-            width: 800px !important;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
         .lyrics-content {
+            max-width: 800px !important;
+            width: 800px !important;
+            margin: 0 auto 30px auto;
+            padding: 30px;
+            line-height: 1.7;
+            text-align: left;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            line-height: 1.7;
-            text-align: left;
+            position: relative;
+            z-index: 1;
         }
         
         .song-info {
@@ -64,9 +68,10 @@
             font-size: 1.1em;
         }
         
-        /* Dark mode support */
+        /* Dark mode support - match exactly from desktop.css */
         body.dark .lyrics-content {
-            background-color: rgba(30, 30, 30, 0.9);
+            background-color: rgba(30, 30, 30, 0.9) !important;
+            color: #ffffff;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
@@ -172,9 +177,9 @@
             <h1>Tension</h1>
         </div>
         
-        <!-- Lyrics Container -->
+        <!-- Lyrics Container - Using the same content-box class as album cards -->
         <div class="lyrics-container">
-            <div class="lyrics-content">
+            <div class="lyrics-content content-box">
                 <div class="song-info">
                     <h2 class="song-title">Tension</h2>
                     <p class="song-album">From the album: Advisory</p>
