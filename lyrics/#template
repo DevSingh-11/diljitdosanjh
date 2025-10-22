@@ -139,18 +139,6 @@
     <!-- Settings Menu -->
     <div id="settings-menu" class="settings-menu">
         <div class="settings-header">
-            <h3>Theme</h3>
-            <div class="toggle-container">
-                <span class="toggle-label left">Light</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="toggle-slider"></span>
-                </label>
-                <span class="toggle-label right">Dark</span>
-            </div>
-        </div>
-        
-        <div class="settings-header">
             <h3>Game Difficulty</h3>
             <div class="toggle-container">
                 <span class="toggle-label left">Easy</span>
@@ -161,7 +149,7 @@
                 <span class="toggle-label right">Hard</span>
             </div>
         </div>
-    
+        
         <div class="settings-header">
             <h3>Music Service</h3>
             <div class="toggle-container">
@@ -181,6 +169,18 @@
                         <span class="service-icon-mask" style="-webkit-mask-image: url('../images/youtube.png'); mask-image: url('../images/youtube.png');"></span>
                     </span>
                 </span>
+            </div>
+        </div>
+        
+        <div class="settings-header">
+            <h3>Theme</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Light</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Dark</span>
             </div>
         </div>
     </div>
@@ -245,9 +245,9 @@
 
         // Function to update toggle labels
         function updateToggleLabels() {
-            const themeLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
-            const difficultyLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
-            const serviceLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const themeLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
             
             // Get all label elements
             const themeLeft = themeLabels.querySelector('.toggle-label.left');
