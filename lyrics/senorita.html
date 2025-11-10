@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senorita - Diljit Dosanjh</title>
+    <link rel="stylesheet" href="../desktop.css">
+    <style>
+        /* Custom styles for the lyrics page */
+        .lyrics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .lyrics-content-box {
+            max-width: 800px !important;
+            width: 800px !important;
+            margin: 0 auto 30px auto;
+            padding: 30px;
+            line-height: 1.7;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Translation Toggle Styles */
+        .translation-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 0 auto 30px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .translation-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #222;
+        }
+        
+        .toggle-labels {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Two Column Lyrics Layout */
+        .lyrics-two-column {
+            display: flex;
+            gap: 0;
+        }
+        
+        .lyrics-column {
+            flex: 1;
+            padding: 0;
+            min-height: 200px;
+        }
+        
+        .transliteration-column {
+            padding-right: 20px;
+            border-right: 1px solid #eee;
+        }
+        
+        .punjabi-column, .translation-column {
+            font-family: 'GurbaniAkhar', 'Noto Sans Gurmukhi', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        
+        .lyrics-line {
+            margin-bottom: 8px;
+            min-height: 1.8em;
+        }
+        
+        .translation-column {
+            display: none;
+        }
+        
+        /* Show translation when active */
+        .lyrics-content-box.show-translation .punjabi-column {
+            display: none;
+        }
+        
+        .lyrics-content-box.show-translation .translation-column {
+            display: block;
+        }
+        
+        /* Dark mode support */
+        body.dark .lyrics-content-box {
+            background-color: rgba(30, 30, 30, 0.9) !important;
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark .translation-label {
+            color: #ffffff;
+        }
+        
+        body.dark .toggle-labels {
+            color: #cccccc;
+        }
+        
+        body.dark .transliteration-column {
+            border-right-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="#" id="back-button" class="nav-icon" title="Back to Lyrics">
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/back.png'); mask-image: url('../images/back.png');"></span>
+            </a>
+        </div>
+        
+        <div class="nav-center">
+            <a href="../desktop-games.html" class="nav-link">GAMES</a>
+            <a href="../desktop-listen.html" class="nav-link">LISTEN</a>
+            <a href="../desktop-lyrics.html" class="nav-link active">LYRICS</a>
+        </div>
+        
+        <div class="nav-right">
+            <button class="settings-toggle" title="Settings">
+                <span class="nav-icon-mask" style="-webkit-mask-image: url('../images/settings.png'); mask-image: url('../images/settings.png');"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-header">
+            <h3>Game Difficulty</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Easy</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="difficulty-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Hard</span>
+            </div>
+        </div>
+        
+        <div class="settings-header">
+            <h3>Music Service</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">
+                    <span class="icon-wrapper">
+                        <span class="icon-bg"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/spotify.png'); mask-image: url('../images/spotify.png');"></span>
+                    </span>
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="service-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">
+                    <span class="icon-wrapper">
+                        <span class="icon-bg"></span>
+                        <span class="service-icon-mask" style="-webkit-mask-image: url('../images/youtube.png'); mask-image: url('../images/youtube.png');"></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="settings-header">
+            <h3>Theme</h3>
+            <div class="toggle-container">
+                <span class="toggle-label left">Light</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label right">Dark</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Page Content -->
+    <main>
+        <!-- Title Box -->
+        <div class="title-box">
+            <h1>Senorita</h1>
+        </div>
+        
+        <!-- Translation Toggle -->
+        <div class="translation-toggle-container">
+            <span class="translation-label">Show translation:</span>
+            <div class="toggle-labels">
+                <span class="toggle-label-text">off</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="translation-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label-text">on</span>
+            </div>
+        </div>
+        
+        <!-- Lyrics Container -->
+        <div class="lyrics-container">
+            <div class="content-box lyrics-content-box" id="lyrics-box">
+                <!-- Two Column Lyrics -->
+                <div class="lyrics-two-column">
+                    <!-- Left Column - Transliteration (Never changes) -->
+                    <div class="lyrics-column transliteration-column">
+                        <div class="lyrics-line">TRANSLITERATION LYRICS</div>
+                    </div>
+                    
+                    <!-- Right Column - Punjabi (Default view) -->
+                    <div class="lyrics-column punjabi-column">
+                        <div class="lyrics-line">PUNJABI LYRICS</div>
+                    </div>
+                    
+                    <!-- Right Column - Translation (Shows when toggle is on) -->
+                    <div class="lyrics-column translation-column">
+                        <div class="lyrics-line">TRANSLATION LYRICS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Settings functionality
+        const settingsToggle = document.querySelector('.settings-toggle');
+        const settingsMenu = document.getElementById('settings-menu');
+        const overlay = document.getElementById('overlay');
+        const themeToggle = document.getElementById('theme-toggle');
+        const difficultyToggle = document.getElementById('difficulty-toggle');
+        const serviceToggle = document.getElementById('service-toggle');
+        const translationToggle = document.getElementById('translation-toggle');
+        const lyricsBox = document.getElementById('lyrics-box');
+
+        // Function to update toggle labels
+        function updateToggleLabels() {
+            const difficultyLabels = document.querySelector('.settings-header:nth-child(1) .toggle-container');
+            const serviceLabels = document.querySelector('.settings-header:nth-child(2) .toggle-container');
+            const themeLabels = document.querySelector('.settings-header:nth-child(3) .toggle-container');
+            
+            // Get all label elements
+            const themeLeft = themeLabels.querySelector('.toggle-label.left');
+            const themeRight = themeLabels.querySelector('.toggle-label.right');
+            const difficultyLeft = difficultyLabels.querySelector('.toggle-label.left');
+            const difficultyRight = difficultyLabels.querySelector('.toggle-label.right');
+            const serviceLeft = serviceLabels.querySelector('.toggle-label.left');
+            const serviceRight = serviceLabels.querySelector('.toggle-label.right');
+            
+            // Reset all labels first
+            [themeLeft, themeRight, difficultyLeft, difficultyRight, serviceLeft, serviceRight].forEach(label => {
+                label.classList.remove('active', 'inactive');
+                label.classList.add('inactive');
+            });
+            
+            // Update theme labels
+            if (themeToggle.checked) {
+                themeRight.classList.add('active');
+                themeRight.classList.remove('inactive');
+            } else {
+                themeLeft.classList.add('active');
+                themeLeft.classList.remove('inactive');
+            }
+            
+            // Update difficulty labels
+            if (difficultyToggle.checked) {
+                difficultyRight.classList.add('active');
+                difficultyRight.classList.remove('inactive');
+            } else {
+                difficultyLeft.classList.add('active');
+                difficultyLeft.classList.remove('inactive');
+            }
+            
+            // Update service labels
+            if (serviceToggle.checked) {
+                serviceRight.classList.add('active');
+                serviceRight.classList.remove('inactive');
+            } else {
+                serviceLeft.classList.add('active');
+                serviceLeft.classList.remove('inactive');
+            }
+        }
+
+        // Translation toggle functionality
+        translationToggle.addEventListener('change', function() {
+            if (this.checked) {
+                lyricsBox.classList.add('show-translation');
+            } else {
+                lyricsBox.classList.remove('show-translation');
+            }
+        });
+
+        // Back button functionality - only works when there's history to go back to
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.getElementById('back-button');
+            
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Check if there's history to go back to
+                if (window.history.length > 1) {
+                    // Use browser's back navigation to return to exact previous state
+                    window.history.back();
+                } else {
+                    // Fallback: go to lyrics page normally (fresh load)
+                    window.location.href = '../desktop-lyrics.html';
+                }
+            });
+
+            // Theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                themeToggle.checked = true;
+                document.body.classList.add('dark');
+            }
+
+            // Difficulty
+            const savedDifficulty = localStorage.getItem('difficulty');
+            if (savedDifficulty === 'hard') {
+                difficultyToggle.checked = true;
+            }
+
+            // Music Service
+            const savedService = localStorage.getItem('musicService');
+            if (savedService === 'youtube') {
+                serviceToggle.checked = true;
+            }
+
+            // Translation
+            const savedTranslation = localStorage.getItem('showTranslation');
+            if (savedTranslation === 'true') {
+                translationToggle.checked = true;
+                lyricsBox.classList.add('show-translation');
+            }
+
+            // Update labels on load
+            updateToggleLabels();
+        });
+
+        // Settings menu functionality
+        settingsToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            settingsMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        settingsMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+            updateToggleLabels();
+        });
+
+        // Difficulty toggle
+        difficultyToggle.addEventListener('change', () => {
+            localStorage.setItem('difficulty', difficultyToggle.checked ? 'hard' : 'easy');
+            updateToggleLabels();
+        });
+
+        // Service toggle
+        serviceToggle.addEventListener('change', () => {
+            localStorage.setItem('musicService', serviceToggle.checked ? 'youtube' : 'spotify');
+            updateToggleLabels();
+        });
+
+        // Save translation preference
+        translationToggle.addEventListener('change', function() {
+            localStorage.setItem('showTranslation', this.checked);
+        });
+    </script>
+</body>
+</html>
